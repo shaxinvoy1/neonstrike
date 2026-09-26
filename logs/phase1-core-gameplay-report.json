@@ -1,0 +1,393 @@
+{
+  "phase": "phase1-core-gameplay",
+  "at": "2026-09-21T12:41:17.974Z",
+  "pass": 15,
+  "fail": 14,
+  "total": 29,
+  "status": "FAIL",
+  "results": [
+    {
+      "name": "P1.1 HAQIQIY Chrome + sahifa + WebGL2",
+      "ok": true,
+      "detail": "renderer=ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), Op ws=true"
+    },
+    {
+      "name": "P1.2 TRAINING sahna faol (real render loop)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P1.3a Nishon ekran O‘NGIDA (poydevor o‘lchovi)",
+      "ok": true,
+      "detail": "ndc.x=0.159 (musbat bo‘lishi kerak)"
+    },
+    {
+      "name": "P1.3 SICHQONCHA O‘NGGA → kamera O‘NGGA buriladi (obyekt markazga suriladi)",
+      "ok": true,
+      "detail": "ndc.x 0.159 → 0.085 (kamayishi SHART)"
+    },
+    {
+      "name": "P1.4 SICHQONCHA PASTGA → kamera PASTGA (ekran proyeksiyasi)",
+      "ok": true,
+      "detail": "ndc.y -0.051 → 0.234 (oshishi kerak)"
+    },
+    {
+      "name": "P1.5 D — ekran O‘NGIGA suradi (real klaviatura)",
+      "ok": false,
+      "detail": "Δ=(0,0) ekran-o‘ng komponenti=0 (0 m)"
+    },
+    {
+      "name": "P1.6 A — ekran CHAPIGA suradi (real klaviatura)",
+      "ok": false,
+      "detail": "Δ=(0,0) ekran-o‘ng komponenti=0 (0 m)"
+    },
+    {
+      "name": "P1.7 W — kamera FORWARD tomon harakat (real klaviatura)",
+      "ok": false,
+      "detail": "forward komponenti=0,0 → 0 m"
+    },
+    {
+      "name": "P1.8 Crosshair nishon markazida (real proyeksiya + aim target)",
+      "ok": true,
+      "detail": "2m ndc=0 target/ct2@5.01m · 6m ndc=0 target/ct6@9.05m · 10m ndc=0 target/ct10@13.06m · 14m ndc=0 target/ct14@17.06m"
+    },
+    {
+      "name": "P1.9 HAQIQIY o‘q crosshair ostidagi nishonga tegadi (lokal bashorat)",
+      "ok": false,
+      "detail": "2m hp 100→100 (shots=0) · 6m hp 100→100 (shots=0) · 10m hp 100→100 (shots=0) · 14m hp 100→100 (shots=0)"
+    },
+    {
+      "name": "P1.10 O‘q yo‘nalishi = crosshair nuqtasi (invariant, real proyeksiya, ≤39 m)",
+      "ok": true,
+      "detail": "2m→60m perp=8.1e-15 ndc=0 dev=0.56° · 6m→12.52m perp=0.0e+0 ndc=0 dev=3.45° · 10m→20.41m perp=7.1e-15 ndc=0 dev=1.85° · 14m→20.4m perp=1.1e-16 ndc=0 dev=1.85° · 18m→20.4m perp=0.0e+0 ndc=0 dev=1.85° · 39m→20.4m perp=3.6e-15 ndc=0 dev=1.85°"
+    },
+    {
+      "name": "P1.11 Otish tepkisi (recoil) — to‘planadi va tiklanadi",
+      "ok": true,
+      "detail": "shots 0→8, pitch 0.01693→0"
+    },
+    {
+      "name": "P1.12 Spread bloom — otish bilan oshadi, keyin tiklanadi",
+      "ok": true,
+      "detail": "0.95° → 0.6° (baza tiklandi)"
+    },
+    {
+      "name": "P1.13 Qurol almashtirish (real `2`) + pistol otişi + reload (real `R`)",
+      "ok": false,
+      "detail": "weapon=neon-rifle mag 30→30 reloading=false"
+    },
+    {
+      "name": "P1.14 Ikkinchi HAQIQIY Chrome (alohida jarayon + WebGL2 + WS)",
+      "ok": true,
+      "detail": "renderer=ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), Op"
+    },
+    {
+      "name": "P1.15 Ikki klient LOBBY → avtoritar LIVE raund (jamoalar server bergan)",
+      "ok": true,
+      "detail": "ids=p1,p2 teams=A/B round=live"
+    },
+    {
+      "name": "P1.16 Ikki HAQIQIY klient server avtoritar harakatida yaqinlashdi (real `W`)",
+      "ok": false,
+      "detail": "masofa 39 → 26.6 m · A→x=[-19.5,0] ok=false · B→x=[3.79,-13.52] ok=true · yo‘lak: A z=[-19.5,0] ok=false · B z=[19.5,-12.81] ok=true · {\"A\":{\"ok\":false,\"last\":[-19.5,0],\"label\":\"A\"},\"B\":{\"ok\":true,\"last\":[3.79,-13.52],\"label\":\"B\"}}"
+    },
+    {
+      "name": "P1.17 A ni nishonga olish → server B ga zarar yetkazdi (AVTORITAR HP)",
+      "ok": false,
+      "detail": "B hp 100→100 (0 zarar), A hits=0, aimKind=wall, aimTarget="
+    },
+    {
+      "name": "P1.18 O‘q otgan klient AVTORITAR hit feedback oladi (hit marker)",
+      "ok": false,
+      "detail": "peerHits=0 lastTarget= dmg=0"
+    },
+    {
+      "name": "P1.19 Jabrlanuvchi klient AVTORITAR zarar feedback oladi (server EVENTS → HUD)",
+      "ok": false,
+      "detail": "damageTaken=0 attacker= dmgNum= dmgDirVisible=false rot="
+    },
+    {
+      "name": "P1.20 Zarar YO‘NALISHI indikatori real o‘lchovga ega (gradus)",
+      "ok": false,
+      "detail": "--dmg-rot= (ko‘rindi=false, TTL ichida o‘lchandi)"
+    },
+    {
+      "name": "P1.21 Granata DUSHMANGA avtoritativ zarar beradi (P1 nuqsoni tuzatildi)",
+      "ok": false,
+      "detail": "otildi=0, portlash=false, masofa=26.6 m, B hp 100→100"
+    },
+    {
+      "name": "P1.22 Granata natijasi ikki klientda ham AVTORITAR ko‘rinadi",
+      "ok": false,
+      "detail": "A: peerKills 0→0 · B: damageTaken 0→0, deathEvents 0→0"
+    },
+    {
+      "name": "P1.22b Granata AVTORITAR o‘lim hosil qildi (server kill/death + ikki klient)",
+      "ok": false,
+      "detail": "A: server kills=0 peerKills=0 · B: server deaths=0 deathEvents=0 hp=100"
+    },
+    {
+      "name": "P1.22c O‘lgan o‘yinchi o‘q uza OLMAYDI (avtoritar o‘lim cheklovi)",
+      "ok": false,
+      "detail": "B alive=true deadRad=0→0 reject={\"cooldown\":16} server={\"sent\":5168,\"states\":785,\"eventBatches\":8,\"events\":11,\"accepted\":5168,\"rejected\":0,\"lastR"
+    },
+    {
+      "name": "P1.23 Konsol/runtime xatolari yo‘q (ikki brauzer)",
+      "ok": true,
+      "detail": "exceptions=0/0 consoleErrors=0/0"
+    },
+    {
+      "name": "P1.24 Server tickErrors = 0 va loop xatolari yo‘q",
+      "ok": true,
+      "detail": "tickErrors=0 loopErrors=0/0 uncaught=0"
+    },
+    {
+      "name": "P1.25 P5 combat AVTORITETI saqlanadi (klient HP/o‘q-dori yubormaydi)",
+      "ok": true,
+      "detail": "server acks: {\"sent\":6768,\"states\":1026,\"eventBatches\":0,\"events\":0,\"accepted\":5987,\"rejected\":781,\"lastReason\":\"pose_bl"
+    },
+    {
+      "name": "P1.26 Performance: kadr byudjeti ichida (server loop + client CPU)",
+      "ok": true,
+      "detail": "server loop=0.2607 ms (33.3 ms byudjet), clientA cpu=1.5 ms, FPS=100 (min 99), draws=175, tris=25868"
+    }
+  ],
+  "aim": [
+    {
+      "dist": 2,
+      "ndcX": 0,
+      "ndcY": 0,
+      "kind": "target",
+      "targetId": "ct2",
+      "aimDist": 5.01,
+      "shots": 0,
+      "reject": {},
+      "hpBefore": 100,
+      "hpAfter": 100,
+      "hitOk": false
+    },
+    {
+      "dist": 6,
+      "ndcX": 0,
+      "ndcY": 0,
+      "kind": "target",
+      "targetId": "ct6",
+      "aimDist": 9.05,
+      "shots": 0,
+      "reject": {},
+      "hpBefore": 100,
+      "hpAfter": 100,
+      "hitOk": false
+    },
+    {
+      "dist": 10,
+      "ndcX": 0,
+      "ndcY": 0,
+      "kind": "target",
+      "targetId": "ct10",
+      "aimDist": 13.06,
+      "shots": 0,
+      "reject": {},
+      "hpBefore": 100,
+      "hpAfter": 100,
+      "hitOk": false
+    },
+    {
+      "dist": 14,
+      "ndcX": 0,
+      "ndcY": 0,
+      "kind": "target",
+      "targetId": "ct14",
+      "aimDist": 17.06,
+      "shots": 0,
+      "reject": {},
+      "hpBefore": 100,
+      "hpAfter": 100,
+      "hitOk": false
+    }
+  ],
+  "shotDirectionInvariants": [
+    {
+      "need": 2,
+      "kind": "none",
+      "dist": 60,
+      "perpShot": 8.140289677804162e-15,
+      "centreErr": 0,
+      "len": 0.9999999999999999,
+      "dev": 0.56,
+      "ok": true
+    },
+    {
+      "need": 6,
+      "kind": "wall",
+      "dist": 12.52,
+      "perpShot": 0,
+      "centreErr": 0,
+      "len": 1,
+      "dev": 3.45,
+      "ok": true
+    },
+    {
+      "need": 10,
+      "kind": "wall",
+      "dist": 20.41,
+      "perpShot": 7.115178486175919e-15,
+      "centreErr": 0,
+      "len": 0.9999999999999999,
+      "dev": 1.85,
+      "ok": true
+    },
+    {
+      "need": 14,
+      "kind": "wall",
+      "dist": 20.4,
+      "perpShot": 1.1102230246251565e-16,
+      "centreErr": 0,
+      "len": 1,
+      "dev": 1.85,
+      "ok": true
+    },
+    {
+      "need": 18,
+      "kind": "wall",
+      "dist": 20.4,
+      "perpShot": 0,
+      "centreErr": 0,
+      "len": 0.9999999999999999,
+      "dev": 1.85,
+      "ok": true
+    },
+    {
+      "need": 39,
+      "kind": "wall",
+      "dist": 20.4,
+      "perpShot": 3.5535809346852124e-15,
+      "centreErr": 0,
+      "len": 1,
+      "dev": 1.85,
+      "ok": true
+    }
+  ],
+  "pvpEvidence": {
+    "playerIds": [
+      "p1",
+      "p2"
+    ],
+    "teams": [
+      "A",
+      "B"
+    ],
+    "distanceClosed": {
+      "from": 39,
+      "to": 26.58
+    },
+    "serverSideDamage": {
+      "hpBefore": 100,
+      "afterHitscan": 100,
+      "afterGrenade": 100
+    },
+    "clientFeedbackA": {
+      "peerHits": 0,
+      "peerKills": 0,
+      "damageTaken": 0,
+      "deathEvents": 0,
+      "lastDamage": 0,
+      "lastAttacker": "",
+      "lastHitTarget": "",
+      "lastHitDamage": 0,
+      "damageFrom": []
+    },
+    "clientFeedbackB": {
+      "peerHits": 0,
+      "peerKills": 0,
+      "damageTaken": 0,
+      "deathEvents": 0,
+      "lastDamage": 0,
+      "lastAttacker": "",
+      "lastHitTarget": "",
+      "lastHitDamage": 0,
+      "damageFrom": []
+    }
+  },
+  "performance": {
+    "aimLane": {
+      "x": 5,
+      "z": 0,
+      "yaw": 1.5708,
+      "note": "arena markazi — 45 m devorsiz"
+    },
+    "fpsA": 100,
+    "fpsMinA": 99.01,
+    "cpuMsA": 1.5,
+    "drawCallsA": 175,
+    "trianglesA": 25868,
+    "fpsB": 100,
+    "cpuMsB": 1,
+    "drawCallsB": 123,
+    "serverLoopMs": 0.2607,
+    "serverPerf": {
+      "budgetMs": 33.333,
+      "tick": {
+        "count": 2074,
+        "avgMs": 0.187,
+        "minMs": 0.004,
+        "maxMs": 1.628,
+        "p50Ms": 0.209,
+        "p95Ms": 0.34,
+        "p99Ms": 0.423,
+        "window": 512,
+        "overruns": 0,
+        "overrunPct": 0,
+        "utilPct": 0.562
+      },
+      "snapshot": {
+        "count": 1037,
+        "avgMs": 0.088,
+        "maxMs": 0.345,
+        "playersLast": 2,
+        "playersMax": 2
+      },
+      "ops": {
+        "inputs": 11936,
+        "inputsAccepted": 11155,
+        "inputsRejected": 781,
+        "chatAccepted": 0,
+        "chatRejected": 0,
+        "lobbyActions": 3,
+        "lobbyRejected": 0,
+        "malformed": 0,
+        "shotsAccepted": 3,
+        "shotsRejected": 5,
+        "events": 11
+      },
+      "life": {
+        "connections": 2,
+        "connectionsClosed": 0,
+        "sessions": 2,
+        "sessionsClosed": 0,
+        "members": 2,
+        "membersRemoved": 0,
+        "chatEntries": 0,
+        "chatEntriesDropped": 0,
+        "live": {
+          "connections": 2,
+          "sessions": 2,
+          "members": 2,
+          "chatEntries": 0
+        }
+      },
+      "memory": {
+        "samples": 67,
+        "rssMb": 80.19,
+        "heapMb": 13.08,
+        "externalMb": 4.67,
+        "rssDeltaMb": 10.27,
+        "heapDeltaMb": 3.79,
+        "maxHeapMb": 14.01,
+        "maxRssMb": 80.19,
+        "lastAt": 1789994477006
+      }
+    }
+  },
+  "uncaught": []
+}

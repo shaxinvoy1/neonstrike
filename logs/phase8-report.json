@@ -1,0 +1,239 @@
+{
+  "generatedAt": "2026-09-21T10:10:55.993Z",
+  "phase": 8,
+  "subject": "round-team-score",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:45911",
+  "protocol": 6,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "cadence": {
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "startingMs": 1200,
+    "roundEndMs": 3000,
+    "roundsToWin": 5
+  },
+  "clients": {
+    "browser": 2,
+    "raw": 3,
+    "ids": [
+      "p1",
+      "p2",
+      "p3",
+      "p4"
+    ],
+    "firePath": "real-mouse"
+  },
+  "match": {
+    "state": "match_end",
+    "roundState": "round_end",
+    "roundNumber": 5,
+    "roundWinner": "A",
+    "matchWinner": "A",
+    "scores": {
+      "A": 5,
+      "B": 0
+    },
+    "teams": {
+      "A": [
+        "p1",
+        "p3"
+      ],
+      "B": [
+        "p2",
+        "p4"
+      ]
+    },
+    "teamsAtRoundStart": {
+      "A": 2,
+      "B": 2
+    },
+    "matchEvents": 11
+  },
+  "performance": {
+    "loopMs": 0.3109,
+    "tick": 2037,
+    "tickErrors": 0,
+    "snapshots": 2347,
+    "inputs": 5951,
+    "rejected": 11,
+    "lobbyActions": 7,
+    "render": {
+      "calls": 139,
+      "triangles": 19242,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    },
+    "fpsAvg": 100,
+    "cpuMs": 1.8
+  },
+  "evidence": {
+    "screenshots": [
+      {
+        "name": "p8-14-teams-and-match-hud",
+        "file": "/home/paulinaj/neon-strike/logs/p8-14-teams-and-match-hud.png",
+        "bytes": 102355
+      },
+      {
+        "name": "p8-19-round-end-score",
+        "file": "/home/paulinaj/neon-strike/logs/p8-19-round-end-score.png",
+        "bytes": 105636
+      },
+      {
+        "name": "p8-23-match-end-in-b",
+        "file": "/home/paulinaj/neon-strike/logs/p8-23-match-end-in-b.png",
+        "bytes": 161766
+      }
+    ],
+    "sessions": 4,
+    "connections": 4
+  },
+  "gates": [
+    {
+      "name": "P8.1 HAQIQIY Chrome oynasi + HAQIQIY WebGL2 GPU (protokol v6)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\" · software=false · webgl2=true"
+    },
+    {
+      "name": "P8.2 Phase 1–7 + Phase 8 unit to‘plamlari (npm test ekvivalenti) PASS",
+      "ok": true,
+      "detail": "tests=209 pass=209 fail=0 exit=0"
+    },
+    {
+      "name": "P8.3 TO‘RT mustaqil klient ulandi (2 brauzer sahifasi + 2 xom WS)",
+      "ok": true,
+      "detail": "brauzer ws: A=true B=true · serverda ulanish=4 · lobby a’zolari=4"
+    },
+    {
+      "name": "P8.4 SERVER har bir klientga ALOHIDA playerId berdi",
+      "ok": true,
+      "detail": "A=p1 B=p2 C=p3 D=p4 · serverda sessiya=4"
+    },
+    {
+      "name": "P8.9 guest (non-host) START qila olmaydi — server `not_host` bilan rad etadi",
+      "ok": true,
+      "detail": "guest tugmasi disabled=true · server javobi=\"not_host\" · match=none"
+    },
+    {
+      "name": "P8.8 host REAL DOM klik bilan matchni boshladi (lobby → in_game → STARTING)",
+      "ok": true,
+      "detail": "lobby=in_game · match=starting · round=0"
+    },
+    {
+      "name": "P8.5/P8.6 SERVER jamoalarni tayinladi (deterministik muvozanat) va ular avtoritar holatda",
+      "ok": true,
+      "detail": "TEAM A=[p1,p3] · TEAM B=[p2,p4]"
+    },
+    {
+      "name": "P8.7 soxta jamoa/ball/raund da’volari RAD etildi — server holati o‘zgarmadi",
+      "ok": true,
+      "detail": "rad sabablari=[forbidden_authority, forbidden_authority, forbidden_authority, forbidden_authority, forbidden_authority] · ball A:0 B:0 · jamoalar o‘zgarmadi"
+    },
+    {
+      "name": "P8.10 raund SERVER tomonidan LIVE holatiga o‘tdi (STARTING → LIVE)",
+      "ok": true,
+      "detail": "match=live roundState=live raund=1 (STARTING_MS=1200)"
+    },
+    {
+      "name": "P8.11 raund raqami SERVER EGASI (1 dan boshlanadi)",
+      "ok": true,
+      "detail": "roundNumber=1 · o‘ynalgan raund=1"
+    },
+    {
+      "name": "P8.12 ballar noldan boshlanadi (server)",
+      "ok": true,
+      "detail": "A=0 B=0 · roundsToWin=5"
+    },
+    {
+      "name": "P8.13 o‘yinchi spawn’i AVTORITAR jamoaga mos (A g‘arb, B sharq)",
+      "ok": true,
+      "detail": "TEAM A x=[-19.5, -19.5] · TEAM B x=[19.5, 19.5]"
+    },
+    {
+      "name": "P8.14 klientlar sinxron o‘yinda qatnashadi va JAMOANI server snapshot’idan ko‘radi",
+      "ok": true,
+      "detail": "A o‘z jamoasi=A (remote=3) · B o‘z jamoasi=B (remote=3) · B ko‘rgan jamoalar=[p1:A, p3:A, p4:B]"
+    },
+    {
+      "name": "P8.15 HAQIQIY brauzer oti (pointer lock + sichqoncha) → server avtoritar o‘limni yozdi",
+      "ok": true,
+      "detail": "D HP 100 → 0 · o‘q=6 · pointerLock=true · yo‘l=real-mouse"
+    },
+    {
+      "name": "P8.16 server jamoa yo‘q qilinishini BAHOLADI — bitta o‘lim raundni tugatmaydi",
+      "ok": true,
+      "detail": "roundState=live · tirik: A=2 B=1 · ball A=0"
+    },
+    {
+      "name": "P8.17/P8.19 to‘liq yo‘q qilish → g‘olib TEAM A → ROUND_END (server qarori)",
+      "ok": true,
+      "detail": "B o‘ldi=true (o‘q=7) · roundWinner=A · roundState=round_end · tirik A=2 B=0"
+    },
+    {
+      "name": "P8.18 g‘olib jamoa balli FAQAT BIR MARTA oshdi (idempotent)",
+      "ok": true,
+      "detail": "ball A=1 B=0 · roundWinner=A"
+    },
+    {
+      "name": "P8.20/P8.21/P8.22 keyingi raund: holat tiklandi, raund raqami +1, ball SAQLANDI",
+      "ok": true,
+      "detail": "raund=2 · tiriklik=[true,true,true,true] · HP=[100,100,100,100] · ball A=1 B=0"
+    },
+    {
+      "name": "P8.26 join-in-progress: yangi a’zo jamoa + spawn + JORIY raund/ball holatini oldi",
+      "ok": true,
+      "detail": "late=p6 jamoa=A · snapshot match: raund=2 state=live ball A=1 · HP=100"
+    },
+    {
+      "name": "P8.24/P8.25 uzilgan o‘yinchi jamoadan chiqariladi va \"ghost\" tirik hisoblanmaydi",
+      "ok": true,
+      "detail": "jamoalar A=2 B=2 (avval A=3 B=2) · roundState(uzilishdan oldin)=live · ghost tirik=false"
+    },
+    {
+      "name": "P8.23 MATCH_END: TEAM A kerakli ballga yetdi — yangi raund BOSHLANMAYDI",
+      "ok": true,
+      "detail": "match=match_end g‘olib=A ball A=5 B=0 (kerak=5) · raund 5 (MATCH_END dan keyin o‘zgarmadi) · o‘ynaldi 5"
+    },
+    {
+      "name": "P8.30 klientlar (A va B) MATCH_END holatini SNAPSHOT/DOM orqali ko‘radi",
+      "ok": true,
+      "detail": "B matchQa: state=match_end ball A=5 B=0 · B HUD=\"A 5 : 0 B\" · lobby badge=\"JAMOA B · R5 ROUND_END · A 5:0 B\""
+    },
+    {
+      "name": "P8.27 buzilgan/noma’lum match buyruqlari serverni yiqitmadi (tick davom etdi)",
+      "ok": true,
+      "detail": "xato kodlari=[bad_json, unknown_type, unknown_type, too_big] · tick 1869→1884 · tickErrors=0 · ball A=5"
+    },
+    {
+      "name": "P8.28 uydirma ball/g‘olib/raund holati RAD etildi — server qiymatlari o‘zgarmadi",
+      "ok": true,
+      "detail": "rad sabablari=[forbidden_authority, forbidden_authority, forbidden_authority] · ball A=5 B=0 · raund=5 · g‘olib=A"
+    },
+    {
+      "name": "P8.29 Phase 5 combat avtoriteti SAQLANGAN (server o‘q-dorini boshqaradi; uydirma rad etiladi)",
+      "ok": true,
+      "detail": "A HAQIQIY otishi: 62→68 · server mag 18→12 · uydirma o‘q-dori rad=\"forbidden_authority\" · B mag=30 (o‘zgarmadi)"
+    },
+    {
+      "name": "P8.31 Phase 10+ o‘yin tizimlari YO‘Q (spectator/replay/voice/ranking/matchmaking/scoreboard)",
+      "ok": true,
+      "detail": "xabar turlari=[20] taqiqlangan=[] · o‘yinchi maydonlari=[airborne,alive,faceYaw,hp,id,pitch,sessionId,speed,teamId,vx,vz,x,y,yaw,z]"
+    },
+    {
+      "name": "P8.32 real brauzerlar ishlashda davom etadi (render + FPS + jamoalar ko‘rinadi)",
+      "ok": true,
+      "detail": "A: 100 FPS · 139 draw call · 19242 tri · shadowMap=false · B: 54.05 FPS"
+    },
+    {
+      "name": "P8.33 runtime/console xatolari YO‘Q (istisno, unhandled, loop xatosi, server tick)",
+      "ok": true,
+      "detail": "CDP istisno=0 · console.error=0 · __neonErrors A=0 B=0 · loop xatosi=0 · server tickErrors=0"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "neon-strike",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NEON STRIKE — lightweight 3D LAN multiplayer shooter (browser client + authoritative Node server)",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test test/unit/smoke.test.js test/unit/collision.test.js test/unit/map.test.js test/unit/weapons.test.js test/unit/combat.test.js test/unit/grenade.test.js test/unit/server-authority.test.js test/unit/lobby.test.js test/unit/multiplayer.test.js test/unit/round-team-score.test.js test/unit/hud-chat.test.js test/unit/stability.test.js test/unit/lan-qa.test.js test/unit/final-hardening.test.js test/unit/core-gameplay.test.js",
+    "verify": "node tools/verify-phase2.mjs",
+    "verify:phase2": "node tools/verify-phase2.mjs",
+    "verify:phase3": "node tools/verify-phase3.mjs",
+    "verify:phase4": "node tools/verify-phase4.mjs",
+    "verify:phase5": "node tools/verify-phase5.mjs",
+    "verify:phase6": "node tools/verify-phase6.mjs",
+    "verify:phase7": "node tools/verify-phase7.mjs",
+    "verify:phase8": "node tools/verify-phase8.mjs",
+    "verify:phase9": "node tools/verify-phase9.mjs",
+    "verify:phase10": "node tools/verify-phase10.mjs",
+    "verify:phase11": "node tools/verify-phase11.mjs",
+    "verify:phase12": "node tools/verify-phase12.mjs",
+    "verify:core": "node tools/verify-core-gameplay.mjs",
+    "verify:headless": "node tools/verify-phase2.mjs --headless",
+    "harness": "node test/integration/harness.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.21.3"
+  }
+}

@@ -1,0 +1,428 @@
+{
+  "generatedAt": "2026-09-21T10:08:53.290Z",
+  "phase": 5,
+  "subject": "authoritative-server",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:36117",
+  "protocol": 6,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "simulation": {
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "tickMs": 33.333333333333336
+  },
+  "serverTelemetry": {
+    "protocol": 6,
+    "tick": 549,
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "tickMs": 33.333333333333336,
+    "loopMs": 0.3003,
+    "sessions": 2,
+    "online": 2,
+    "totals": {
+      "inputs": 1650,
+      "accepted": 1644,
+      "rejected": 6,
+      "events": 199,
+      "shots": 0,
+      "ticks": 549,
+      "lobbyActions": 0,
+      "lobbyRejected": 0,
+      "snapshots": 0,
+      "chatAccepted": 0,
+      "chatRejected": 0
+    },
+    "tickErrors": 0,
+    "lobby": {
+      "sessionId": null,
+      "state": "none",
+      "hostId": null,
+      "count": 0,
+      "capacity": 8,
+      "revision": 0
+    },
+    "addresses": [
+      "http://10.201.177.74:36117"
+    ],
+    "chat": {
+      "accepted": 0,
+      "rejected": 0,
+      "rejections": {},
+      "maxLen": 160,
+      "burst": 5,
+      "windowMs": 3000,
+      "entries": 0,
+      "lastSeq": 0,
+      "last": null
+    },
+    "match": {
+      "state": "none",
+      "roundState": "none",
+      "roundNumber": 0,
+      "roundWinner": null,
+      "matchWinner": null,
+      "scores": {
+        "A": 0,
+        "B": 0
+      },
+      "teams": {
+        "A": [],
+        "B": []
+      },
+      "lives": {
+        "A": 0,
+        "B": 0
+      },
+      "teamsAtRoundStart": {
+        "A": 0,
+        "B": 0
+      },
+      "roundEndsAt": 0,
+      "roundsToWin": 5,
+      "events": 0,
+      "revision": 0
+    },
+    "sync": {
+      "mode": "standalone",
+      "authoritativeSessions": 0,
+      "frames": 0,
+      "players": 0,
+      "snapshotHz": 20,
+      "lastTickAt": 0
+    },
+    "perf": {
+      "budgetMs": 33.333,
+      "tick": {
+        "count": 549,
+        "avgMs": 0.229,
+        "minMs": 0.005,
+        "maxMs": 2.601,
+        "p50Ms": 0.237,
+        "p95Ms": 0.582,
+        "p99Ms": 0.954,
+        "window": 512,
+        "overruns": 0,
+        "overrunPct": 0,
+        "utilPct": 0.686
+      },
+      "snapshot": {
+        "count": 275,
+        "avgMs": 0.01,
+        "maxMs": 0.193,
+        "playersLast": 0,
+        "playersMax": 0
+      },
+      "ops": {
+        "inputs": 1650,
+        "inputsAccepted": 1644,
+        "inputsRejected": 6,
+        "chatAccepted": 0,
+        "chatRejected": 0,
+        "lobbyActions": 0,
+        "lobbyRejected": 0,
+        "malformed": 3,
+        "shotsAccepted": 42,
+        "shotsRejected": 105,
+        "events": 199
+      },
+      "life": {
+        "connections": 3,
+        "connectionsClosed": 1,
+        "sessions": 2,
+        "sessionsClosed": 0,
+        "members": 2,
+        "membersRemoved": 0,
+        "chatEntries": 0,
+        "chatEntriesDropped": 0,
+        "live": {
+          "connections": 2,
+          "sessions": 2,
+          "members": 2,
+          "chatEntries": 0
+        }
+      },
+      "memory": {
+        "samples": 18,
+        "rssMb": 75.78,
+        "heapMb": 10.44,
+        "externalMb": 3.65,
+        "rssDeltaMb": 2.81,
+        "heapDeltaMb": 1.23,
+        "maxHeapMb": 13.89,
+        "maxRssMb": 81.23,
+        "lastAt": 1789985330535
+      }
+    },
+    "resources": {
+      "connections": 2,
+      "sessions": 2,
+      "lobbyMembers": 0,
+      "lobbyState": "none",
+      "chatEntries": 0,
+      "activeResources": {
+        "total": 137,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 2,
+          "ProcessWrap": 1,
+          "TCPSocketWrap": 4,
+          "Timeout": 129
+        }
+      },
+      "opened": {
+        "connections": 3,
+        "sessions": 2,
+        "members": 2
+      },
+      "closed": {
+        "connections": 1,
+        "sessions": 0,
+        "members": 0
+      }
+    }
+  },
+  "gateEvidence": {
+    "browserSession": {
+      "sessionId": 1,
+      "playerId": "p1",
+      "protocol": 6,
+      "tickHz": 30,
+      "snapshotHz": 20,
+      "map": {
+        "name": "NEON FACILITY",
+        "width": 44,
+        "depth": 32
+      },
+      "weapons": [
+        "neon-rifle",
+        "pulse-pistol",
+        "scatter-shot",
+        "energy-grenade"
+      ],
+      "targetCount": 8
+    },
+    "serverSession": {
+      "sessionId": 1,
+      "playerId": "p1",
+      "targets": [
+        "dummy-1",
+        "dummy-2",
+        "dummy-3",
+        "dummy-4",
+        "dummy-5",
+        "ring-1",
+        "ring-2",
+        "ring-3"
+      ],
+      "weapons": [
+        "neon-rifle",
+        "pulse-pistol",
+        "scatter-shot",
+        "energy-grenade"
+      ],
+      "counters": {
+        "inputs": 1841,
+        "accepted": 1841,
+        "rejected": 0,
+        "shotsAccepted": 42,
+        "shotsRejected": 105,
+        "eventsSent": 199,
+        "ticks": 571,
+        "movedTicks": 0,
+        "poseIgnored": 0,
+        "friendlyBlocked": 0
+      },
+      "rejections": {},
+      "fireReasons": {
+        "cooldown": 96,
+        "reloading": 3,
+        "switching": 3,
+        "semi-held": 3
+      }
+    },
+    "forgedInputs": [
+      {
+        "label": "damage+targetHp+hit+alive+ammo",
+        "accepted": false,
+        "reason": "forbidden_authority",
+        "want": "forbidden_authority",
+        "ok": true
+      },
+      {
+        "label": "hp in'ektsiyasi",
+        "accepted": false,
+        "reason": "forbidden_authority",
+        "want": "forbidden_authority",
+        "ok": true
+      },
+      {
+        "label": "cooldown bypass",
+        "accepted": false,
+        "reason": "forbidden_authority",
+        "want": "forbidden_authority",
+        "ok": true
+      },
+      {
+        "label": "NaN aim",
+        "accepted": false,
+        "reason": "bad_aim",
+        "want": "bad_aim",
+        "ok": true
+      },
+      {
+        "label": "Infinity pozitsiya",
+        "accepted": false,
+        "reason": "bad_pose",
+        "want": "bad_pose",
+        "ok": true
+      },
+      {
+        "label": "mavjud bo'lmagan qurol",
+        "accepted": false,
+        "reason": "bad_weapon",
+        "want": "bad_weapon",
+        "ok": true
+      }
+    ],
+    "cadenceShotsPerSecond": 9,
+    "serverTicks3s": 95
+  },
+  "results": [
+    {
+      "name": "P5.1 real WebGL2 + real GPU (SwiftShader EMAS)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P5.2 Phase 5 klient markeri + server QA API (Phase 4 qatlami saqlangan)",
+      "ok": true,
+      "detail": "authority=v5 phase4=v4 serverApi=true"
+    },
+    {
+      "name": "P5.3 real klik TRAINING → SERVER xotirasida sessiya yaratildi",
+      "ok": true,
+      "detail": "running=true sessionId=1 playerId=p1 serverSessions=1"
+    },
+    {
+      "name": "P5.4 server sessiyasi: xarita + 8 nishon + 4 qurol + to'liq o'q-dori (server xotirasi)",
+      "ok": true,
+      "detail": "nishon=8 qurol=neon-rifle,pulse-pistol,scatter-shot,energy-grenade HP=100"
+    },
+    {
+      "name": "P5.5 klient real intent yuboradi, SERVER qabul qiladi (INPUT_ACK + accepted hisobi)",
+      "ok": true,
+      "detail": "yuborilgan=239 qabul=+37 rad=0"
+    },
+    {
+      "name": "P5.6 SERVER o'q-dorini boshqaradi (mag = magSize − server shots; wire = server xotirasi)",
+      "ok": true,
+      "detail": "serverShots=1 mag=29 wireMag=29 reserve=120"
+    },
+    {
+      "name": "P5.7 SERVER cooldown boshqaradi (1.0 s ushlashda ~10 o'q, 600 RPM)",
+      "ok": true,
+      "detail": "server 1.0 s da 9 o'q (kutilgan 10) · mag=21 · rad=—"
+    },
+    {
+      "name": "P5.8 SERVER hit hal qiladi (dummy-1 HP server xotirasida kamaydi; wire mos)",
+      "ok": true,
+      "detail": "dummy-1 HP 100→0 (server) · wire=0 · hits=4 · zarar=100"
+    },
+    {
+      "name": "P5.9 devor nishonni SERVER tomonda to'sadi (blocked↑, nishon HP o'zgarmadi)",
+      "ok": true,
+      "detail": "server blocked 0→1 · dummy-1 HP=100 (o'zgarmadi)"
+    },
+    {
+      "name": "P5.10 SERVER reload boshqaradi (R → server reloading; server taymeri tugagach mag to'ladi)",
+      "ok": true,
+      "detail": "mag 27→reloading=true serverRad(reloading)=3 → mag=30/30 reserve=117"
+    },
+    {
+      "name": "P5.11 SERVER qurol almashishni boshqaradi (draw bloklaydi; faol qurol serverda)",
+      "ok": true,
+      "detail": "faol=pulse-pistol drawRad=3 pistolShots 0→1 wire=pulse-pistol"
+    },
+    {
+      "name": "P5.12 soxta combat buyruqlari RAD (zarar/HP/o'q-dori/cooldown/NaN) — server holati o'zgarmadi",
+      "ok": true,
+      "detail": "damage+targetHp+hit+alive+ammo:forbidden_authority | hp in'ektsiyasi:forbidden_authority | cooldown bypass:forbidden_authority | NaN aim:bad_aim | Infinity pozitsiya:bad_pose | mavjud bo'lmagan qurol:bad_weapon · HP 100→100 · mag 30→30 · dummy 100→100"
+    },
+    {
+      "name": "P5.13 buzilgan/soxta trafikdan keyin SERVER TIRIK (bad_json/unknown/too_big/no_session + pong)",
+      "ok": true,
+      "detail": "bad_json/unknown_type/too_big/no_session · pong=777 · tickErrors=0 · ulanish=3"
+    },
+    {
+      "name": "P5.14 SERVER granatani simulyatsiya qiladi (otish → parvoz → portlash, server xotirasida)",
+      "ok": true,
+      "detail": "throw 0→1 · faol granata=1 · portlash=1 · wire=energy-grenade"
+    },
+    {
+      "name": "P5.15a unumdorlik (FPS≥30 o'q ostida, CPU<16.6 ms, calls≤165, tri≤32k, shadow OFF)",
+      "ok": true,
+      "detail": "100 FPS ema · o'rt 100 · CPU 1.1 ms · 156 calls · 22538 tri · shadow=false"
+    },
+    {
+      "name": "P5.15b server 30 Hz loop sog'lom (3 s da ~90 tick, tickErrors=0, loop < 16.6 ms)",
+      "ok": true,
+      "detail": "3 s da 95 tick · loop 0.3003 ms · tickErrors=0 · sessiya=2"
+    },
+    {
+      "name": "P5.15c PHASE 3 regressiya (NEON FACILITY 44×32, 60 kollayder, WASD harakat)",
+      "ok": true,
+      "detail": "map=NEON FACILITY 44×32 kollayder=60 Δx=+3.18 m (5.20 m/s, walk=5.2)"
+    },
+    {
+      "name": "P5.16 konsol/runtime xatolari YO'Q (brauzer + server)",
+      "ok": true,
+      "detail": "console=0 window.error=0 exception=0 loop=0 serverTick=0"
+    }
+  ],
+  "passed": 18,
+  "failed": 0,
+  "performance": {
+    "fps": {
+      "frames": 348,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 100,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "cpuMs": 1.1,
+    "render": {
+      "calls": 156,
+      "triangles": 22538,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    }
+  },
+  "domCaptured": true,
+  "screenshots": [
+    {
+      "name": "p5-01-final",
+      "file": "/home/paulinaj/neon-strike/logs/p5-01-final.png",
+      "bytes": 104760
+    },
+    {
+      "name": "p5-02-hud-authority",
+      "file": "/home/paulinaj/neon-strike/logs/p5-02-hud-authority.png",
+      "bytes": 87578
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "exceptions": []
+}

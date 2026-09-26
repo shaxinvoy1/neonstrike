@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-09-21T10:04:14.383Z",
+  "phase": 3,
+  "mode": "real-window",
+  "url": "http://127.0.0.1:37471",
+  "map": {
+    "name": "NEON FACILITY",
+    "width": 44,
+    "depth": 32,
+    "colliders": 60,
+    "mapStats": {
+      "wall": 4,
+      "divider": 4,
+      "platform": 1,
+      "core": 1,
+      "stair": 28,
+      "catwalk": 2,
+      "pillar": 10,
+      "crate": 10,
+      "colliders": 60,
+      "meshes": 39,
+      "instanced": 6
+    }
+  },
+  "results": [
+    {
+      "name": "P3.1 WebGL2 real GPU",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P3.2 Game moduli (map + mapview) yuklandi",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P3.3 WS ulanish tirik (network xato yo‘q)",
+      "ok": true,
+      "detail": "protocol=v6"
+    },
+    {
+      "name": "P3.4 TRAINING haqiqiy klik bilan boshlandi",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P3.5 NEON FACILITY map sahna bolasi va KO‘RINADI",
+      "ok": true,
+      "detail": "map=NEON FACILITY, mapStats={\"wall\":4,\"divider\":4,\"platform\":1,\"core\":1,\"stair\":28,\"catwalk\":2,\"pillar\":10,\"crate\":10,\"colliders\":60,\"meshes\":39,\"instanced\":6}"
+    },
+    {
+      "name": "P3.6 Kollayder budjeti ≤120 (real sahnadan)",
+      "ok": true,
+      "detail": "colliders=60"
+    },
+    {
+      "name": "P3.7 Map o‘lchami 44×32 m",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P3.8 Map HAQIQIY render qilinadi (yashirilganda kadrlar farq qiladi)",
+      "ok": true,
+      "detail": "163618 piksel o‘zgardi (21.2% ekran), maks d=254"
+    },
+    {
+      "name": "P3.9 Map neon palitrasi ekranda (floorBlue + cyan trim)",
+      "ok": true,
+      "detail": "floorBlue=611929px, cyan=2752px"
+    },
+    {
+      "name": "P3.10 SPAWN A (g‘arb) — pol ustida, model ko‘rinadi",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P3.11 SPAWN B (sharq) — pol ustida, to‘siq yo‘q",
+      "ok": true,
+      "detail": "y=0, to‘qnashuv=0"
+    },
+    {
+      "name": "P3.12 WASD (W) harakati + walk tezligi (teleport emas)",
+      "ok": true,
+      "detail": "Δx=+3.2 m, maks tezlik=5.20 m/s (walk=5.2), W ushlangan=true, urinish=1"
+    },
+    {
+      "name": "P3.13 ZINAPYA (step-up ≤0.55) — reaktor platformasiga chiqildi (y=1.2)",
+      "ok": true,
+      "detail": "y=1.2, x=-4.114 (platforma x[-4.5,4.5] y=1.2)"
+    },
+    {
+      "name": "P3.14a Platforma chetida yuqorida turadi (y=1.2, yurish oldi)",
+      "ok": true,
+      "detail": "y=1.2"
+    },
+    {
+      "name": "P3.14 GRAVITATSIYA — platformadan tushib polga qo‘ndi (y→0)",
+      "ok": true,
+      "detail": "y 1.2 → 0"
+    },
+    {
+      "name": "P3.15 CATWALK zinasi bilan deck ustiga chiqildi (y=2.2)",
+      "ok": true,
+      "detail": "y=2.2, x=-14.846 (deck x[-14,14] y=2.2)"
+    },
+    {
+      "name": "P3.16 CATWALK OSTIDAN yurib bo‘ladi (LONG koridor, y=0, to‘siq yo‘q)",
+      "ok": true,
+      "detail": "x -10.5 → -6.894, hitX=false"
+    },
+    {
+      "name": "P3.17 REAKTOR o‘zagiga kirib bo‘lmaydi (kolliziya)",
+      "ok": true,
+      "detail": "x=-1.5, hitX=true (o‘zak x[-1.1,1.1], radius 0.4)"
+    },
+    {
+      "name": "P3.18 3 LANE ham ochiq (MID + LONG + CATWALK pozitsiyalari yaroqli)",
+      "ok": true,
+      "detail": "mid y=0 z=0, long y=0, catwalk y=2.2"
+    },
+    {
+      "name": "P3.19 REACTOR platformasi zinadan real yurib olingan (P3.13 y=1.2 dalili)",
+      "ok": true,
+      "detail": "oxirgi platforma holati: y=1.2, x=-4.114"
+    },
+    {
+      "name": "P3.20 FPS o‘lchandi va o‘ynashga yetarli (≥30 FPS o‘rt)",
+      "ok": true,
+      "detail": "99.99 FPS ema · o‘rt 100 · min 99.01 · frame 10 ms · p95 10.1 ms · 240 kadr"
+    },
+    {
+      "name": "P3.21 CPU kadr budjeti (submit < 16.6 ms)",
+      "ok": true,
+      "detail": "CPU=1.5 ms, draw calls=157, tri=22550"
+    },
+    {
+      "name": "P3.22 Map draw-call budjeti: mapa meshlari ≤40 (InstancedMesh bilan)",
+      "ok": true,
+      "detail": "map meshlar=39 (instanced=6), sahna jami draw calls=157"
+    },
+    {
+      "name": "P3.23 Real-time shadow O‘CHIQ (blob shadow rejimi)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P3.24 Konsol/runtime xatolari YO‘Q",
+      "ok": true,
+      "detail": "console=0, window.error=0, exception=0, loop=0"
+    }
+  ],
+  "passed": 25,
+  "failed": 0,
+  "performance": {
+    "fps": {
+      "frames": 1298,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 99.99,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "cpuMs": 1.5,
+    "render": {
+      "calls": 157,
+      "triangles": 22550,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    },
+    "scene": {
+      "dummies": 5,
+      "rings": 3,
+      "targets": 8,
+      "boxes": 61,
+      "props": 60,
+      "arena": "NEON FACILITY",
+      "map": "NEON FACILITY",
+      "mapStats": {
+        "wall": 4,
+        "divider": 4,
+        "platform": 1,
+        "core": 1,
+        "stair": 28,
+        "catwalk": 2,
+        "pillar": 10,
+        "crate": 10,
+        "colliders": 60,
+        "meshes": 39,
+        "instanced": 6
+      },
+      "mapVisible": true,
+      "blobShadow": true,
+      "blobOpacity": 0.9,
+      "fog": true,
+      "lights": 3,
+      "playerParts": 14,
+      "playerVisible": true,
+      "trainingVisible": true,
+      "trainingGroup": true
+    }
+  },
+  "screenshots": [
+    {
+      "name": "p3-01-map-on",
+      "file": "/home/paulinaj/neon-strike/logs/p3-01-map-on.png",
+      "bytes": 59223
+    },
+    {
+      "name": "p3-02-map-off",
+      "file": "/home/paulinaj/neon-strike/logs/p3-02-map-off.png",
+      "bytes": 50273
+    },
+    {
+      "name": "p3-03-final",
+      "file": "/home/paulinaj/neon-strike/logs/p3-03-final.png",
+      "bytes": 104763
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "exceptions": []
+}

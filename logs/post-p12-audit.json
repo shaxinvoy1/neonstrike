@@ -1,0 +1,133 @@
+{
+  "report": "NEON STRIKE — POST-P12 PRODUCT / GAMEPLAY / UX / VISUAL / ENGINEERING AUDIT",
+  "date": "2026-09-21",
+  "scope": "audit-only (no source/test/package.json/asset modified; this report + JSON added)",
+  "p11_status": "PARTIAL — TWO-DEVICE LAN QA BLOCKED (unchanged, not verified here)",
+  "verdict": "NOT a polished playable product: correct engine, prototype game",
+  "evidence_method": [
+    "source trace of every claim",
+    "three.js r160 ground-truth projection using the project's own vendor/three.module.js",
+    "live runtime probes through the game's own __neon QA API in real Chrome 143 (ANGLE Intel Mesa RPL-P)"
+  ],
+  "measurements": {
+    "camera_ground_truth": {
+      "yaw0_view_dir": [0, 0, 1],
+      "yaw0_screen_right": [-1, 0, 0],
+      "world_x_plus2_z10_screen_px_x": -0.265,
+      "note": "world +X renders LEFT of screen centre"
+    },
+    "live_yaw_inversion": {
+      "lookBy_dx": 100,
+      "yaw_before": 0,
+      "yaw_after": 0.22,
+      "new_view_dir_axis": "+X",
+      "screen_side_of_plusX": "left",
+      "conclusion": "mouse right turns camera LEFT (inverted)"
+    },
+    "live_look_projection": {
+      "plusX_world_pixel_x": 582,
+      "minusX_world_pixel_x": 700,
+      "viewport_centre_x": 640
+    },
+    "aim_offset": {
+      "camera_pos": [0.55, 1.62, -23.4],
+      "eye": [0, 1.62, -20],
+      "lateral_offset_m": 0.55,
+      "vertical_offset_m": 0,
+      "camera_distance_m": 3.4,
+      "shoulder_const_m": 0.55,
+      "target_distance_m": 11.31,
+      "target_ndc_x_after_aiming_shot_ray_at_it": 0.5,
+      "conclusion": "shot ray is a parallel translation of the crosshair ray; miss is constant at all distances"
+    },
+    "performance": {
+      "fps": 100, "fps_min": 99.01, "frame_ms_avg": 10.0, "cpu_ms": 0.9,
+      "draw_calls": [58, 89], "triangles": [5538, 12418],
+      "resolution": "2560x1309", "dpr": 1, "shadow_map": false,
+      "server_tick_ms_p10": { "avg": 0.425, "p95": 0.69, "max": 3.197, "budget": 33.333 },
+      "hud_dom_writes": 436, "hud_dom_skips": 81247
+    },
+    "declared_unit_tests": 304,
+    "map": { "size_m": [44, 32], "colliders": 60, "symmetry": "180deg centre-point", "max_vertical_m": 2.2 }
+  },
+  "findings": [
+    { "id": "B-01", "sev": "P0", "title": "Horizontal mouse look inverted", "evidence": "client/js/game/camera-controller.js:31 `yaw += dx*SENS` vs three.js PointerLockControls `_euler.y -= movementX`; live `lookBy(+100,0)` yaw 0→0.22 swings view to +X which renders at screen-left (582 vs 700)", "impact": "cannot aim" },
+    { "id": "B-02", "sev": "P0", "title": "Crosshair and shot ray are different parallel rays", "evidence": "aimOrigin = player+EYE (combat.js:82-84, server session.js:340-342); crosshair ray origin = camera = pivot - fwd*3.4; measured lateral offset 0.5500 m constant; aimed dummy sits at ndc.x=0.5", "impact": "shots do not land where you aim" },
+    { "id": "B-03", "sev": "P1", "title": "Strafe direction mirrored (same root cause)", "evidence": "shared/movement.js:70-71 wishX=sy*forward+cy*right with right=(cos,-sin) at camera-controller.js:38/48; at yaw 0 D moves +X = screen-left; three.js uses camera matrix column 0", "impact": "A/D mirrored" },
+    { "id": "B-04", "sev": "P1", "title": "No player-visible feedback for multiplayer hits/kills/damage", "evidence": "client/js/main.js:181 stores MSG.EVENTS for QA only; local predictor targets are training dummies only (TargetRegistry(training,...))", "impact": "PvP gives zero confirmation" },
+    { "id": "B-05", "sev": "P1", "title": "Three conflicting shot origins; tracer uses local prediction", "evidence": "hit=eye ray, crosshair=camera ray, tracer/flash=weapon muzzle; tracer end from local prediction, not authoritative result", "impact": "aim model is inconsistent, not hybrid" },
+    { "id": "B-06", "sev": "P1", "title": "Energy Grenade cannot damage enemies", "evidence": "shared/grenade.js:140 `if (kind === 'player') amount *= cfg.selfDamageScale;`", "impact": "1 of 4 weapons non-functional in PvP" },
+    { "id": "B-07", "sev": "P2", "title": "Solo match can never end; no in-game exit", "evidence": "match.js startMatch accepts 1 player -> {A:[p2],B:[]}; evaluateRound requires teamsComplete; no in-game leave control; main.js:404 auto-enters stage on in_game", "impact": "observed live: user trapped, required relaunch" },
+    { "id": "B-08", "sev": "P2", "title": "HUD KILLS/DEATHS come from local prediction in match mode", "evidence": "hud.js:182-183 unconditional snap.stats/snap.deaths while auth.authoritative is true; no server kill counter exists", "impact": "contradicts P9 authoritative-HUD claim" },
+    { "id": "B-09", "sev": "P2", "title": "Round timing transmitted but never displayed", "evidence": "matchSnapshot emits roundEndsIn/roundDurationMs; hud-state.js ignores both; no DOM element", "impact": "dead data, no round clock" },
+    { "id": "B-10", "sev": "P2", "title": "Training dummies baked into the match map", "evidence": "shared/map.js TRAINING_DUMMIES: dummy-1/2 at x=-16 sit inside spawn A zone", "impact": "absorbs shots, clutters spawn" },
+    { "id": "B-11", "sev": "P2", "title": "No settings subsystem", "evidence": "only client/index.html:23 disabled button; CAMERA.SENSITIVITY 0.0022 and FOV 74 hardcoded", "impact": "unplayable for many users; blocks audio volume" },
+    { "id": "B-12", "sev": "P2", "title": "No audio subsystem", "evidence": "grep AudioContext|new Audio|.play()|audio over client/ shared/ => 0 matches", "impact": "largest game-feel gap" },
+    { "id": "B-13", "sev": "P2", "title": "Own player model has no team identity", "evidence": "createPlayer() always default cyan mats; only remotes team-coloured (multiplayer.js:145-149)", "impact": "team identity unclear on own body" },
+    { "id": "B-14", "sev": "P2", "title": "Two permanently disabled menu buttons", "evidence": "client/index.html:23-24 SETTINGS + HOW TO PLAY, disabled, 'TEZ KUNDA'", "impact": "dead UI" },
+    { "id": "B-15", "sev": "P3", "title": "No recoil model", "evidence": "shared/weapons.js has spreadDeg only; no kick/recovery/view punch", "impact": "weapons feel flat" },
+    { "id": "B-16", "sev": "P3", "title": "Asymmetric pitch clamp", "evidence": "CAMERA.PITCH_MIN -0.95 / PITCH_MAX 0.62 (up capped at 36deg)", "impact": "cannot look up enough" },
+    { "id": "B-17", "sev": "P3", "title": "No scoreboard", "evidence": "no Tab handler; teams/scores only as a one-line chip", "impact": "match info unreadable" },
+    { "id": "B-18", "sev": "P3", "title": "No cross-player kill feed", "evidence": "hud.pushFeed called only from local predictor events", "impact": "no awareness of other fights" },
+    { "id": "B-19", "sev": "P3", "title": "No damage direction indicator or low-HP feedback", "evidence": "hud.js damageFlash only recolours/fades; no direction, HP band only", "impact": "cannot tell where you were shot from" },
+    { "id": "B-20", "sev": "P3", "title": "No media queries / no responsive layout", "evidence": "client/css/hud.css has 0 media queries; all HUD clusters absolutely positioned at fixed offsets", "impact": "narrow viewports overlap" },
+    { "id": "B-21", "sev": "P3", "title": "FOV and sensitivity hardcoded", "evidence": "FOV 74 in game/index.js; CAMERA.SENSITIVITY 0.0022", "impact": "no user control" },
+    { "id": "B-22", "sev": "P3", "title": "Weapon not held by the character", "evidence": "weapon-view.js mounts at (0.3,1.28,0.18) on the rig; arms never connect", "impact": "third-person believability" },
+    { "id": "B-23", "sev": "P3", "title": "No weapon animation / shell / impact decals", "evidence": "effects.js pools flash/tracer/spark/blast/puff only", "impact": "feedback depth" },
+    { "id": "B-24", "sev": "P3", "title": "No respawn/spectate state in round mode", "evidence": "dead = frozen on own body until next round", "impact": "UX dead zone in a 5-round match" },
+    { "id": "B-25", "sev": "P4", "title": "Dead legacy modules retained", "evidence": "shared/arena.js, client/js/game/arena-mesh.js; smoke.test.js:74-79 asserts non-use", "impact": "hygiene" },
+    { "id": "B-26", "sev": "P4", "title": "Log artifact sprawl", "evidence": "40+ PNGs + 12 phase reports in logs/", "impact": "hygiene" },
+    { "id": "B-27", "sev": "P4", "title": "One map, one mode, no unique mechanic", "evidence": "shared/map.js single map; matches are rounds-to-5", "impact": "content depth" }
+  ],
+  "weapons": {
+    "neon-rifle": { "dmg_body": 26, "ttk_shots": 4, "rpm": 600, "auto": true, "mag": 30, "reserve": 120, "range_m": 60, "spread_deg": [0.6, 1.4] },
+    "pulse-pistol": { "dmg_body": 34, "ttk_shots": 3, "rpm": 400, "auto": false, "mag": 12, "reserve": 60, "range_m": 50, "spread_deg": [0.35, 1.0], "note": "overtuned: higher per-shot damage AND tighter spread than the rifle" },
+    "scatter-shot": { "pellets": 9, "dmg_body": 12, "rpm": 75, "mag": 6, "reserve": 30, "range_m": 18 },
+    "energy-grenade": { "max_dmg": 95, "radius_m": 4.2, "fuse_ms": 1600, "note": "PvP damage does NOT work (B-06)" }
+  },
+  "authority_audit": {
+    "server_authoritative": ["hp", "damage", "death", "ammo", "cooldown", "weapon", "reload", "hit", "team", "score", "round", "match", "chat sender identity", "aim origin"],
+    "client_supplied": ["aim direction (trusted as intent)", "movement intent (forward/right/sprint)", "fire/reload/switch intents", "chat text"],
+    "static_scan_violations": 0,
+    "watch_item": "polish phases must not add a client-side HP/ammo/score mirror displayed as authoritative; direction may come from the client, origin never may"
+  },
+  "must_not_change": [
+    "authoritative server model and intent-only INPUT message",
+    "server-computed aimOrigin; pose.x/z ignored in-game",
+    "30 Hz sim / 20 Hz snapshot + interpolation + reconciliation",
+    "deterministic PRNG spread, hit zones, falloff, cadence, reload/switch state machines",
+    "bounded queues/buffers, payload ceilings, idempotent match transitions, duplicate-close guards",
+    "shadowMap off + blob shadows, DPR cap, pooled effects, instanced map geometry",
+    "single shared/ source of rules for client and server",
+    "[hidden]{display:none!important} and the server-driven HUD state path",
+    "180deg centre-point map symmetry and its tests"
+  ],
+  "rebuild": [
+    "aim/origin model (one converged ray, server-owned origin)",
+    "horizontal basis (one shared helper, remove two duplicated right constants)",
+    "character rig (held weapon + animation layer)",
+    "HUD kill/death source (prediction -> server)",
+    "title screen (tech demo -> product)"
+  ],
+  "polish_only": ["netcode feedback wiring", "HUD element set", "map cover/distances", "menu copy/states", "effect shapes/decals", "palette contrast"],
+  "roadmap": [
+    { "phase": "P13", "name": "Core Camera + Aim Correction", "work": ["R-01", "R-02", "R-03", "R-04min", "R-07 plumbing"], "acceptance": ["mouse-right turns right", "D strafes right", "crosshair<->shot lateral offset ~0 at 2/10/40 m", "aimed dummy sits at ndc.x ~0", "tracer terminates at authoritative hit", "no P1-P12 regression"] },
+    { "phase": "P14", "name": "Combat Feel + Multiplayer Feedback", "work": ["R-05", "R-06", "R-12", "R-10", "R-19"], "acceptance": ["hitmarker within one snapshot on PvP hit", "shared kill feed", "grenade damages enemies exactly once with falloff", "deterministic recoil reproducible by server", "HUD kills == server kills after N kills"] },
+    { "phase": "P15", "name": "Character + Animation", "work": ["R-13", "R-17", "R-11"], "acceptance": ["silhouette readable at 30 m", "weapon held and aligned to aim ray", "aim layer decouples body facing", "8+ clips", "team trim correct", "<=+6 draw calls, FPS >= P10-10%"] },
+    { "phase": "P16", "name": "Map Gameplay + Match Flow", "work": ["R-08", "R-14", "R-09"], "acceptance": ["no spawn-to-spawn LOS", ">=3 engagement distance bands", "catwalk has 2 routes and a reason", "0 training props in match", "symmetry + BFS tests pass", "solo start has a defined tested outcome", "in-game leave frees the slot"] },
+    { "phase": "P17", "name": "HUD / Menu / Settings / UX", "work": ["R-07 full", "R-15", "R-18"], "acceptance": ["every setting measurably changes behaviour", "settings persist", "no dead buttons", "phase labels removed from player copy", "HUD fits 1024x600 and 1280x720 with centred crosshair", "no stale overlays"] },
+    { "phase": "P18", "name": "Audio + VFX", "work": ["R-16", "R-04 final"], "acceptance": ["all priority cues present and volume-controlled", "<=8 concurrent voices", "lazy init keeps headless verifiers working", "frame-time p95 within P10 tolerance"] },
+    { "phase": "P19", "name": "Final QA / Release Hardening", "work": ["full regression", "two-client playthrough", "authority rescan", "perf re-measure", "R-20"], "acceptance": ["no P0/P1 open", "all verifiers green with actual counts", "perf within budget", "no client->authority path", "no P8+ scope leakage", "P11 still honestly PARTIAL"] }
+  ],
+  "design_principles_sources": [
+    { "source": "three.js r160 PointerLockControls (official example)", "principles": ["yaw via Euler YXZ with _euler.y -= movementX", "pitch clamped to polar range", "moveRight uses camera matrix column 0", "moveForward uses cross(camera.up, cameraRight)"] },
+    { "source": "Valorant vs Counter-Strike map design analysis (amist.co, Riot level design context)", "principles": ["bound maximum engagement distance (~2/3 of Dust2)", "standardise chokepoint widths so one utility can contest them", "raise density of angles/corners to check", "avoid impenetrable headshot-only cover; prefer penetrable cover", "spawn areas are large but their cost is absorbed by a buy phase (Neon Strike has none)", "give each map a unique mechanic"] }
+  ],
+  "limitations": [
+    "no vision: visual judgements are structural + state-based; screenshots captured for human review",
+    "B-03 (strafe mirroring) is source-derived, not runtime-verified with real WASD input",
+    "the MENYUGA re-entry trap (B-07) is explained mechanically but was not deliberately reproduced",
+    "P11 two-device LAN QA still NOT performed — unchanged",
+    "no profiler used; performance numbers are the project's own P10 instrumentation plus live reads"
+  ]
+}

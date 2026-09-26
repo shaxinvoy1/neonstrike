@@ -1,0 +1,236 @@
+{
+  "generatedAt": "2026-09-21T10:08:32.498Z",
+  "phase": 4,
+  "mode": "real-window",
+  "url": "http://127.0.0.1:39303",
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "map": {
+    "name": "NEON FACILITY",
+    "width": 44,
+    "depth": 32,
+    "colliders": 60,
+    "mapStats": {
+      "wall": 4,
+      "divider": 4,
+      "platform": 1,
+      "core": 1,
+      "stair": 28,
+      "catwalk": 2,
+      "pillar": 10,
+      "crate": 10,
+      "colliders": 60,
+      "meshes": 39,
+      "instanced": 6
+    }
+  },
+  "weapons": {
+    "neon-rifle": {
+      "rpm": 600,
+      "damage": 26,
+      "damageMin": 20,
+      "range": 60,
+      "magSize": 30,
+      "mode": "hitscan"
+    },
+    "pulse-pistol": {
+      "rpm": 400,
+      "damage": 34,
+      "damageMin": 22,
+      "range": 50,
+      "magSize": 12,
+      "mode": "hitscan"
+    },
+    "scatter-shot": {
+      "rpm": 75,
+      "damage": 12,
+      "damageMin": 3,
+      "range": 18,
+      "magSize": 6,
+      "mode": "hitscan"
+    },
+    "energy-grenade": {
+      "rpm": 60,
+      "damage": 95,
+      "damageMin": 15,
+      "range": 60,
+      "magSize": 1,
+      "mode": "projectile"
+    }
+  },
+  "results": [
+    {
+      "name": "P4.1 real WebGL2 + real GPU (SwiftShader EMAS)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P4.2 Phase 4 combat moduli yuklandi (Game.loaded + ready)",
+      "ok": true,
+      "detail": "loaded=true ready=true"
+    },
+    {
+      "name": "P4.5 TRAINING real klik bilan boshlandi + combat HUD/API faol",
+      "ok": true,
+      "detail": "running=true combat=true QA=true HUD=true"
+    },
+    {
+      "name": "P4.3 Phase 4 versiyasi (window.__neon.version=4 + combat engine)",
+      "ok": true,
+      "detail": "version=4 phase=phase4-combat combatEngine=v4"
+    },
+    {
+      "name": "P4.4 Phase 1 WS bazasi tirik (regressiya)",
+      "ok": true,
+      "detail": "protocol=v6 latency=2ms"
+    },
+    {
+      "name": "P4.6 Pointer Lock olindi (sichqoncha o‘qi ishlaydi)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P4.7 crosshair mavjud, markazda, sahifada HAQIQIY chizilgan",
+      "ok": true,
+      "detail": "bars=4(chizilgan=4, cyan=4) gap=4.56px markazdan=0px DOM-capture=true crosshairΔ=319639px HUDΔ=319305px"
+    },
+    {
+      "name": "P4.8 procedural qurol ko‘rinadi (ekranda + yashirilganda kadr o‘zgaradi)",
+      "ok": true,
+      "detail": "weaponId=neon-rifle visible=true muzzle ekranda=true Δpiksel=61"
+    },
+    {
+      "name": "P4.9 aim matematikasi (kamera yaw/pitch → nur + qurol quvuri mos)",
+      "ok": true,
+      "detail": "dir=[0.999,-0.050,0.000] |dir|=1.00000 dot=1.00000 muzzleDot=1.000"
+    },
+    {
+      "name": "P4.10 REAL LMB o‘q uzdi (o‘q-dori kamaydi, ishlab chiqarish yo‘li)",
+      "ok": true,
+      "detail": "shots +1, mag 30→29"
+    },
+    {
+      "name": "P4.11 cooldown: 1.0 s ushlashda ~11 o‘q (600 RPM) + oraliqda rad",
+      "ok": true,
+      "detail": "1.0 s da 10 o‘q (kutilgan 11), cooldown rad=90"
+    },
+    {
+      "name": "P4.12 o‘q-dori butunligi (mag+reserve+o‘q = const, manfiy yo‘q)",
+      "ok": true,
+      "detail": "mag=20 reserve=120 shotsFired=10 yig‘indi=150/150"
+    },
+    {
+      "name": "P4.13 reload: R bilan boshlandi, davomida o‘q uzilmaydi, mag to‘ldi",
+      "ok": true,
+      "detail": "reloading=true, rad=26, mag=30/30, reserve=110"
+    },
+    {
+      "name": "P4.14 nishonga HAQIQIY zarar (dummy-1 HP kamaydi)",
+      "ok": true,
+      "detail": "dummy-1 HP 100→74, hits=1"
+    },
+    {
+      "name": "P4.15 devor nishonni to‘sadi (blocked sanaldi, HP O‘ZGARMADI)",
+      "ok": true,
+      "detail": "blocked 0→1, dummy-1 HP 100 (o‘zgarmadi)"
+    },
+    {
+      "name": "P4.16 nishon o‘ldi (600 ms so‘nish) va 2500 ms dan keyin tirildi",
+      "ok": true,
+      "detail": "deaths=1, so‘nish ko‘rindi=true, tirilgan=true hp=100"
+    },
+    {
+      "name": "P4.17a REAL granata o‘z zarari (self-damage ×0.6, HP kamaydi)",
+      "ok": true,
+      "detail": "granata otildi=1, selfDamage=36.29, HP=63.71"
+    },
+    {
+      "name": "P4.17b o‘lim holati → avtomatik respawn (HP/o‘q-dori/spawn tiklandi)",
+      "ok": true,
+      "detail": "o‘lim: alive=false deaths=1 respawnIn=2.29s HUD=true → respawn hp=100 pos=(-19.5,0)"
+    },
+    {
+      "name": "P4.18 qurol almashtirish (draw bloklaydi) + granata otildi/portladi",
+      "ok": true,
+      "detail": "switch→pulse-pistol drawRad=14 pistolShots=1 grenade=energy-grenade throws=1 eksploziya=1"
+    },
+    {
+      "name": "P4.19 konsol/runtime xatolari YO‘Q",
+      "ok": true,
+      "detail": "console=0, window.error=0, exception=0, loop=0"
+    },
+    {
+      "name": "P4.20a unumdorlik (FPS≥30 o‘q ostida, CPU<16.6 ms, calls≤165, tri≤32k, shadow OFF)",
+      "ok": true,
+      "detail": "99.99 FPS ema · o‘rt 100 · min 99.01 · CPU 1.5 ms · 156 calls · 22538 tri · shadowMap=false"
+    },
+    {
+      "name": "P4.20b PHASE 3 regressiya (NEON FACILITY 44×32, 60 kollayder, WASD harakat)",
+      "ok": true,
+      "detail": "map=NEON FACILITY 44×32 kollayder=60 mesh=39 Δx=+3.13 m (5.20 m/s, walk=5.2)"
+    }
+  ],
+  "passed": 22,
+  "failed": 0,
+  "performance": {
+    "fps": {
+      "frames": 404,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 99.99,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "cpuMs": 1.5,
+    "render": {
+      "calls": 156,
+      "triangles": 22538,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    }
+  },
+  "screenshots": [
+    {
+      "name": "p4-04-hud-on",
+      "file": "/home/paulinaj/neon-strike/logs/p4-04-hud-on.png",
+      "bytes": 88230
+    },
+    {
+      "name": "p4-05-hud-crosshair-off",
+      "file": "/home/paulinaj/neon-strike/logs/p4-05-hud-crosshair-off.png",
+      "bytes": 121930
+    },
+    {
+      "name": "p4-06-hud-all-off",
+      "file": "/home/paulinaj/neon-strike/logs/p4-06-hud-all-off.png",
+      "bytes": 113055
+    },
+    {
+      "name": "p4-01-weapon-on",
+      "file": "/home/paulinaj/neon-strike/logs/p4-01-weapon-on.png",
+      "bytes": 105767
+    },
+    {
+      "name": "p4-02-weapon-off",
+      "file": "/home/paulinaj/neon-strike/logs/p4-02-weapon-off.png",
+      "bytes": 105587
+    },
+    {
+      "name": "p4-03-final",
+      "file": "/home/paulinaj/neon-strike/logs/p4-03-final.png",
+      "bytes": 104735
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "exceptions": []
+}

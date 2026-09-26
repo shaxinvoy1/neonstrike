@@ -1,0 +1,260 @@
+{
+  "generatedAt": "2026-09-21T10:22:36.311Z",
+  "phase": 11,
+  "subject": "real-lan-qa",
+  "protocol": 6,
+  "mode": "real-window",
+  "env": {
+    "deviceA": {
+      "hostname": "te-h6.tash.21-school.uz",
+      "platform": "Linux 6.8.0-48-generic",
+      "os": "Ubuntu 24.04 LTS",
+      "cpu": "13th Gen Intel(R) Core(TM) i7-13620H",
+      "cores": 16,
+      "memGb": 33,
+      "node": "v22.23.2"
+    },
+    "interfaces": [
+      {
+        "name": "enp2s0",
+        "address": "10.201.177.74",
+        "netmask": "255.255.255.0"
+      }
+    ],
+    "localIpv4": [
+      "127.0.0.1",
+      "10.201.177.74"
+    ],
+    "netPath": "real-interface",
+    "port": 43779,
+    "lanUrl": "http://10.201.177.74:43779",
+    "lanWs": "ws://10.201.177.74:43779/ws",
+    "wsPath": "/ws"
+  },
+  "evidenceClasses": {
+    "AUTOMATED_LOCAL": "bitta host, HAQIQIY LAN interfeys yo‘li (loopback emas) — lekin BITTA qurilma",
+    "MANUAL_REQUIRED": "faqat IKKINCHI JISMONIY QURILMA bilan bajariladi — PASS deb yozilmaydi"
+  },
+  "physicalLanQa": {
+    "performed": false,
+    "method": "not attempted (use --wait-remote=SEC with a second physical device)",
+    "remotePeers": [],
+    "classification": {
+      "loopback": 0,
+      "self": 3,
+      "remote": 0
+    }
+  },
+  "firewall": {
+    "verdict": "ufw O‘CHIRILGAN — kiruvchi qoidalar QO‘LLANMAYDI (blocking dalili yo‘q)",
+    "enabled": "no",
+    "serviceActive": "active",
+    "userRulesBytes": 307,
+    "initSkips": true,
+    "note": "is-active=\"active\" faqat oneshot unit bajarilganini bildiradi, qoida emas"
+  },
+  "automated": {
+    "passed": 13,
+    "failed": 0,
+    "gates": [
+      {
+        "name": "P11.1 server 0.0.0.0 ga bind bo‘ldi (LAN uchun ochiq, real port)",
+        "ok": true,
+        "detail": "bind=0.0.0.0:43779 · e’lon qilingan manzillar=[http://10.201.177.74:43779]"
+      },
+      {
+        "name": "P11.2 Device B manzili REAL interfeysdan olinadi (hard-code YO‘Q, loopback emas)",
+        "ok": true,
+        "detail": "interfeys=enp2s0=10.201.177.74 · urls=[http://10.201.177.74:43779]"
+      },
+      {
+        "name": "P11.3 HAQIQIY LAN interfeys orqali HTTP javob beradi (127.0.0.1 EMAS)",
+        "ok": true,
+        "detail": "GET http://10.201.177.74:43779/ → 200 · 9852 bayt · loopback EMAS (enp2s0)"
+      },
+      {
+        "name": "P11.4 LAN interfeys orqali WS ulanadi va peer HALOL tasniflanadi",
+        "ok": true,
+        "detail": "peerlar=[10.201.177.74, 10.201.177.74] · tasnif=[self] · tarmoq yo‘li=enp2s0 (loopback EMAS, lekin BITTA qurilma)"
+      },
+      {
+        "name": "P11.5 LAN orqali ikki klient: avtoritar ID + bitta sessiya + host tayinlangan",
+        "ok": true,
+        "detail": "host=p1 · a’zolar=[p1, p2] · sig‘im=8 · dublikat ID YO‘Q"
+      },
+      {
+        "name": "P11.6 LAN orqali AVTORITAR o‘yin: LIVE raund + ikki tomonlama harakat (server simulyatsiyasi)",
+        "ok": true,
+        "detail": "raund=1/live · jamoa A=A B=B · ko‘chish host=3.2 m guest=3.2 m · tick=62"
+      },
+      {
+        "name": "P11.7 LAN orqali o‘q: SERVER avtoritar hal qiladi (o‘q-dori −, nishon HP −)",
+        "ok": true,
+        "detail": "qabul qilingan o‘q=5 · HP 100→0 · mag 30→25 · server hisobi shots=5 hits=5"
+      },
+      {
+        "name": "P11.8 LAN orqali ham avtoritet buzilmaydi (soxta hp/damage/alive RAD, holat o‘zgarmadi)",
+        "ok": true,
+        "detail": "soxta {hp:999, damage:999, alive:true} yuborildi · server HP 0→0 · alive false→false (o‘zgarmadi) · raund=round_end · tickErrors=0"
+      },
+      {
+        "name": "P11.9 LAN orqali chat A → server → B (identifikatsiya SERVERdan)",
+        "ok": true,
+        "detail": "B qabul qildi: [p1] \"salom device B\" · seq=1"
+      },
+      {
+        "name": "P11.10 LAN yo‘li isbotlandi va firewall holati HALOL aniqlandi (root talab qilinmadi, o‘zgartirilmadi)",
+        "ok": true,
+        "detail": "ufw=ufw O‘CHIRILGAN — kiruvchi qoidalar QO‘LLANMAYDI (blocking dalili yo‘q) · ENABLED=no · is-active=active · user.rules=307 bayt · port=43779 · LAN HTTP=true · LAN WS=true · is-active=\"active\" faqat oneshot unit bajarilganini bildiradi, qoida emas"
+      },
+      {
+        "name": "P11.11 HAQIQIY brauzer LAN URL’ni ochdi va LAN manzil orqali ulanish qurdi",
+        "ok": true,
+        "detail": "href=http://10.201.177.74:43779/ · ws=ws://10.201.177.74:43779/ws · webgl2=true · readyState=1 connected=true · GPU=ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P),  · exception=0"
+      },
+      {
+        "name": "P11.12 Phase 1–11 unit to‘plamlari (npm test bilan bir xil ro‘yxat) PASS",
+        "ok": true,
+        "detail": "tests=270 pass=270 fail=0 exit=0 · to‘plamlar=13"
+      },
+      {
+        "name": "P11.13 P12 (deploy/cloud/account/hardening) tizimlari YO‘Q",
+        "ok": true,
+        "detail": "xabar turlari=20 · __neon kalitlari=0 · telemetriya=0 · taqiqlangan=[]"
+      }
+    ]
+  },
+  "manualRequired": [
+    {
+      "name": "P11.M1 HAQIQIY ikkinchi qurilma (remote peer) LAN orqali ulanadi",
+      "status": "MANUAL REQUIRED",
+      "detail": "server ko‘rgan peerlarning BARCHASI shu hostning o‘z manzillari (\"self\") — jismoniy Device B YO‘Q"
+    },
+    {
+      "name": "P11.M2 Device B avtoritar identifikatsiya oladi va sessiyaga qo‘shiladi",
+      "status": "MANUAL REQUIRED",
+      "detail": "P11.M1 bajarilmagan (remote peer yo‘q)"
+    },
+    {
+      "name": "P11.M3 harakat IKKI QURILMA orasida (A→B va B→A ko‘rinadi)",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M4 jang IKKI QURILMA orasida (A→B va B→A HP/death avtoritar)",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M5 raund/ball/match holati ikki qurilmada bir xil",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M6 chat A→server→B va B→server→A ikki qurilmada",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M7 jismoniy uzilish (Device B brauzeri yopiladi) → tozalash, ghost yo‘q",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M8 Device B qayta ulanadi (mavjud hayot sikli doirasida)",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M9 tarmoq uzilishi (Wi-Fi o‘chirish/yoqish) xatti-harakati qayd etiladi",
+      "status": "MANUAL REQUIRED",
+      "detail": "jismoniy tarmoq uzilishi kerak"
+    },
+    {
+      "name": "P11.M10 join-in-progress: Device B kech qo‘shiladi va joriy holatni oladi",
+      "status": "MANUAL REQUIRED",
+      "detail": "ikki qurilma jismoniy ishtiroki kerak"
+    },
+    {
+      "name": "P11.M11 HAQIQIY LAN kechikishi (RTT) Device B’dan o‘lchanadi",
+      "status": "MANUAL REQUIRED",
+      "detail": "o‘lchovni faqat ikkinchi qurilma bera oladi (bu hostda o‘lchangan qiymat LAN RTT EMAS)"
+    }
+  ],
+  "unit": {
+    "tests": 270,
+    "pass": 270,
+    "fail": 0,
+    "exit": 0,
+    "files": 13
+  },
+  "narrative": {
+    "phase11Scope": "real LAN QA — yangi o‘yin tizimi EMAS, isbot/ishonchli dalil",
+    "deviceA": "Ubuntu 24.04 LTS · Intel i7-13620H · enp2s0 (Ethernet) · server 0.0.0.0:PORT",
+    "deviceB": "MAVJUD EMAS — ikkinchi jismoniy qurilma bu muhitda yo‘q (P11.M1..M11 bajarilmagan)",
+    "filesNew": [
+      "server/net.js",
+      "test/unit/lan-qa.test.js",
+      "tools/verify-phase11.mjs"
+    ],
+    "filesChanged": [
+      "server/app.js",
+      "server/index.js",
+      "package.json",
+      "tools/verify-phase10.mjs"
+    ],
+    "regression": {
+      "npm test": 270,
+      "phase2": 42,
+      "phase3": 25,
+      "phase4": 22,
+      "phase5": 18,
+      "phase6": 21,
+      "phase7": 33,
+      "phase8": 28,
+      "phase9": 34,
+      "phase10": 21,
+      "phase11Automated": 13
+    },
+    "pointerLockNote": "P5.7/P5.8 bir marta 0 o‘q ko‘rsatdi (pointer lock berilmadi: lockState=false, 144 FPS — kadr ochligi EMAS). Qayta o‘lchov: lock ushlangan holda 1.0 s ushlash AYNAN 10 o‘q / 4 hit berdi, harness qayta yurgizilganda 18/18 PASS. Kod/harness o‘zgartirilmadi — bu lock berilishining vaqtga sezgirligi.",
+    "boundaryNote": "P10.19 va P11.13 P12 (deploy/cloud/account/hardening/spectator/replay/voice/matchmaking/ranking) ni tekshiradi — barchasi bo‘sh"
+  },
+  "browser": {
+    "href": "http://10.201.177.74:43779/",
+    "wsUrl": "ws://10.201.177.74:43779/ws",
+    "webgl2": true,
+    "gpu": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "connection": {
+      "connected": true,
+      "readyState": 1,
+      "badge": {
+        "text": "ULANISH: …",
+        "className": "hud-chip conn"
+      }
+    },
+    "exceptions": 0,
+    "consoleErrors": 0
+  },
+  "serverSeen": {
+    "peers": [
+      "10.201.177.74",
+      "10.201.177.74",
+      "10.201.177.74"
+    ],
+    "classified": [
+      "self",
+      "self",
+      "self"
+    ],
+    "tickErrors": 0
+  },
+  "shotCount": 1,
+  "verdict": "P11 PARTIAL — TWO-DEVICE LAN QA BLOCKED",
+  "limitations": [
+    "JISMONIY ikkinchi qurilma bu muhitda mavjud emas — P11.M1..M11 BAJARILMAGAN (MANUAL REQUIRED)",
+    "LAN interfeys orqali o‘lchovlar bitta hostda: ular loopback EMAS, lekin IKKI QURILMA ham EMAS",
+    "avtomatik reconnect yo‘q (P6/P7 qarori) — M8 mavjud hayot sikli doirasida bajarilishi kerak",
+    "ufw holati faqat o‘qish uchun tekshirildi (o‘zgartirilmadi)"
+  ],
+  "scopeConfirmation": "P11 faqat LAN QA: yangi o‘yin/qurol/xarita/matchmaking/cloud/akkaunt/deploy YO‘Q (P11.13)"
+}

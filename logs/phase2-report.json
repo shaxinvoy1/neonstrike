@@ -1,0 +1,597 @@
+{
+  "generatedAt": "2026-09-21T10:07:46.401Z",
+  "mode": "real-window",
+  "url": "http://localhost:3000",
+  "chrome": "google-chrome",
+  "results": [
+    {
+      "name": "P1.1 WebGL2 real GPU (regressiya)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P1.2 Three.js (vendored) yuklandi",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P2.0 Game moduli oldindan yuklandi (jestsiz)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P1.3 WS handshake tirik",
+      "ok": true,
+      "detail": "protocol=v6"
+    },
+    {
+      "name": "P1.4 Latency o'lchandi",
+      "ok": true,
+      "detail": "1 ms"
+    },
+    {
+      "name": "P2.1 TRAINING haqiqiy klik bilan boshlandi",
+      "ok": true,
+      "detail": "menu false→true, stage true→false, running=true"
+    },
+    {
+      "name": "P2.2 Pointer Lock faol (canvas#gl)",
+      "ok": true,
+      "detail": "pointerLockElement = gl"
+    },
+    {
+      "name": "P2.3a Brauzer pointer eventlari sahifaga yetib keladi (Pointer Lock ostida)",
+      "ok": true,
+      "detail": "10 mousemove event · movementX≠0: 10 ta (CDP sintetik eventlarda movementX=0 bo'lishi normal)"
+    },
+    {
+      "name": "P2.3b SICHQONCHA harakati kamerani buradi (yaw + pitch)",
+      "ok": true,
+      "detail": "lookEvents=11, yaw Δ=0.308, pitch Δ=0.132"
+    },
+    {
+      "name": "P2.3c Pointer Lock O'CHIQ bo'lsa kamera BURILMAYDI (gate ishlaydi)",
+      "ok": true,
+      "detail": "locked=false, lookEvents 11→11"
+    },
+    {
+      "name": "P2.3d Pointer Lock bo'shatilganda PAUZA oynasi chiqadi",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P2.3e Pointer Lock qayta olinadi (RESUME yo'li)",
+      "ok": true,
+      "detail": "pointerLockElement = gl"
+    },
+    {
+      "name": "P2.4 WASD (W) — oldinga harakat, real klaviatura eventi",
+      "ok": true,
+      "detail": "Δz=+5.234 m, W tugmasi ushlab turilganda keys=[KeyW], tezlik 5.183 m/s"
+    },
+    {
+      "name": "P2.5 WASD (D) — yon harakat (strafe)",
+      "ok": true,
+      "detail": "Δx=+2.564 m"
+    },
+    {
+      "name": "P2.5b Harakat silliq (walk tezligi budjeti, teleport emas)",
+      "ok": true,
+      "detail": "cruise tezlik=5.183 m/s (walk=5.2, sprint=8)"
+    },
+    {
+      "name": "P2.5c SHIFT — sprint tezligi (WALK dan yuqori)",
+      "ok": true,
+      "detail": "tezlik=8 m/s, sprint=true"
+    },
+    {
+      "name": "P2.6 O'yinchi to'siqdan o'tmaydi (divider devori z=4.8)",
+      "ok": true,
+      "detail": "5.2 da to'xtadi (kutilgan: 5.20), to'qnashuv kadrlari=264, hitZ=true"
+    },
+    {
+      "name": "P2.6b To'siqqa borib tezlik nolga tushadi (kirmaydi, sirg'almaydi)",
+      "ok": true,
+      "detail": "z 5.2 → 5.2, tezlik=0 m/s"
+    },
+    {
+      "name": "P2.6c Yurish animatsiyasi/yuz burilishi ishlaydi (model sinxron)",
+      "ok": true,
+      "detail": "faceYaw=3.142 (-z yo‘nalish: atan2 konventsiyasi bo‘yicha ±π bo‘lishi kerak)"
+    },
+    {
+      "name": "P2.7 Kamera devor ichiga kirmaydi (sweep)",
+      "ok": true,
+      "detail": "blocked=true x=-21.946 (devor -22), dist=0.55/3.4"
+    },
+    {
+      "name": "P2.8 Pitch klampi (PITCH_MIN/MAX) — yuqori/past chegaralar",
+      "ok": true,
+      "detail": "up=0.62 (max 0.62), down=-0.95 (min -0.95)"
+    },
+    {
+      "name": "P2.8b Sichqoncha harakati bilan pitch klampdan oshmaydi",
+      "ok": true,
+      "detail": "pitch=0.62 (max 0.62)"
+    },
+    {
+      "name": "P2.9 Kamera pol ostiga tushmaydi",
+      "ok": true,
+      "detail": "camera.y=0.35 (min 0.35)"
+    },
+    {
+      "name": "P2.10 Player modeli ekranda ko'rinadi (NDC proyeksiya)",
+      "ok": true,
+      "detail": "NDC=(0.101, -0.594) balandlik=0.59 NDC, kamera masofa=3.976 m"
+    },
+    {
+      "name": "P2.10b Player 3D modeli HAQIQIY piksel ozgarishi beradi (anti-fake)",
+      "ok": true,
+      "detail": "model yashirilganda 3416 piksel ozgardi (0.44% ekran), maks kanal d=232"
+    },
+    {
+      "name": "P2.10c OYINCHI neon aksenti (PLAYER_ACCENT cyan) ekranda chindan bor",
+      "ok": true,
+      "detail": "cyan piksel: model bilan=170 (bbox [642,333,736,466]), modelsiz=0"
+    },
+    {
+      "name": "P2.11 Blob shadow mavjud (real-time shadowMap O'CHIQ)",
+      "ok": true,
+      "detail": "opacity=0.9, shadowMap=false"
+    },
+    {
+      "name": "P2.12 Sahnada fog + yorug'liklar (neon dark-blue uslub)",
+      "ok": true,
+      "detail": "fog=true, lights=3"
+    },
+    {
+      "name": "P2.13 Humanoid model qismlari (oyoq/qo'l/tana/bosh)",
+      "ok": true,
+      "detail": "player.group.children=14"
+    },
+    {
+      "name": "P2.14 TRAINING statik nishonlar yaratildi (5 dummy + 3 halqa)",
+      "ok": true,
+      "detail": "dummies=5, rings=3, targets=8"
+    },
+    {
+      "name": "P2.14b TRAINING guruhi sahnada",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P2.14c TRAINING taymeri yuryapti (HUD yangilanadi)",
+      "ok": true,
+      "detail": "elapsed=12.18s, HUD=\"12.0 s\""
+    },
+    {
+      "name": "P2.14d Nishonlar (dummy+halqa) HAQIQIY render qilinadi (piksel dalili)",
+      "ok": true,
+      "detail": "nishonlar yashirilganda 2636 piksel ozgardi (0.34% ekran), maks d=254"
+    },
+    {
+      "name": "P2.14e Nishon neon ranglari (TARGET_ACCENT halqa + TARGET dummy) pikselda topildi",
+      "ok": true,
+      "detail": "halqa-orange=2069 px (bbox [647,251,727,343]) / yashirilganda=0 · dummy-pink=89 px / yashirilganda=0 · o'rt yorqinlik=8.92"
+    },
+    {
+      "name": "P2.14f Nishon aksenti (PALETTE.TARGET/TARGET_ACCENT) yaqin planda piksel-piksel tasdiqlandi",
+      "ok": true,
+      "detail": "halqa-orange=12077 px (bbox [351,206,661,390]), dummy-pink=261 px · cyan=1908 px · namunalar=154503"
+    },
+    {
+      "name": "P2.15 F3 debug overlay ochiladi va FPS/frame vaqtini ko'rsatadi",
+      "ok": true,
+      "detail": "FPS      : 98.7 (o'rt 90.2 · min 20.0 · maks 101.0)"
+    },
+    {
+      "name": "P2.16 FPS / frame vaqti O'LCHANDI (taxmin emas)",
+      "ok": true,
+      "detail": "100.08 FPS ema · o'rt 100 · min 99.01 · maks 101.01 · frame 10 ms · p95 10.1 ms · 240 kadr / 2.4s"
+    },
+    {
+      "name": "P2.16b CPU kadr budjeti (submit < 16.6 ms)",
+      "ok": true,
+      "detail": "CPU submit=1.1 ms, draw calls=89, uchburchak=12418"
+    },
+    {
+      "name": "P2.17 Konsol/runtime xatolari YO'Q",
+      "ok": true,
+      "detail": "console=0, window.error=0, exception=0, loop=0"
+    },
+    {
+      "name": "P2.18 P1 WebGL2 gate hali ham yashil",
+      "ok": true,
+      "detail": "badge=\"OK\""
+    },
+    {
+      "name": "P2.19 P1 WS ulanish o'yin davomida TIRIK (ping davom etdi)",
+      "ok": true,
+      "detail": "ws=true, latency=1 ms, namunalar=11, badge=\"1 ms\""
+    },
+    {
+      "name": "P2.20 Menyuga qaytish ishlaydi (sessiya to'xtatildi)",
+      "ok": true,
+      "detail": "menu hidden=false, stage hidden=true, running=false"
+    }
+  ],
+  "passed": 42,
+  "failed": 0,
+  "skipped": 0,
+  "performance": {
+    "fps": {
+      "frames": 1671,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 100.08,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "cpuMs": 1.1,
+    "render": {
+      "calls": 89,
+      "triangles": 12418,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    },
+    "scene": {
+      "dummies": 5,
+      "rings": 3,
+      "targets": 8,
+      "boxes": 61,
+      "props": 60,
+      "arena": "NEON FACILITY",
+      "map": "NEON FACILITY",
+      "mapStats": {
+        "wall": 4,
+        "divider": 4,
+        "platform": 1,
+        "core": 1,
+        "stair": 28,
+        "catwalk": 2,
+        "pillar": 10,
+        "crate": 10,
+        "colliders": 60,
+        "meshes": 39,
+        "instanced": 6
+      },
+      "mapVisible": true,
+      "blobShadow": true,
+      "blobOpacity": 0.9,
+      "fog": true,
+      "lights": 3,
+      "playerParts": 14,
+      "playerVisible": true,
+      "trainingVisible": true,
+      "trainingGroup": true
+    }
+  },
+  "gameState": {
+    "mode": "training",
+    "running": true,
+    "elapsed": 17.23,
+    "cpuMs": 1.1,
+    "pointerLocked": true,
+    "player": {
+      "x": 12,
+      "y": 0,
+      "z": 2.6,
+      "yaw": 1.571,
+      "speed": 0,
+      "sprint": false,
+      "hitX": false,
+      "hitZ": true,
+      "collisions": 264,
+      "travelled": 20.189
+    },
+    "camera": {
+      "x": 8.601,
+      "y": 1.688,
+      "z": 2.05,
+      "yaw": 1.571,
+      "pitch": -0.02,
+      "distance": 3.4,
+      "desiredDistance": 3.4,
+      "blocked": false,
+      "lookEvents": 12,
+      "lookAccum": {
+        "dx": 116,
+        "dy": -3929
+      }
+    },
+    "render": {
+      "calls": 89,
+      "triangles": 12418,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    },
+    "fps": {
+      "frames": 1671,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 100.08,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "perf": {
+      "frames": 1671,
+      "hudViews": 1671,
+      "hudDomWrites": 19,
+      "hudDomSkips": 18362
+    },
+    "scene": {
+      "dummies": 5,
+      "rings": 3,
+      "targets": 8,
+      "boxes": 61,
+      "props": 60,
+      "arena": "NEON FACILITY",
+      "map": "NEON FACILITY",
+      "mapStats": {
+        "wall": 4,
+        "divider": 4,
+        "platform": 1,
+        "core": 1,
+        "stair": 28,
+        "catwalk": 2,
+        "pillar": 10,
+        "crate": 10,
+        "colliders": 60,
+        "meshes": 39,
+        "instanced": 6
+      },
+      "mapVisible": true,
+      "blobShadow": true,
+      "blobOpacity": 0.9,
+      "fog": true,
+      "lights": 3,
+      "playerParts": 14,
+      "playerVisible": true,
+      "trainingVisible": true,
+      "trainingGroup": true
+    },
+    "keys": [],
+    "loopErrors": 0,
+    "combat": {
+      "version": 4,
+      "weaponId": "neon-rifle",
+      "weaponName": "NEON RIFLE",
+      "slot": 1,
+      "mag": 30,
+      "reserve": 120,
+      "reloading": false,
+      "reloadProgress": 1,
+      "switching": false,
+      "hp": 100,
+      "alive": true,
+      "deaths": 0,
+      "respawnIn": 0,
+      "shots": 0,
+      "hits": 0,
+      "blocked": 0,
+      "kills": 0,
+      "damageDealt": 0,
+      "damageTaken": 0,
+      "selfDamage": 0,
+      "grenadeThrows": 0,
+      "grenadeExplosions": 0,
+      "grenadesActive": 0,
+      "targetsAlive": 8,
+      "targetDeaths": 0,
+      "effectsActive": 0,
+      "weapon": {
+        "weaponId": "neon-rifle",
+        "visible": true,
+        "models": 4,
+        "muzzle": [
+          12.799876004133278,
+          1.2676008266501335,
+          2.2800000000000002
+        ],
+        "muzzleDir": [
+          0.9998000066665778,
+          -0.01999866669333308,
+          2.2200019748432393e-16
+        ],
+        "aimDir": [
+          0.9998000066665778,
+          -0.01999866669333308,
+          6.122009389758634e-17
+        ]
+      }
+    }
+  },
+  "gates": {
+    "webgl2": true,
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "ws": true,
+    "latency": 1,
+    "samples": 11,
+    "protocol": 6
+  },
+  "hudBadges": {
+    "webgl": "OK",
+    "three": "OK · r160",
+    "ws": "ULANDI · id=1 · protokol v6",
+    "ping": "1 ms"
+  },
+  "screenshots": [
+    {
+      "name": "p2-01-game-look",
+      "file": "/home/paulinaj/neon-strike/logs/p2-01-game-look.png",
+      "bytes": 76639,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 9.71,
+        "lumMin": 0.2888,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9687,
+        "cyanRatio": 0.0056,
+        "redRatio": 0,
+        "violetRatio": 0.0212,
+        "colorBuckets": 34
+      }
+    },
+    {
+      "name": "p2-02-after-wasd",
+      "file": "/home/paulinaj/neon-strike/logs/p2-02-after-wasd.png",
+      "bytes": 76823,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 23.84,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.8895,
+        "cyanRatio": 0.039,
+        "redRatio": 0.0587,
+        "violetRatio": 0.0094,
+        "colorBuckets": 52
+      }
+    },
+    {
+      "name": "p2-03-collision-stop",
+      "file": "/home/paulinaj/neon-strike/logs/p2-03-collision-stop.png",
+      "bytes": 58886,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 26.52,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.8077,
+        "cyanRatio": 0.0009,
+        "redRatio": 0.0037,
+        "violetRatio": 0.1795,
+        "colorBuckets": 58
+      }
+    },
+    {
+      "name": "p2-04-player-visible",
+      "file": "/home/paulinaj/neon-strike/logs/p2-04-player-visible.png",
+      "bytes": 61044
+    },
+    {
+      "name": "p2-04-player-hidden",
+      "file": "/home/paulinaj/neon-strike/logs/p2-04-player-hidden.png",
+      "bytes": 38812
+    },
+    {
+      "name": "p2-05-training-range",
+      "file": "/home/paulinaj/neon-strike/logs/p2-05-training-range.png",
+      "bytes": 78157,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 8.92,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9795,
+        "cyanRatio": 0.0049,
+        "redRatio": 0.0031,
+        "violetRatio": 0.0079,
+        "colorBuckets": 61
+      }
+    },
+    {
+      "name": "p2-05-training-hidden",
+      "file": "/home/paulinaj/neon-strike/logs/p2-05-training-hidden.png",
+      "bytes": 75595
+    },
+    {
+      "name": "p2-05b-target-closeup",
+      "file": "/home/paulinaj/neon-strike/logs/p2-05b-target-closeup.png",
+      "bytes": 78452,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 10.79,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9615,
+        "cyanRatio": 0.0063,
+        "redRatio": 0.0182,
+        "violetRatio": 0.0048,
+        "colorBuckets": 76
+      }
+    },
+    {
+      "name": "p2-06-debug-fps",
+      "file": "/home/paulinaj/neon-strike/logs/p2-06-debug-fps.png",
+      "bytes": 78452,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 10.79,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9615,
+        "cyanRatio": 0.0063,
+        "redRatio": 0.0182,
+        "violetRatio": 0.0048,
+        "colorBuckets": 76
+      }
+    },
+    {
+      "name": "p2-07-final",
+      "file": "/home/paulinaj/neon-strike/logs/p2-07-final.png",
+      "bytes": 81232,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 11.77,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9547,
+        "cyanRatio": 0.0018,
+        "redRatio": 0,
+        "violetRatio": 0.0357,
+        "colorBuckets": 39
+      }
+    },
+    {
+      "name": "p2-08-menu-back",
+      "file": "/home/paulinaj/neon-strike/logs/p2-08-menu-back.png",
+      "bytes": 81232,
+      "stats": {
+        "width": 1248,
+        "height": 619,
+        "samples": 154503,
+        "lumAvg": 11.77,
+        "lumMin": 0.1444,
+        "lumMax": 172.7188,
+        "darkRatio": 0.9547,
+        "cyanRatio": 0.0018,
+        "redRatio": 0,
+        "violetRatio": 0.0357,
+        "colorBuckets": 39
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "exceptions": [],
+  "consoleLogs": [
+    "[phase4] klient tayyor — TRAINING tugmasi + combat HUD faol"
+  ]
+}

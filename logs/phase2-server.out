@@ -1,0 +1,12 @@
+[2026-09-19T14:30:41.278Z] [info] ==================================================
+[2026-09-19T14:30:41.283Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v5)
+[2026-09-19T14:30:41.288Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T14:30:41.295Z] [info]   Local : http://localhost:3000
+[2026-09-19T14:30:41.302Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T14:30:41.307Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T14:30:41.312Z] [info] ==================================================
+[2026-09-19T14:30:45.411Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T14:30:45.417Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T14:30:45.425Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T14:30:45.431Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T14:31:04.927Z] [info] [net] - #1 disconnected (online=0)

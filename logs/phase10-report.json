@@ -1,0 +1,1198 @@
+{
+  "generatedAt": "2026-09-21T10:21:37.330Z",
+  "phase": 10,
+  "subject": "performance-stability",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:35727",
+  "protocol": 6,
+  "runMinutes": 5,
+  "ranMs": 304185,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "headless": false,
+    "webgl2": true
+  },
+  "twoProcess": {
+    "method": "two independent Chrome PROCESSES (separate CDP ports/profiles/WS/__neon/rAF) + raw WS load clients",
+    "portA": 9394,
+    "portB": 9395,
+    "pidA": 214001,
+    "pidB": 214176,
+    "players": {
+      "A": "p1",
+      "B": "p2",
+      "C": "p3",
+      "D": "p4"
+    },
+    "pointerLockSeen": false
+  },
+  "server": {
+    "tick": {
+      "count": 9191,
+      "avgMs": 0.513,
+      "minMs": 0.123,
+      "maxMs": 14.679,
+      "p50Ms": 0.417,
+      "p95Ms": 0.866,
+      "p99Ms": 1.213,
+      "window": 512,
+      "overruns": 0,
+      "overrunPct": 0,
+      "utilPct": 1.538
+    },
+    "snapshot": {
+      "count": 4596,
+      "avgMs": 0.17,
+      "maxMs": 12.571,
+      "playersLast": 4,
+      "playersMax": 4
+    },
+    "ops": {
+      "inputs": 64968,
+      "inputsAccepted": 64188,
+      "inputsRejected": 780,
+      "chatAccepted": 322,
+      "chatRejected": 1144,
+      "lobbyActions": 192,
+      "lobbyRejected": 156,
+      "malformed": 624,
+      "shotsAccepted": 1060,
+      "shotsRejected": 3225,
+      "events": 5546
+    },
+    "memoryAfterLoad": {
+      "samples": 298,
+      "rssMb": 123.56,
+      "heapMb": 46.11,
+      "externalMb": 3.83,
+      "rssDeltaMb": 47.17,
+      "heapDeltaMb": 34.04,
+      "maxHeapMb": 49.51,
+      "maxRssMb": 132.43,
+      "lastAt": 1789986087897
+    },
+    "memoryAfterTeardown": {
+      "samples": 308,
+      "rssMb": 126.57,
+      "heapMb": 51.09,
+      "externalMb": 4.54,
+      "rssDeltaMb": 50.18,
+      "heapDeltaMb": 39.02,
+      "maxHeapMb": 51.09,
+      "maxRssMb": 132.43,
+      "lastAt": 1789986097324
+    },
+    "memoryStart": {
+      "samples": 1,
+      "rssMb": 76.39,
+      "heapMb": 12.07,
+      "externalMb": 4.28,
+      "rssDeltaMb": 0,
+      "heapDeltaMb": 0,
+      "maxHeapMb": 12.07,
+      "maxRssMb": 76.39,
+      "lastAt": 1789985783208
+    },
+    "memoryDeltaMb": 39.02,
+    "rssDeltaMb": 50.18,
+    "tickErrors": 0,
+    "uncaught": 0,
+    "activeResources": {
+      "total": 9,
+      "byType": {
+        "TCPServerWrap": 1,
+        "PipeWrap": 4,
+        "ProcessWrap": 2,
+        "TCPSocketWrap": 2
+      }
+    },
+    "samples": [
+      {
+        "atMs": 7555,
+        "heapMb": 12.85,
+        "rssMb": 80.6,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 11,
+        "tickErrors": 0,
+        "clientHeapMb": 12.88,
+        "clientFps": 100,
+        "clientDom": 209,
+        "remotes": 3
+      },
+      {
+        "atMs": 16519,
+        "heapMb": 16.87,
+        "rssMb": 87.19,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 18,
+        "tickErrors": 0,
+        "clientHeapMb": 12.41,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 23732,
+        "heapMb": 16.06,
+        "rssMb": 87.69,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 31,
+        "tickErrors": 0,
+        "clientHeapMb": 11.97,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 33175,
+        "heapMb": 16.7,
+        "rssMb": 94.18,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 42,
+        "tickErrors": 0,
+        "clientHeapMb": 13.07,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 42395,
+        "heapMb": 20.36,
+        "rssMb": 95.18,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 49,
+        "tickErrors": 0,
+        "clientHeapMb": 11.34,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 52787,
+        "heapMb": 18.75,
+        "rssMb": 98.45,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 7,
+        "tickErrors": 0,
+        "clientHeapMb": 14.09,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 61333,
+        "heapMb": 20.11,
+        "rssMb": 99.07,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 18,
+        "tickErrors": 0,
+        "clientHeapMb": 10.38,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 69986,
+        "heapMb": 23.21,
+        "rssMb": 106.31,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 25,
+        "tickErrors": 0,
+        "clientHeapMb": 13.05,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 76700,
+        "heapMb": 24.56,
+        "rssMb": 113.31,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 38,
+        "tickErrors": 0,
+        "clientHeapMb": 12.54,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 85201,
+        "heapMb": 22.39,
+        "rssMb": 114.31,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 49,
+        "tickErrors": 0,
+        "clientHeapMb": 12.04,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 96545,
+        "heapMb": 30.17,
+        "rssMb": 113.73,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 0,
+        "tickErrors": 0,
+        "clientHeapMb": 12.37,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 103349,
+        "heapMb": 31.73,
+        "rssMb": 115.61,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 13,
+        "tickErrors": 0,
+        "clientHeapMb": 13.39,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 111850,
+        "heapMb": 29.87,
+        "rssMb": 116.86,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 24,
+        "tickErrors": 0,
+        "clientHeapMb": 14.34,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 120321,
+        "heapMb": 27.76,
+        "rssMb": 118.23,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 31,
+        "tickErrors": 0,
+        "clientHeapMb": 11,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 126894,
+        "heapMb": 24.57,
+        "rssMb": 92.11,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 44,
+        "tickErrors": 0,
+        "clientHeapMb": 13.91,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 135051,
+        "heapMb": 26.3,
+        "rssMb": 94.61,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 12.59,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 146038,
+        "heapMb": 29.87,
+        "rssMb": 98.86,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 6,
+        "tickErrors": 0,
+        "clientHeapMb": 14,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 152837,
+        "heapMb": 28.56,
+        "rssMb": 100.8,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 19,
+        "tickErrors": 0,
+        "clientHeapMb": 13.15,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 161225,
+        "heapMb": 34.23,
+        "rssMb": 107.68,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 30,
+        "tickErrors": 0,
+        "clientHeapMb": 17.43,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 169483,
+        "heapMb": 34.71,
+        "rssMb": 108.3,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 37,
+        "tickErrors": 0,
+        "clientHeapMb": 17.25,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 176075,
+        "heapMb": 35.59,
+        "rssMb": 109.43,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 12.87,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 187781,
+        "heapMb": 34.4,
+        "rssMb": 110.8,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 5,
+        "tickErrors": 0,
+        "clientHeapMb": 17.81,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 196031,
+        "heapMb": 39.93,
+        "rssMb": 114.3,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 12,
+        "tickErrors": 0,
+        "clientHeapMb": 11.56,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 202893,
+        "heapMb": 40.47,
+        "rssMb": 125.18,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 25,
+        "tickErrors": 0,
+        "clientHeapMb": 15.68,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 211243,
+        "heapMb": 35.51,
+        "rssMb": 126.05,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 36,
+        "tickErrors": 0,
+        "clientHeapMb": 17.29,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 219599,
+        "heapMb": 39.41,
+        "rssMb": 127.3,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 43,
+        "tickErrors": 0,
+        "clientHeapMb": 12.59,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 226239,
+        "heapMb": 41.93,
+        "rssMb": 129.18,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 12.11,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 246166,
+        "heapMb": 49.08,
+        "rssMb": 130.8,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 15.19,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 265130,
+        "heapMb": 40.41,
+        "rssMb": 109.56,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 12.9,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 277110,
+        "heapMb": 42.86,
+        "rssMb": 114.94,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 14.59,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      },
+      {
+        "atMs": 296076,
+        "heapMb": 45.91,
+        "rssMb": 120.06,
+        "sessions": 4,
+        "connections": 4,
+        "chatEntries": 50,
+        "tickErrors": 0,
+        "clientHeapMb": 12.05,
+        "clientFps": 100,
+        "clientDom": 212,
+        "remotes": 3
+      }
+    ],
+    "rounds": {
+      "observed": 44,
+      "restarts": 4,
+      "scoreSteps": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "roundJumps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "results": [
+        {
+          "matchSeq": 0,
+          "roundBefore": 1,
+          "roundAfter": 1,
+          "winner": "A",
+          "totalBefore": 0,
+          "totalAfter": 1,
+          "scores": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 2,
+          "roundAfter": 2,
+          "winner": "B",
+          "totalBefore": 1,
+          "totalAfter": 2,
+          "scores": {
+            "A": 1,
+            "B": 1
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 3,
+          "roundAfter": 3,
+          "winner": "A",
+          "totalBefore": 2,
+          "totalAfter": 3,
+          "scores": {
+            "A": 2,
+            "B": 1
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 4,
+          "roundAfter": 4,
+          "winner": "B",
+          "totalBefore": 3,
+          "totalAfter": 4,
+          "scores": {
+            "A": 2,
+            "B": 2
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 5,
+          "roundAfter": 5,
+          "winner": "A",
+          "totalBefore": 4,
+          "totalAfter": 5,
+          "scores": {
+            "A": 3,
+            "B": 2
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 6,
+          "roundAfter": 6,
+          "winner": "B",
+          "totalBefore": 5,
+          "totalAfter": 6,
+          "scores": {
+            "A": 3,
+            "B": 3
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 7,
+          "roundAfter": 7,
+          "winner": "A",
+          "totalBefore": 6,
+          "totalAfter": 7,
+          "scores": {
+            "A": 4,
+            "B": 3
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 8,
+          "roundAfter": 8,
+          "winner": "B",
+          "totalBefore": 7,
+          "totalAfter": 8,
+          "scores": {
+            "A": 4,
+            "B": 4
+          }
+        },
+        {
+          "matchSeq": 0,
+          "roundBefore": 9,
+          "roundAfter": 9,
+          "winner": "A",
+          "totalBefore": 8,
+          "totalAfter": 9,
+          "scores": {
+            "A": 5,
+            "B": 4
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 1,
+          "roundAfter": 1,
+          "winner": "B",
+          "totalBefore": 0,
+          "totalAfter": 1,
+          "scores": {
+            "A": 0,
+            "B": 1
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 2,
+          "roundAfter": 2,
+          "winner": "A",
+          "totalBefore": 1,
+          "totalAfter": 2,
+          "scores": {
+            "A": 1,
+            "B": 1
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 3,
+          "roundAfter": 3,
+          "winner": "B",
+          "totalBefore": 2,
+          "totalAfter": 3,
+          "scores": {
+            "A": 1,
+            "B": 2
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 4,
+          "roundAfter": 4,
+          "winner": "A",
+          "totalBefore": 3,
+          "totalAfter": 4,
+          "scores": {
+            "A": 2,
+            "B": 2
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 5,
+          "roundAfter": 5,
+          "winner": "B",
+          "totalBefore": 4,
+          "totalAfter": 5,
+          "scores": {
+            "A": 2,
+            "B": 3
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 6,
+          "roundAfter": 6,
+          "winner": "A",
+          "totalBefore": 5,
+          "totalAfter": 6,
+          "scores": {
+            "A": 3,
+            "B": 3
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 7,
+          "roundAfter": 7,
+          "winner": "B",
+          "totalBefore": 6,
+          "totalAfter": 7,
+          "scores": {
+            "A": 3,
+            "B": 4
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 8,
+          "roundAfter": 8,
+          "winner": "A",
+          "totalBefore": 7,
+          "totalAfter": 8,
+          "scores": {
+            "A": 4,
+            "B": 4
+          }
+        },
+        {
+          "matchSeq": 1,
+          "roundBefore": 9,
+          "roundAfter": 9,
+          "winner": "B",
+          "totalBefore": 8,
+          "totalAfter": 9,
+          "scores": {
+            "A": 4,
+            "B": 5
+          }
+        },
+        {
+          "matchSeq": 2,
+          "roundBefore": 1,
+          "roundAfter": 1,
+          "winner": "A",
+          "totalBefore": 0,
+          "totalAfter": 1,
+          "scores": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "matchSeq": 2,
+          "roundBefore": 2,
+          "roundAfter": 2,
+          "winner": "B",
+          "totalBefore": 1,
+          "totalAfter": 2,
+          "scores": {
+            "A": 1,
+            "B": 1
+          }
+        }
+      ],
+      "scores": {
+        "A": 0,
+        "B": 0
+      }
+    }
+  },
+  "resources": {
+    "start": {
+      "connections": 4,
+      "sessions": 4,
+      "lobbyMembers": 4,
+      "lobbyState": "in_game",
+      "chatEntries": 0,
+      "activeResources": {
+        "total": 15,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 4,
+          "ProcessWrap": 2,
+          "TCPSocketWrap": 8
+        }
+      },
+      "opened": {
+        "connections": 4,
+        "sessions": 4,
+        "members": 4
+      },
+      "closed": {
+        "connections": 0,
+        "sessions": 0,
+        "members": 0
+      }
+    },
+    "duringLoad": {
+      "connections": 4,
+      "sessions": 4,
+      "lobbyMembers": 4,
+      "lobbyState": "in_game",
+      "chatEntries": 50,
+      "activeResources": {
+        "total": 15,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 4,
+          "ProcessWrap": 2,
+          "TCPSocketWrap": 8
+        }
+      },
+      "opened": {
+        "connections": 5,
+        "sessions": 5,
+        "members": 5
+      },
+      "closed": {
+        "connections": 1,
+        "sessions": 1,
+        "members": 1
+      }
+    },
+    "afterTeardown": {
+      "connections": 0,
+      "sessions": 0,
+      "lobbyMembers": 0,
+      "lobbyState": "none",
+      "chatEntries": 0,
+      "activeResources": {
+        "total": 9,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 4,
+          "ProcessWrap": 2,
+          "TCPSocketWrap": 2
+        }
+      },
+      "opened": {
+        "connections": 5,
+        "sessions": 5,
+        "members": 5
+      },
+      "closed": {
+        "connections": 5,
+        "sessions": 5,
+        "members": 5
+      }
+    },
+    "clientAfterTeardown": {
+      "enabled": false,
+      "remotes": 0,
+      "created": 15,
+      "disposed": 15
+    }
+  },
+  "chat": {
+    "accepted": 322,
+    "rejected": 1144,
+    "rejections": {
+      "chat_too_long": 156,
+      "chat_empty": 208,
+      "chat_bad_text": 104,
+      "forbidden_authority": 104,
+      "chat_rate_limited": 572
+    },
+    "history": 0,
+    "historyLimit": 50
+  },
+  "client": {
+    "fps": {
+      "frames": 12965,
+      "windowFrames": 240,
+      "windowSeconds": 2.4,
+      "frameMsAvg": 10,
+      "frameMsP95": 10.1,
+      "frameMsMax": 10.1,
+      "fpsEma": 100.04,
+      "fpsAvg": 100,
+      "fpsMin": 99.01,
+      "fpsMax": 101.01
+    },
+    "frame": {
+      "cpuMs": 0.7
+    },
+    "render": {
+      "calls": 28,
+      "triangles": 3774,
+      "width": 1248,
+      "height": 619,
+      "pixelRatio": 1,
+      "shadowMap": false
+    },
+    "hud": {
+      "frames": 30686,
+      "viewBuilds": 30686,
+      "domWrites": 954,
+      "domSkips": 344308
+    },
+    "dom": {
+      "total": 212,
+      "hudChildren": 40,
+      "chatItems": 12
+    },
+    "domGrowth": 35,
+    "sync": {
+      "bounds": {
+        "pendingMax": 168,
+        "bufferMaxOverall": 24,
+        "limits": {
+          "pending": 300,
+          "buffer": 24
+        }
+      },
+      "interpolation": {
+        "delayMs": 100,
+        "samples": 36030,
+        "active": true
+      },
+      "reconciliation": {
+        "corrections": 67,
+        "smoothings": 4464,
+        "lastError": 0,
+        "maxError": 16.9101,
+        "samples": 4533,
+        "threshold": 0.6,
+        "lastApplied": {
+          "x": 8.875,
+          "y": 0,
+          "z": 13.713,
+          "error": 0,
+          "kind": "smooth"
+        }
+      },
+      "remotesCreated": 15,
+      "remotesDisposed": 12
+    },
+    "memory": {
+      "usedHeapMb": 14.56,
+      "totalHeapMb": 26.38,
+      "limitMb": 4096
+    },
+    "memoryStartMb": 11.19,
+    "consoleErrors": {
+      "A": 0,
+      "B": 0
+    },
+    "exceptions": {
+      "A": 0,
+      "B": 0
+    }
+  },
+  "unit": {
+    "tests": 270,
+    "pass": 270,
+    "fail": 0,
+    "exit": 0,
+    "files": 13
+  },
+  "narrative": {
+    "baseline": {
+      "unit": 232,
+      "phase2": 42,
+      "phase3": 25,
+      "phase4": 22,
+      "phase5": 18,
+      "phase6": 21,
+      "phase7": 33,
+      "phase8": 28,
+      "phase9": 34
+    },
+    "phase10Scope": "performance + stability + resource lifetime + long-run robustness + error containment (yangi oyin/qurol/xarita YOQ)",
+    "filesNew": [
+      "server/metrics.js",
+      "test/unit/stability.test.js",
+      "tools/verify-phase10.mjs"
+    ],
+    "filesChanged": [
+      "server/app.js",
+      "client/js/game/multiplayer.js",
+      "client/js/game/hud.js",
+      "client/js/game/index.js",
+      "client/js/main.js",
+      "package.json"
+    ],
+    "defectsFixed": [
+      "close() osilib qolishi mumkin edi (wss.close callbackiga bogliq) -> closeAllConnections + chegaralangan guard",
+      "metrics.reset() kumulyativ hayot hisobini (opened - closed = live) buzardi -> endi reset faqat oynani tozalaydi",
+      "bitta socketda takroriy HELLO sessiya/azo hisobini kopaytirardi -> eski sessiya/azo yopiladi va hisobga olinadi",
+      "lanAddresses() har bir azo uchun qayta hisoblanardi (olchandi ~65 us x L) -> broadcastda bir marta hisoblanadi",
+      "klientda remote mesh yaratilishi/yoq qilinishi va HUD DOM yozuvlari o lchanmasdi -> hisoblagichlar qoshildi"
+    ],
+    "phaseBoundaryNote": "P7.28/P8.31 faza-chegara darvozalari P9 paytida Phase 10+ ga kochirilgan (P9 chat yetkazgan edi) — P10 da ularning kuchi/ko lam ozgarmadi (P10.19 P11/P12 ni tekshiradi)"
+  },
+  "shotCount": 3,
+  "passed": 21,
+  "failed": 0,
+  "gates": [
+    {
+      "name": "P10.1 HAQIQIY Chrome + HAQIQIY GPU (WebGL2 tirik, 2 jarayon)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\" · headless=false · A webgl2=true B=true"
+    },
+    {
+      "name": "P10.2 IKKI MUSTAQIL Chrome JARAYONI (alohida CDP port + profil + WS + __neon)",
+      "ok": true,
+      "detail": "pidA=214001 pidB=214176 · portlar=9394/9395 · __neon.phase10={\"version\":10,\"phase\":\"phase10-perf-stability\"}"
+    },
+    {
+      "name": "P10.2c PHASE 1–9 regressiyasi: HAQIQIY unit to‘plamlari (npm test bilan bir xil ro‘yxat) PASS",
+      "ok": true,
+      "detail": "tests=270 pass=270 fail=0 exit=0 · to‘plamlar=13"
+    },
+    {
+      "name": "P10.2b 4 mustaqil o‘yinchi (2 brauzer + 2 xom WS) BIR sessiyada, ID lar takrorlanmagan",
+      "ok": true,
+      "detail": "ids={\"A\":\"p1\",\"B\":\"p2\",\"C\":\"p3\",\"D\":\"p4\"} · a’zolar=4 · raund=live"
+    },
+    {
+      "name": "P10.3 boshlang‘ich o‘lchov olindi (FPS/kadr/draw call/tri/DOM/HUD hisoblagichlari)",
+      "ok": true,
+      "detail": "FPS=95.8 · kadr=— ms · calls=211 · tri=32504 · DOM=177 · HUD yozuv=11/o‘tkazib=2277"
+    },
+    {
+      "name": "P10.4 uzoq muddatli yuk HAQIQATAN bajarildi (bo‘sh turmadi)",
+      "ok": true,
+      "detail": "davomiylik=304.2 s (target 300 s) · input=64968 · snapshot=4596 · raundlar=44 · namunalar=31 · qayta boshlash=4"
+    },
+    {
+      "name": "P10.5 server tick o‘lchovi (o‘rtacha/maks/p95/p99 + byudjet ulushi)",
+      "ok": true,
+      "detail": "tick=9191 · avg=0.513 ms · max=14.679 ms · p95=0.866 · p99=1.213 · byudjet=33.333 ms · ulush=1.538% · oshish=0 (0%)"
+    },
+    {
+      "name": "P10.6 server BARQAROR: tickErrors = 0, ushlanmagan xato YO‘Q, jarayon tirik",
+      "ok": true,
+      "detail": "tickErrors=0 · uncaught=0 · tick=10729"
+    },
+    {
+      "name": "P10.7 snapshot oqimi barqaror (20 Hz) va o‘lchandi",
+      "ok": true,
+      "detail": "snapshot qadam=4596 · avg=0.17 ms · maks o‘yinchi=4 · sync frames=4551"
+    },
+    {
+      "name": "P10.8 input: hajm + avtoritet saqlangan (rad etilganlar holatni o‘zgartirmagan)",
+      "ok": true,
+      "detail": "input=64968 (qabul=64188 rad=780) · buzilgan=624 · o‘q qabul/rad=1060/3225"
+    },
+    {
+      "name": "P10.9 chat yuki: qabul + rad + tarix CHEGARADA (cross-session leak yo‘q)",
+      "ok": true,
+      "detail": "qabul=322 rad=1144 · tarix=50/50 · rad turlari={\"chat_too_long\":156,\"chat_empty\":208,\"chat_bad_text\":104,\"forbidden_authority\":104,\"chat_rate_limited\":572}"
+    },
+    {
+      "name": "P10.10 raund/match aylanishi: ball HAR RAUNDDA aynan +1, holat qotib qolmagan",
+      "ok": true,
+      "detail": "kuzatilgan raund=44 · har qadamda ball o‘sishi=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1] · raund raqami sakrashi=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] · joriy ball A=4 B=4 (yig‘indi=8) · holat=live/live · yangi match=4"
+    },
+    {
+      "name": "P10.11 uzoq yuk davomida konteynerlar o‘smagan (davriy namunalar)",
+      "ok": true,
+      "detail": "246s: heap=49.08MB sess=4 chat=50 fps=100 | 265s: heap=40.41MB sess=4 chat=50 fps=100 | 277s: heap=42.86MB sess=4 chat=50 fps=100 | 296s: heap=45.91MB sess=4 chat=50 fps=100"
+    },
+    {
+      "name": "P10.12 klient runtime: console.error YO‘Q, istisno YO‘Q, rAF/input tirik",
+      "ok": true,
+      "detail": "console.error A=0 B=0 · istisno A=0 B=0 · kadr 208 → 30686 · __neon xatolari=0 loop=0"
+    },
+    {
+      "name": "P10.13 HUD/render: har kadr DOM qayta qurilmaydi + DOM o‘sishi chegaralangan + remote mesh hisobi TO‘G‘RI",
+      "ok": true,
+      "detail": "DOM yozuv=943 / kadr=30478 (3.1%) · DOM tugun Δ35 · chat DOM=12 · remote mesh: yaratilgan=15 yo‘q qilingan=12 hozir=3"
+    },
+    {
+      "name": "P10.14 navbat chegaralari buzilmagan (input/snapshot/interpolatsiya)",
+      "ok": true,
+      "detail": "pending maks=168/300 · interp bufer maks=24/24 · interp namunalari=36030 · rekonsiliatsiya={\"corrections\":67,\"smoothings\":4464,\"lastError\":0,\"maxError\":16.9101,\"samples\":4533,\"threshold\":0.6,\"lastApplied\":{\"x\":8.875,\"y\":0,\"z\":13.713,\"error\":0,\"kind\":\"smooth\"}}"
+    },
+    {
+      "name": "P10.15 error containment: buzg‘unchi trafikdan keyin ham server TO‘LIQ xizmat qiladi",
+      "ok": true,
+      "detail": "yangi playerId=p5 · PONG=12345 · lobby state=in_game · tickErrors=0"
+    },
+    {
+      "name": "P10.16 to‘liq teardown: ulanish/sessiya/lobby/chat BO‘SH, ghost YO‘Q, hisob to‘g‘ri",
+      "ok": true,
+      "detail": "ulanish=0 sessiya=0 a’zo=0 chat=0 · ochilgan/yopilgan: ulanish=5/5 sessiya=5/5 a’zo=5/5 · klient: sync=false remote=0 (yaratilgan=15 yo‘q=15)"
+    },
+    {
+      "name": "P10.17 xotira/resurs leak YO‘Q (heap o‘sishi chegaralangan, runaway timer yo‘q)",
+      "ok": true,
+      "detail": "heap 12.07 → 51.09 MB (Δ39.02) · rss Δ50.18 MB · maks heap=51.09 MB · aktiv resurslar={\"TCPServerWrap\":1,\"PipeWrap\":4,\"ProcessWrap\":2,\"TCPSocketWrap\":2} · namunalar=308"
+    },
+    {
+      "name": "P10.18 unumdorlik maqsadlari (FPS≥30, CPU<16.6ms, calls≤165, tri≤32k, shadow OFF)",
+      "ok": true,
+      "detail": "FPS o‘rt=100 min=— · CPU=0.7 ms · calls=28 · tri=3774 · shadowMap=false"
+    },
+    {
+      "name": "P10.19 P11/P12 (LAN QA / final hardening) tizimlari YO‘Q",
+      "ok": true,
+      "detail": "xabar turlari=20 taqiqlangan=[] · __neon API taqiqlangan=[] · telemetriya taqiqlangan=[] · resurs kalitlari taqiqlangan=[]"
+    }
+  ],
+  "limitations": [
+    "ikki qurilmali HAQIQIY LAN QA bu fazada YO‘Q (P11 ishi) — klientlar bitta mashinada",
+    "qayta ulanish (auto-reconnect) ishlab chiqilmagan — hayot sikli halol sinovdan o‘tkazildi",
+    "granata portlashi hamon faqat o‘ziga zarar (P8 merosi)",
+    "P9 HUD/chat yuki o‘lchandi; P10 optimizatsiya FAQAT dalil bo‘lgan joyda qilindi"
+  ],
+  "scopeConfirmation": "P10 faqat o‘lchov/barqarorlik: yangi o‘yin, qurol, xarita, LAN QA, bulut, akkaunt YO‘Q (P10.19)"
+}

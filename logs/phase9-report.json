@@ -1,0 +1,306 @@
+{
+  "generatedAt": "2026-09-21T10:14:39.821Z",
+  "phase": 9,
+  "subject": "hud-polish-chat",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:42995",
+  "protocol": 6,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "twoClient": {
+    "method": "two independent Chrome PROCESSES (separate CDP ports 9391/9392 + separate profiles + separate WS + separate window.__neon + separate rAF loop) + 2 xom WebSocket klient (C/D) + 1 begona (sessiyasiz)",
+    "chromePids": {
+      "A": 204778,
+      "B": 204970
+    },
+    "pageA": {
+      "playerId": "p1",
+      "sessionId": 1
+    },
+    "pageB": {
+      "playerId": "p2",
+      "sessionId": 1
+    },
+    "raw": {
+      "C": "p3",
+      "D": "p4",
+      "outsider": "hello-only"
+    },
+    "pointerLock": true
+  },
+  "hud": {
+    "source": "server",
+    "authority": "server STATE (HP/o‘q-dori/reload) + SNAPSHOT.match (jamoa/raund/ball)",
+    "chatMaxLen": 160,
+    "chatBurst": 5,
+    "chatWindowMs": 3000
+  },
+  "chat": {
+    "accepted": 6,
+    "rejected": 10,
+    "rejections": {
+      "chat_too_long": 1,
+      "chat_bad_text": 1,
+      "chat_rate_limited": 6,
+      "forbidden_authority": 2
+    },
+    "delivered": 6,
+    "last": {
+      "seq": 6,
+      "playerId": "p3",
+      "name": "raw-c",
+      "text": "flood-2",
+      "serverTick": 1315,
+      "serverTime": 1789985500459
+    }
+  },
+  "match": {
+    "state": "match_end",
+    "roundsPlayed": 6,
+    "scores": {
+      "A": 5,
+      "B": 1
+    },
+    "winner": "A",
+    "events": 13
+  },
+  "narrative": {
+    "baseline": {
+      "unit": 209,
+      "phase2": 42,
+      "phase3": 25,
+      "phase4": 22,
+      "phase5": 18,
+      "phase6": 21,
+      "phase7": 33,
+      "phase8": 28
+    },
+    "phase9Scope": "authoritative HUD + gameplay/menu polish + session chat",
+    "filesNew": [
+      "server/chat.js",
+      "client/js/game/hud-state.js",
+      "test/unit/hud-chat.test.js",
+      "tools/verify-phase9.mjs"
+    ],
+    "filesChanged": [
+      "shared/protocol-consts.js",
+      "server/app.js",
+      "client/js/game/hud.js",
+      "client/js/game/index.js",
+      "client/js/game/combat.js",
+      "client/js/game/input.js",
+      "client/js/main.js",
+      "client/index.html",
+      "client/css/hud.css",
+      "package.json",
+      "test/unit/smoke.test.js",
+      "test/unit/lobby.test.js",
+      "test/unit/combat.test.js",
+      "test/unit/multiplayer.test.js",
+      "tools/verify-phase7.mjs",
+      "tools/verify-phase8.mjs"
+    ],
+    "limitations": [
+      "grenade blast hali ham faqat o‘ziga zarar (hitscan — PvP yo‘li) — P8 dan meros",
+      "mashq nishonlari (dummy) match paytida ham xaritada qoladi",
+      "ikki qurilmali HAQIQIY LAN QA hali o‘tkazilmagan (P11)",
+      "P10 (performance/stability) ishi bajarilmagan"
+    ],
+    "scopeConfirmation": "Phase 10/11/12 tizimlari YO‘Q: spectator/replay/voip/voice/ranking/matchmaking/scoreboard/killfeed/inventory/lobbybrowser/friend/clan/achievement/profile/account terminlari protokol, __neon API va telemetriyada yo‘q (P9.34)"
+  },
+  "performance": {
+    "fpsAvg": 100,
+    "cpuMs": 1.4,
+    "drawCalls": 136,
+    "triangles": 19206,
+    "shadowMap": false,
+    "serverLoopMs": 0.309,
+    "ticks": 6717,
+    "snapshots": 11543,
+    "tickErrors": 0
+  },
+  "unit": {
+    "tests": 232,
+    "pass": 232,
+    "fail": 0
+  },
+  "shotCount": 7,
+  "passed": 34,
+  "failed": 0,
+  "gates": [
+    {
+      "name": "P9.1 HAQIQIY Chrome oynasi + HAQIQIY WebGL2 GPU (protokol v6)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\" · software=false · A webgl2=true B=true"
+    },
+    {
+      "name": "P9.3 Phase 1–8 regressiyasi + Phase 9 unit to‘plamlari (npm test ekvivalenti) PASS",
+      "ok": true,
+      "detail": "tests=232 pass=232 fail=0 exit=0"
+    },
+    {
+      "name": "P9.4 IKKI mustaqil brauzer klienti (+2 xom WS) — alohida WS, alohida playerId",
+      "ok": true,
+      "detail": "A=p1 B=p2 C=p3 D=p4 · ulanish=4 · lobby=4"
+    },
+    {
+      "name": "P9.2 WebGL2 render ishlashda davom etadi (kadrlar chiziladi, kontekst tirik)",
+      "ok": true,
+      "detail": "draw call=211 · tri=32504 · FPS=74.15 · shadowMap=false"
+    },
+    {
+      "name": "P9.5 avtoritar HP HUD da — B otgan zarar SERVERDA yozildi va HUD aynan shu qiymatni ko‘rsatadi",
+      "ok": true,
+      "detail": "server HP 100 → 27.100000000000005 (ko‘rsatiladigan 27, o‘q=3, input-manager) · HUD view=27 DOM=27 · manba=server"
+    },
+    {
+      "name": "P9.6 avtoritar o‘q-dori + reload HUD da (server mag/reserve/reload ustuvor)",
+      "ok": true,
+      "detail": "mag 30→27 (input-manager), reload ko‘rindi, mag 30/reserve 117 · HUD=30/117 · manba=server"
+    },
+    {
+      "name": "P9.7 o‘z jamoasi HUD da — qiymat SERVER match.teams bilan bir xil",
+      "ok": true,
+      "detail": "server jamoa=A · HUD view=A chip=\"JAMOA A\" · ID chip=\"ID p1\""
+    },
+    {
+      "name": "P9.8 avtoritar ball HUD da (klient hisoblamaydi)",
+      "ok": true,
+      "detail": "server A=0 B=0 · HUD=\"A 0 : 0 B\" (kutilgan \"A 0 : 0 B\")"
+    },
+    {
+      "name": "P9.9 raund holati/raqami HUD da server bilan mos",
+      "ok": true,
+      "detail": "server round=1/live · HUD=\"RAUND 1 · LIVE\""
+    },
+    {
+      "name": "P9.17/P9.18 klient A HAQIQIY klaviatura bilan chat yubordi va SERVER qabul qildi",
+      "ok": true,
+      "detail": "chat ochildi=true matn yozildi=true · server qabul=1 · matn=\"salom B, HUD tayyor\""
+    },
+    {
+      "name": "P9.19 klient B A ning chatini oldi (klient → SERVER → klient)",
+      "ok": true,
+      "detail": "B xabarlari=1 · B ro‘yxati=[[p1]salom B, HUD tayyor]"
+    },
+    {
+      "name": "P9.20 yuboruvchi KIMLIGI serverdan (klient faqat matn yuboradi)",
+      "ok": true,
+      "detail": "server playerId=p1 · A ko‘rgani=p1 · B ko‘rgani=p1/player-uva · A id=p1"
+    },
+    {
+      "name": "P9.21 UZUN chat rad etiladi (server chegarasi + HUD maxLength)",
+      "ok": true,
+      "detail": "server javobi=chat_too_long · qabul o‘zgarmadi=true · input maxLength=160"
+    },
+    {
+      "name": "P9.22 buzilgan/begona chat serverni YIQITMAYDI (keyin chat ishlaydi, tick xatosi yo‘q)",
+      "ok": true,
+      "detail": "javoblar=[bad_json, unknown_type, chat_bad_text] · keyingi chat ishladi=true · tickErrors=0 · qabul=2"
+    },
+    {
+      "name": "P9.23 chat SESSIYA-ICHIDA (a’zo bo‘lmagan olmaydi, tashqariga chiqmaydi)",
+      "ok": true,
+      "detail": "begona so‘rovi=chat_no_session · begonaga yetgan xabar=0"
+    },
+    {
+      "name": "P9.24 flood himoyasi — chegaradan keyingi chatlar RAD (ko‘paytirish yo‘q)",
+      "ok": true,
+      "detail": "qabul=3/5 · rate_limited=6 · oyna=3000ms"
+    },
+    {
+      "name": "P9.25 soxta yuboruvchi kimligi RAD etiladi (xabar tarqatilmaydi)",
+      "ok": true,
+      "detail": "rad sabablari=[forbidden_authority, forbidden_authority] · tarix o‘zgarmadi=true"
+    },
+    {
+      "name": "P9.14 lobby → gameplay o‘tishi toza (lobby yashirin, pauza faqat pointer lock yo‘qligida)",
+      "ok": true,
+      "detail": "running=true · pointerLock=false pauza=flex(top=true) mos=true · o‘lim oynasi=none · match HUD=flex · chat=flex"
+    },
+    {
+      "name": "P9.27 crosshair markazda qoladi (reload/overlay qatlamlaridan keyin ham)",
+      "ok": true,
+      "detail": "bars=4 · markazdan chetlanish=0.00px · viewport=1248×619"
+    },
+    {
+      "name": "P9.10 raund tugashi HUD da ko‘rinadi — AVTORITAR g‘olib va ball bilan",
+      "ok": true,
+      "detail": "round 1 g‘olib=A · server ball A=1 B=0 · overlay=\"ROUND 1 OVER / TEAM A WINS · A 1 : 0 B\""
+    },
+    {
+      "name": "P9.15 gameplay → round-end o‘tishi toza (banner KO‘RINADI, eski lobby oynasi qaytmaydi)",
+      "ok": true,
+      "detail": "roundState=round_end · banner ko‘rinadi=true turi=round · lobby oynasi yashirin=true · pauza holati mos=true"
+    },
+    {
+      "name": "P9.5b avtoritar O‘LIM HUD da — server o‘limni yozdi, HUD o‘lim ekranini ko‘rsatdi",
+      "ok": true,
+      "detail": "server alive=false HP=0 · HUD \"ELIMINATED\" (kutish satri ko‘rinadi=true) · o‘lim oynasi=flex"
+    },
+    {
+      "name": "P9.11 keyingi raundda HUD tiklanishi — HP 100, tirik, ball SAQLANADI, banner yo‘qoladi",
+      "ok": true,
+      "detail": "ball A=1 B=1 (oldin A=1 B=0) · B o‘qlari=18 (rad: {\"cooldown\":57}) · C HP=100 alive=true · tirik A=2 B=2 · HUD HP=100 · banner yashirin=true"
+    },
+    {
+      "name": "P9.12 MATCH_END natijasi HUD da — AVTORITAR g‘olib va yakuniy ball",
+      "ok": true,
+      "detail": "state=match_end g‘olib=A · ball A=5 B=1 · overlay=\"MATCH COMPLETE / TEAM A WINS · A 5 : 1 B\""
+    },
+    {
+      "name": "P9.16 MATCH_END KO‘RINADI (banner ekranda, ikki klientda ham, yangi raund boshlanmaydi)",
+      "ok": true,
+      "detail": "A banner=\"MATCH COMPLETE\" ko‘rinadi=true · B banner=\"MATCH COMPLETE\" · raund 6 (o‘zgarmadi=true)"
+    },
+    {
+      "name": "P9.26 holat o‘tishlaridan keyin eski overlay/lobby oynasi QOLMAYDI",
+      "ok": true,
+      "detail": "menu yashirin=true · pauza=flex(mos=true, lock=false) · o‘lim=none · combat HUD=block · banner=block · chat yozuvlari=6"
+    },
+    {
+      "name": "P9.28 kichik viewportda HUD o‘qiladi (crosshair markazda, panellar ekran ichida)",
+      "ok": true,
+      "detail": "viewport=800×600 crosshair chetlanish=0.00px · HUD chip=true ammo=true HP=true chat=true match=true (qaytarildi 1248×619)"
+    },
+    {
+      "name": "P9.13 ulanish holati HAQIQIY WS holatidan (ulangan → uzilgan ko‘rsatadi)",
+      "ok": true,
+      "detail": "oldin: readyState=1 \"ULANISH: SERVER\" (hud-chip conn ok) · keyin: readyState=3 \"ULANISH: UZILDI\" (hud-chip conn bad) · HUD=disconnected"
+    },
+    {
+      "name": "P9.31 P5 avtoriteti saqlangan — zarar/HP/o‘q-dori/aim/pose da’volari RAD, holat o‘zgarmadi",
+      "ok": true,
+      "detail": "rad sabablari=[forbidden_authority, forbidden_authority, forbidden_authority, bad_aim, bad_pose] · HP 100=100 · mag 18=18"
+    },
+    {
+      "name": "P9.32 P7 sinxronizatsiyasi saqlangan (snapshot maydonlari, ack, interpolyatsiya)",
+      "ok": true,
+      "detail": "snapshot xabarlari=2904 ackSeq=18890 maydonlar=[airborne,alive,faceYaw,hp,id,pitch,sessionId,speed,teamId,vx,vz,x,y,yaw,z] · server snapshot o‘yinchilari=4 · interp namunalari=37778"
+    },
+    {
+      "name": "P9.33 P8 jamoa/raund/ball avtoriteti saqlangan (guest START rad, soxta da’vo rad, HUD ↔ server mos)",
+      "ok": true,
+      "detail": "guest START rad=true · soxta da’volar rad=[forbidden_authority, forbidden_authority, forbidden_authority, forbidden_authority, forbidden_authority] (true) · raund 0→0 · soxta ball A=0 B=0 · HUD↔server mos=true (HUD A=5 B=1/g‘olib=A · server A=5 B=1/g‘olib=A) · jamoalar soxta da’vo bilan o‘zgarmadi=true (A=[p1,p3] B=[p4] ⊆ boshlang‘ich)"
+    },
+    {
+      "name": "P9.34 P10+ o‘yin tizimlari YO‘Q (spectator/replay/voip/matchmaking/ranking/scoreboard)",
+      "ok": true,
+      "detail": "xabar turlari=20 taqiqlangan=[] · __neon API taqiqlangan=[] · telemetriya=[]"
+    },
+    {
+      "name": "P9.29 runtime/console xatolari YO‘Q (istisno, unhandled, loop xatosi)",
+      "ok": true,
+      "detail": "CDP istisno=0 · console.error=0 · __neonErrors A=0 B=0 · loop xatosi=0"
+    },
+    {
+      "name": "P9.30 server tickErrors = 0 (chat/match/HUD yuki ostida ham)",
+      "ok": true,
+      "detail": "tick=6717 snapshot=11543 tickErrors=0 loop=0.309ms"
+    }
+  ],
+  "gateMap": "P9.1–P9.34 — spetsifikatsiya ro‘yxati; P9.5b/P9.15 — qo‘shimcha dalil darvozalari"
+}

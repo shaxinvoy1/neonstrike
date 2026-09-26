@@ -1,0 +1,310 @@
+{
+  "phase": 12,
+  "title": "FINAL HARDENING",
+  "protocol": 6,
+  "generatedAt": "2026-09-21T10:02:51.799Z",
+  "baseline": {
+    "unit": {
+      "tests": 287,
+      "pass": 287,
+      "fail": 0
+    }
+  },
+  "evidence": {
+    "method": "two independent Chrome PROCESSES (separate CDP ports/profiles/WS) + raw WS forger/hostile clients",
+    "portA": 9396,
+    "portB": 9397,
+    "pids": [
+      186105,
+      186352
+    ],
+    "gpu": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "headless": false
+  },
+  "staticScan": {
+    "filesScanned": 15,
+    "findings": 0,
+    "plantedDetected": 2
+  },
+  "serverState": {
+    "tick": 1632,
+    "tickErrors": 0,
+    "loopMs": 0.4129,
+    "match": {
+      "state": "round_end",
+      "roundState": "round_end",
+      "roundNumber": 1,
+      "roundWinner": "A",
+      "matchWinner": null,
+      "scores": {
+        "A": 1,
+        "B": 0
+      },
+      "teams": {
+        "A": [
+          "p1",
+          "p12"
+        ],
+        "B": [
+          "p11"
+        ]
+      },
+      "lives": {
+        "A": 1,
+        "B": 0
+      },
+      "teamsAtRoundStart": {
+        "A": 1,
+        "B": 1
+      },
+      "roundEndsAt": 1789984972105,
+      "roundsToWin": 5,
+      "events": 3,
+      "revision": 8
+    },
+    "resources": {
+      "connections": 8,
+      "sessions": 8,
+      "lobbyMembers": 3,
+      "lobbyState": "in_game",
+      "chatEntries": 6,
+      "activeResources": {
+        "total": 31,
+        "byType": {
+          "PipeWrap": 6,
+          "TCPServerWrap": 1,
+          "ProcessWrap": 2,
+          "TCPSocketWrap": 22
+        }
+      },
+      "opened": {
+        "connections": 10,
+        "sessions": 12,
+        "members": 12
+      },
+      "closed": {
+        "connections": 2,
+        "sessions": 4,
+        "members": 4
+      }
+    }
+  },
+  "hardening": {
+    "mediumFixes": [
+      "repeated HELLO endi eski a'zolikni LOBBY va MATCHdan ham tozalaydi (arvoh a'zo yo'q)",
+      "INPUT FORBIDDEN_FIELDS kimlik maydonlarini ham qamrab oladi (playerId/id/name/hostId/owner)",
+      "ws protokol darajasida 64 KiB payload chegarasi (standart 100 MiB o'rniga) — xotiraga olinmasdan rad"
+    ]
+  },
+  "p11Status": {
+    "preserved": true,
+    "raw": "PARTIAL — TWO-DEVICE LAN QA BLOCKED"
+  },
+  "performance": {
+    "serverLoopMs": 0.4129,
+    "fpsAvg": 98.76,
+    "drawCalls": 193
+  },
+  "results": [
+    {
+      "name": "P12.1 HAQIQIY Chrome + HAQIQIY GPU (WebGL2 tirik, SwiftShader EMAS, headless EMAS)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), Op\" · headless=false"
+    },
+    {
+      "name": "P12.2 IKKI MUSTAQIL Chrome JARAYONI (alohida CDP port + pid + profil + __neon)",
+      "ok": true,
+      "detail": "pidA=186105 pidB=186352 · portlar=9396/9397"
+    },
+    {
+      "name": "P12.2c HAQIQIY unit regressiyasi (npm test bilan bir xil ro‘yxat) PASS",
+      "ok": true,
+      "detail": "tests=287 pass=287 fail=0"
+    },
+    {
+      "name": "P12.3 statik avtoritet skaneri: real manbalarda 0 topilma, plantatsiyani USHLAYDI",
+      "ok": true,
+      "detail": "topilmalar=0 plantatsiya=2"
+    },
+    {
+      "name": "P12.4 chegara: protokol/__neon yuzasida P13+ terminlari YO‘Q",
+      "ok": true,
+      "detail": "topilgan=[]"
+    },
+    {
+      "name": "P12.5 P11 fizik ikki-qurilma holati O‘ZGARTIRILMAGAN (P12 COMPLETE P11 ni PASS qilmaydi)",
+      "ok": true,
+      "detail": "phase11.status=\"PARTIAL — TWO-DEVICE LAN QA BLOCKED\""
+    },
+    {
+      "name": "P12.6 IKKI brauzer bir sessiyada: server 2 xil ID ko‘radi (takror YO‘Q)",
+      "ok": true,
+      "detail": "roster=[\"p1\",\"p2\"]"
+    },
+    {
+      "name": "P12.7 host start → avtoritar in_game → LIVE + jamoalar server tayinlagan",
+      "ok": true,
+      "detail": "state=in_game round=live A=[p1] B=[p2]"
+    },
+    {
+      "name": "P12.8 HUD AVTORITAR holatdan (source=server): HP/o‘q-dori/jamoa serverdan",
+      "ok": true,
+      "detail": "A={src:server hp:100 mag:30 team:A} B={src:server team:B}"
+    },
+    {
+      "name": "P12.9 forged INPUT: barcha avtoritar maydonlar RAD etildi, holat o‘zgarmadi",
+      "ok": true,
+      "detail": "29/29 rad · hp/alive/lastSeq o‘zgarmadi"
+    },
+    {
+      "name": "P12.10 NaN/Infinity/-Infinity hech qachon avtoritar holatga KIRMAYDI",
+      "ok": true,
+      "detail": "6/6 rad"
+    },
+    {
+      "name": "P12.11 error containment: bad_json/bad_msg/unknown_type/too_big → server TIRIK, tick davom etadi",
+      "ok": true,
+      "detail": "bad_json/bad_msg/unknown_type/too_big · pong=true · tick 1537→1542 · tickErrors=0"
+    },
+    {
+      "name": "P12.12 payload himoyasi: >64 KiB XOTIRAGA OLINMASDAN rad (1009), server yangi mijozi xizmat qiladi",
+      "ok": true,
+      "detail": "closeCode=1009 · fresh=p5 (ceiling=65536B)"
+    },
+    {
+      "name": "P12.13 takroriy HELLO: sessiya ko‘paymaydi va lobby’da ARVOH a’zo qolmaydi",
+      "ok": true,
+      "detail": "sessions=6 roster=[\"p1\",\"p2\"] live=[\"p1\",\"p2\",\"p3\",\"p4\",\"p5\",\"p9\"]"
+    },
+    {
+      "name": "P12.15 real chat A→server→B: matn yetib bordi, yuboruvchi kimligi SERVERDAN",
+      "ok": true,
+      "detail": "matn=\"hardening-857\" · B ko‘rgan playerId=p1 (host=p1)"
+    },
+    {
+      "name": "P12.16 uzilish: server o‘yinchini O‘CHIRADI va A dan remote mesh yo‘qoladi (ghost YO‘Q)",
+      "ok": true,
+      "detail": "remote 1 → 0 · server players 6 → 5"
+    },
+    {
+      "name": "P12.17 qayta ulanish: YANGI identitet olindi, eski identitet DUBLIKAT bo‘lib qolmadi",
+      "ok": true,
+      "detail": "ids=[\"p1\",\"p3\",\"p4\",\"p5\",\"p9\",\"p10\"]"
+    },
+    {
+      "name": "P12.14 dublikat JOIN idempotent (a’zo ikki marta qo‘shilmaydi)",
+      "ok": true,
+      "detail": "2 → 2"
+    },
+    {
+      "name": "P12.18 chat himoyasi: forged kimlik/uzun matn/bo‘sh matn/flood RAD etildi",
+      "ok": true,
+      "detail": "forbidden_authority/chat_too_long/chat_empty · rate_limited=6"
+    },
+    {
+      "name": "P12.19 raund idempotentligi: dublikat endRound ballni IKKI MARTA oshirmaydi",
+      "ok": true,
+      "detail": "scores A=1 2-chaqiruv=round_already_ended"
+    },
+    {
+      "name": "P12.20 resurs hayoti: ochilgan − yopilgan = HAQIQIY tirik soni (leak yo‘q)",
+      "ok": true,
+      "detail": "sess 12-4=8 · conn 10-2=8"
+    },
+    {
+      "name": "P12.21 UI regression: crosshair ikki viewportda markazda + global [hidden] qoidasi tirik",
+      "ok": true,
+      "detail": "dx=0 dy=0 · kichik=0/0 · [hidden].display=none"
+    },
+    {
+      "name": "P12.22 unumdorlik: server tick byudjetida, klient FPS sog‘lom (P10 dan jiddiy regress YO‘Q)",
+      "ok": true,
+      "detail": "loopMs=0.4129 budget=33.33 · fpsAvg=98.76"
+    },
+    {
+      "name": "P12.23 barqarorlik: brauzer istisnosi YO‘Q, server xatosi YO‘Q, tickErrors=0",
+      "ok": true,
+      "detail": "browser=0 neonErrors=0 serverUncaught=0 tickErrors=0"
+    }
+  ],
+  "passed": 24,
+  "failed": 0,
+  "status": "COMPLETE",
+  "scopeConfirmation": "P13+ tizimlari YO‘Q (static scanFutureScope = 0). P11 fizik ikki-qurilma QA PARTIAL holatida SAQLANGAN.",
+  "regression": {
+    "npmTest": {
+      "tests": 287,
+      "pass": 287,
+      "fail": 0
+    },
+    "harnesses": {
+      "phase2": {
+        "pass": 42,
+        "fail": 0
+      },
+      "phase3": {
+        "pass": 25,
+        "fail": 0
+      },
+      "phase4": {
+        "pass": 22,
+        "fail": 0
+      },
+      "phase5": {
+        "pass": 18,
+        "fail": 0
+      },
+      "phase6": {
+        "pass": 21,
+        "fail": 0
+      },
+      "phase7": {
+        "pass": 33,
+        "fail": 0
+      },
+      "phase8": {
+        "pass": 28,
+        "fail": 0
+      },
+      "phase9": {
+        "pass": 34,
+        "fail": 0
+      },
+      "phase10": {
+        "pass": 21,
+        "fail": 0
+      },
+      "phase11": {
+        "automatedPass": 13,
+        "automatedFail": 0,
+        "physical": "11 MANUAL REQUIRED",
+        "status": "PARTIAL"
+      }
+    },
+    "note": "verify-phase2.mjs tashqi serverni (localhost:3000) talab qiladi — harness xatti-harakati O‘ZGARTIRILMAGAN; regression paytida wrapper orqali ta’minlandi."
+  },
+  "filesChanged": {
+    "changed": [
+      "shared/protocol-consts.js",
+      "server/app.js",
+      "server/session.js",
+      "client/index.html",
+      "package.json"
+    ],
+    "added": [
+      "test/unit/final-hardening.test.js",
+      "tools/verify-phase12.mjs",
+      "tools/lib/authority-scan.mjs"
+    ],
+    "reports": [
+      "logs/phase12-report.md",
+      "logs/phase12-report.json"
+    ]
+  },
+  "dependencies": "O‘zgarmagan (faqat mavjud ws kutubxonasi)",
+  "limitations": [
+    "P11 fizik ikki-qurilma LAN QA HALI PARTIAL / MANUAL REQUIRED — bajarilmagan (P12 buni PASS qilmaydi)",
+    "P12.19 raund idempotentligi haqiqiy match moduli orqali tekshirildi (P8 alohida 28/0 regressiya qilindi)",
+    "unumdorlik yuqori host yuki (~17) ostida o‘lchandi; baribir byudjet ichida (loopMs 0.41 ms / 33.33 ms)"
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "generatedAt": "2026-09-21T10:09:40.446Z",
+  "phase": 7,
+  "subject": "multiplayer-synchronization",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:46515",
+  "protocol": 6,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "cadence": {
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "interpDelayMs": 100
+  },
+  "twoClient": {
+    "method": "one Chrome process · independent page targets (separate WS + separate window.__neon + separate loop)",
+    "pageA": {
+      "playerId": "p2",
+      "targetId": "501966C133B1C25363865EAAF5A5B7C3",
+      "sessionId": 2
+    },
+    "pageB": {
+      "playerId": "p1",
+      "targetId": "346699F33BCA1F9EA58CAF0DB5F5217A",
+      "sessionId": 1
+    },
+    "pageC": {
+      "playerId": "p5",
+      "targetId": "87642E6E4FA82685C5414A84D16A25C6"
+    }
+  },
+  "serverAuthority": {
+    "authoritativeMovement": [
+      true,
+      true
+    ],
+    "serverTick": 763,
+    "positions": {
+      "A": {
+        "x": -16.3,
+        "z": 0
+      },
+      "B": {
+        "x": 19.5,
+        "z": -8.84
+      }
+    }
+  },
+  "sync": {
+    "A": {
+      "remotes": [
+        "p1",
+        "p7"
+      ],
+      "ackSeq": 1233,
+      "seq": 1233,
+      "interpolation": {
+        "delayMs": 100,
+        "samples": 1223,
+        "active": true
+      },
+      "reconciliation": {
+        "corrections": 0,
+        "smoothings": 205,
+        "lastError": 0,
+        "maxError": 0.174,
+        "samples": 207,
+        "threshold": 0.6,
+        "lastApplied": {
+          "x": -16.3,
+          "y": 0,
+          "z": 0,
+          "error": 0,
+          "kind": "smooth"
+        }
+      }
+    },
+    "B": {
+      "remotes": [
+        "p2",
+        "p7"
+      ],
+      "ackSeq": 813,
+      "seq": 814,
+      "interpolation": {
+        "delayMs": 100,
+        "samples": 805,
+        "active": true
+      },
+      "reconciliation": {
+        "corrections": 1,
+        "smoothings": 204,
+        "lastError": 0,
+        "maxError": 39,
+        "samples": 206,
+        "threshold": 0.6,
+        "lastApplied": {
+          "x": 19.5,
+          "y": 0,
+          "z": -8.84,
+          "error": 0,
+          "kind": "smooth"
+        }
+      }
+    }
+  },
+  "forged": {
+    "reasons": [
+      "forbidden_authority",
+      "forbidden_authority",
+      "forbidden_authority",
+      "bad_move"
+    ],
+    "forbiddenCount": 3,
+    "probePlayerId": "p3",
+    "stateUnchanged": true,
+    "errorCodes": [
+      "bad_json",
+      "unknown_type",
+      "unknown_type",
+      "too_big"
+    ]
+  },
+  "unitSuites": {
+    "tests": 187,
+    "pass": 187,
+    "fail": 0,
+    "exit": 0
+  },
+  "loops": {
+    "AAdvanced": 121,
+    "BAdvanced": 69
+  },
+  "telemetry": {
+    "protocol": 6,
+    "tick": 763,
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "tickMs": 33.333333333333336,
+    "loopMs": 0.3996,
+    "sessions": 2,
+    "online": 2,
+    "totals": {
+      "inputs": 2354,
+      "accepted": 2347,
+      "rejected": 7,
+      "events": 19,
+      "shots": 0,
+      "ticks": 763,
+      "lobbyActions": 8,
+      "lobbyRejected": 0,
+      "snapshots": 549,
+      "chatAccepted": 0,
+      "chatRejected": 0
+    },
+    "tickErrors": 0,
+    "lobby": {
+      "sessionId": 1,
+      "state": "in_game",
+      "hostId": "p2",
+      "count": 2,
+      "capacity": 8,
+      "revision": 13
+    },
+    "addresses": [
+      "http://10.201.177.74:46515"
+    ],
+    "chat": {
+      "accepted": 0,
+      "rejected": 0,
+      "rejections": {},
+      "maxLen": 160,
+      "burst": 5,
+      "windowMs": 3000,
+      "entries": 0,
+      "lastSeq": 0,
+      "last": null
+    },
+    "match": {
+      "state": "live",
+      "roundState": "live",
+      "roundNumber": 1,
+      "roundWinner": null,
+      "matchWinner": null,
+      "scores": {
+        "A": 0,
+        "B": 0
+      },
+      "teams": {
+        "A": [
+          "p2"
+        ],
+        "B": [
+          "p1"
+        ]
+      },
+      "lives": {
+        "A": 1,
+        "B": 1
+      },
+      "teamsAtRoundStart": {
+        "A": 1,
+        "B": 1
+      },
+      "roundEndsAt": 0,
+      "roundsToWin": 5,
+      "events": 2,
+      "revision": 14
+    },
+    "sync": {
+      "mode": "authoritative",
+      "authoritativeSessions": 2,
+      "frames": 243,
+      "players": 2,
+      "snapshotHz": 20,
+      "lastTickAt": 1789985380418
+    },
+    "perf": {
+      "budgetMs": 33.333,
+      "tick": {
+        "count": 763,
+        "avgMs": 0.315,
+        "minMs": 0.006,
+        "maxMs": 3.672,
+        "p50Ms": 0.335,
+        "p95Ms": 0.797,
+        "p99Ms": 1.571,
+        "window": 512,
+        "overruns": 0,
+        "overrunPct": 0,
+        "utilPct": 0.945
+      },
+      "snapshot": {
+        "count": 382,
+        "avgMs": 0.081,
+        "maxMs": 0.917,
+        "playersLast": 2,
+        "playersMax": 3
+      },
+      "ops": {
+        "inputs": 2354,
+        "inputsAccepted": 2347,
+        "inputsRejected": 7,
+        "chatAccepted": 0,
+        "chatRejected": 0,
+        "lobbyActions": 8,
+        "lobbyRejected": 0,
+        "malformed": 4,
+        "shotsAccepted": 5,
+        "shotsRejected": 9,
+        "events": 19
+      },
+      "life": {
+        "connections": 8,
+        "connectionsClosed": 6,
+        "sessions": 8,
+        "sessionsClosed": 6,
+        "members": 8,
+        "membersRemoved": 6,
+        "chatEntries": 0,
+        "chatEntriesDropped": 0,
+        "live": {
+          "connections": 2,
+          "sessions": 2,
+          "members": 2,
+          "chatEntries": 0
+        }
+      },
+      "memory": {
+        "samples": 25,
+        "rssMb": 83.43,
+        "heapMb": 12.63,
+        "externalMb": 4.18,
+        "rssDeltaMb": 11.04,
+        "heapDeltaMb": 3.41,
+        "maxHeapMb": 13.61,
+        "maxRssMb": 83.43,
+        "lastAt": 1789985379690
+      }
+    },
+    "resources": {
+      "connections": 2,
+      "sessions": 2,
+      "lobbyMembers": 2,
+      "lobbyState": "in_game",
+      "chatEntries": 0,
+      "activeResources": {
+        "total": 116,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 2,
+          "ProcessWrap": 1,
+          "TCPSocketWrap": 10,
+          "Timeout": 102
+        }
+      },
+      "opened": {
+        "connections": 8,
+        "sessions": 8,
+        "members": 8
+      },
+      "closed": {
+        "connections": 6,
+        "sessions": 6,
+        "members": 6
+      }
+    }
+  },
+  "results": [
+    {
+      "name": "P7.1 server ishga tushdi (30 Hz tick · 20 Hz snapshot · protokol v6)",
+      "ok": true,
+      "detail": "tickHz=30 snapshotHz=20 protocol=v6 ulanish=2"
+    },
+    {
+      "name": "P7.2 Phase 1–6 unit to‘plamlari (npm test ekvivalenti) hali ham PASS",
+      "ok": true,
+      "detail": "tests=187 pass=187 fail=0 exit=0"
+    },
+    {
+      "name": "P7.3 ikki mustaqil klient tarmoqqa ulandi (2 × alohida sahifa + alohida WS)",
+      "ok": true,
+      "detail": "A ws=true B ws=true · serverda=2 · GPU=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P7.4 server HAR BIR klientga alohida playerId berdi",
+      "ok": true,
+      "detail": "A=p2 B=p1"
+    },
+    {
+      "name": "P7.5 ikki klient BITTA LAN sessiyada (server xotirasida)",
+      "ok": true,
+      "detail": "sessiya=1 a’zolar=[p2,p1]"
+    },
+    {
+      "name": "P7.6 host REAL DOM klik bilan sessiyani boshladi (lobby → in_game)",
+      "ok": true,
+      "detail": "state=in_game startedAt=1789985364719"
+    },
+    {
+      "name": "P7.7 server holati in_game + ikki sessiyada avtoritativ harakat YOQILDI (server qarori)",
+      "ok": true,
+      "detail": "A.sess=2 B.sess=1 sync.mode=authoritative"
+    },
+    {
+      "name": "P7.7b ikkala klientda o‘yin tsikli ishga tushdi (in_game → avtomatik start)",
+      "ok": true,
+      "detail": "A running=true B running=true · trigger=server lobby-state in_game"
+    },
+    {
+      "name": "P7.3b ikkala sahifaning render tsikli BIR VAQTDA yuradi (fon tab throttle EMAS)",
+      "ok": true,
+      "detail": "A +121 kadr · B +69 kadr (~1.2 s) · ikkalasi ham > 5"
+    },
+    {
+      "name": "P7.8 A HAQIQIY klaviatura (W) orqali harakat kiritmasini yubordi",
+      "ok": true,
+      "detail": "klaviatura ushlandi=true · A yuborgan seq=234 · serverga yetgan lastSeq=246"
+    },
+    {
+      "name": "P7.9 SERVER A ning kiritmasini qayta ishladi (o‘zi simulyatsiya qildi)",
+      "ok": true,
+      "detail": "qabul=246 rad=0 · lastSeq=246 · harakat ticklari=109"
+    },
+    {
+      "name": "P7.10 SERVER avtoritar pozitsiyasi A uchun o‘zgardi (faqat A; B joyida qoldi)",
+      "ok": true,
+      "detail": "A siljish=3.20 m · B siljish=0.000 m · movedTicks=109"
+    },
+    {
+      "name": "P7.11b B A ning avtoritar holatini SNAPSHOT orqali oldi (server qiymatiga mos)",
+      "ok": true,
+      "detail": "B ko‘rgan A=(-16.30,0.00) server=(-16.30,0.00) farq=0.00 m"
+    },
+    {
+      "name": "P7.12 B masofaviy A ni RENDER qildi (mesh faol + skrinshot)",
+      "ok": true,
+      "detail": "visible=true · buffer=24 snapshot · skrinshot=true"
+    },
+    {
+      "name": "P7.13 B HAQIQIY klaviatura (D) orqali harakat kiritmasini yubordi",
+      "ok": true,
+      "detail": "klaviatura ushlandi=true · server qabul qilgan buyruq=418 · lastSeq=418"
+    },
+    {
+      "name": "P7.14 A B ning avtoritar holatini oldi (B server tomonda harakatlandi)",
+      "ok": true,
+      "detail": "B siljish=8.83 m · A ko‘rgan B=(19.50,-8.07) server=(19.50,-8.83) farq=0.77 m"
+    },
+    {
+      "name": "P7.15 A masofaviy B ni RENDER qildi (mesh faol + skrinshot)",
+      "ok": true,
+      "detail": "visible=true · buffer=24 snapshot · skrinshot=true"
+    },
+    {
+      "name": "P7.16 snapshot AVTORITAR server tick ni o‘z ichiga oladi",
+      "ok": true,
+      "detail": "A snapshot serverTick=459 · B snapshot serverTick=391 · server.tick=472"
+    },
+    {
+      "name": "P7.17 snapshot input tasdiqini (ackSeq) o‘z ichiga oladi",
+      "ok": true,
+      "detail": "A ackSeq=480 · A snapshot ackSeq=440 · B snapshot ackSeq=262 (B o‘zi yubormagan → -1 bo‘lishi mumkin)"
+    },
+    {
+      "name": "P7.18 input ketma-ketligi (seq/ack) monotonik o‘sadi",
+      "ok": true,
+      "detail": "A ackSeq: 480 → 539 · A lastSeq=545 B lastSeq=456"
+    },
+    {
+      "name": "P7.19 soxta pozitsiya/HP/zarar/tezlik da’volari RAD etildi, holat o‘zgarmadi",
+      "ok": true,
+      "detail": "rad sabablari=[forbidden_authority, forbidden_authority, forbidden_authority, bad_move] · soxta playerId=p3 · qabul qilingan buyruq=0 · server pozitsiyasi=(-19.50,0.80) ≠ (-13,-11)"
+    },
+    {
+      "name": "P7.20 buzilgan/noma’lum juda katta xabarlar serverni yiqitmadi (tick davom etdi)",
+      "ok": true,
+      "detail": "xato kodlari=[bad_json, unknown_type, unknown_type, too_big] · tickErrors=0 · tick 660→672"
+    },
+    {
+      "name": "P7.23 join-in-progress: yangi (3-) o‘yinchi JORIY avtoritar holatni oldi",
+      "ok": true,
+      "detail": "C=p5 · JOIN tugmasi(klikdan oldin)={\"disabled\":false,\"w\":652} · C snapshot xabarlari=1 playerlar=3 ids=[p1,p2,p5]"
+    },
+    {
+      "name": "P7.24 mavjud o‘yinchi (A) yangi o‘yinchini (C) masofaviy ko‘rdi — DUBLIKATSIZ",
+      "ok": true,
+      "detail": "A remoteIds=[p1,p5] (o‘zi YO‘Q, dublikat YO‘Q) · serverda avtoritativ sessiya=3 · kutilgan ro‘yxat uzunligi=2"
+    },
+    {
+      "name": "P7.21b uzilgan brauzer klienti (C) A sinxron holatidan va server ro‘yxatidan chiqarildi (masofaviy mesh yo‘qoldi)",
+      "ok": true,
+      "detail": "A oldin C ni ko‘rgan=true · hozir A remoteIds=[p1] · C ro‘yxatdan chiqdi=true · C sessiyasi serverdan o‘chdi=true · skrinshot=true"
+    },
+    {
+      "name": "P7.23b join-in-progress (xom WS klient): D in_game paytida qo‘shilib, joriy holatni oldi",
+      "ok": true,
+      "detail": "D=p6 snapshot playerlar=[p1,p2,p6]"
+    },
+    {
+      "name": "P7.21 uzilgan o‘yinchi (D) boshqa klientning (E) sinxron holatidan OLIB TASHLANDI",
+      "ok": true,
+      "detail": "E snapshot: avval=[p1,p2,p6,p7] keyin=[p1,p2,p7]"
+    },
+    {
+      "name": "P7.22 teskari yo‘nalish: F qo‘shildi (E ko‘rdi) → F uzildi (E dan olib tashlandi)",
+      "ok": true,
+      "detail": "E ko‘rgan F=true · uzilgach=true"
+    },
+    {
+      "name": "P7.25 interpolatsiya yo‘li HAQIQATAN ishladi (snapshot orasida silliqlash)",
+      "ok": true,
+      "detail": "A interp namunalari=1223 · B interp namunalari=805 · kechikish=100 ms"
+    },
+    {
+      "name": "P7.26 lokal rekonsiliatsiya yo‘li HAQIQATAN ishladi (server holati ustun)",
+      "ok": true,
+      "detail": "A: namuna=207 snap=0 yumshoq=205 maks xato=0.174 m · B: namuna=206 snap=1 yumshoq=204 maks xato=39 m"
+    },
+    {
+      "name": "P7.27 Phase 5 combat avtoriteti saqlangan (server o‘q-dorini va otishni boshqaradi)",
+      "ok": true,
+      "detail": "otish qabul=0→5 (yo‘l: real-mouse) · server mag=25 · nishon HP 100 · lock=false"
+    },
+    {
+      "name": "P7.28 Phase 10+ o‘yin tizimlari YO‘Q (spectator/replay/voice/ranking/matchmaking/scoreboard)",
+      "ok": true,
+      "detail": "snapshot o‘yinchi maydonlari=[airborne,alive,faceYaw,hp,id,pitch,sessionId,speed,teamId,vx,vz,x,y,yaw,z] · taqiqlangan xabar turlari=[]"
+    },
+    {
+      "name": "P7.29 runtime/console xatolari YO‘Q (istisno, unhandled, loop xatosi, server tick)",
+      "ok": true,
+      "detail": "CDP istisno=0 · console.error=0 · __neonErrors A=0 B=0 · loop xatosi=0 · server tickErrors=0"
+    }
+  ],
+  "passed": 33,
+  "failed": 0,
+  "screenshots": [
+    {
+      "name": "p7-12-remote-A-in-B",
+      "file": "/home/paulinaj/neon-strike/logs/p7-12-remote-A-in-B.png",
+      "bytes": 95989
+    },
+    {
+      "name": "p7-15-remote-B-in-A",
+      "file": "/home/paulinaj/neon-strike/logs/p7-15-remote-B-in-A.png",
+      "bytes": 118900
+    },
+    {
+      "name": "p7-23b-remote-C-in-A",
+      "file": "/home/paulinaj/neon-strike/logs/p7-23b-remote-C-in-A.png",
+      "bytes": 119014
+    }
+  ],
+  "exceptions": [],
+  "consoleErrors": 0,
+  "neonErrors": {
+    "A": 0,
+    "B": 0
+  },
+  "gateMap": "P7.1–P7.28 — spetsifikatsiya ro‘yxati; b3/7b/11b/21b/23b — qo‘shimcha dalil darvozalari"
+}

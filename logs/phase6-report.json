@@ -1,0 +1,359 @@
+{
+  "generatedAt": "2026-09-21T10:09:14.506Z",
+  "phase": 6,
+  "subject": "lan-lobby",
+  "mode": "real-window",
+  "url": "http://127.0.0.1:35419",
+  "protocol": 6,
+  "gpu": {
+    "renderer": "ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)",
+    "software": false,
+    "webgl2": true
+  },
+  "twoClient": {
+    "method": "one Chrome process · two independent page targets (separate WS + separate window.__neon)",
+    "pageA": {
+      "playerId": "p1",
+      "targetId": "0678CFC94CCDAB8CB5A0ECCB225D11C6"
+    },
+    "pageB": {
+      "playerId": "p2",
+      "targetId": "8C575EC5A89E28C7E4D3D95A36887EDF"
+    }
+  },
+  "lan": {
+    "evidence": "lan-interface",
+    "detail": "0.0.0.0 bind · 10.201.177.74:3000 · http=true · ws welcome id=1 session=1 · LAN interfeys orqali ulanish ishladi",
+    "interfaces": [
+      "10.201.177.74"
+    ]
+  },
+  "lobbyEvidence": {
+    "sessionId": 1,
+    "hostId": "p1",
+    "capacity": 8,
+    "capacityEnforcedAt": 8,
+    "startedAt": 1789985352629,
+    "finalState": "in_game",
+    "finalPlayers": [
+      "p1"
+    ]
+  },
+  "serverTelemetry": {
+    "protocol": 6,
+    "tick": 340,
+    "tickHz": 30,
+    "snapshotHz": 20,
+    "tickMs": 33.333333333333336,
+    "loopMs": 0.3434,
+    "sessions": 1,
+    "online": 1,
+    "totals": {
+      "inputs": 74,
+      "accepted": 74,
+      "rejected": 0,
+      "events": 0,
+      "shots": 0,
+      "ticks": 340,
+      "lobbyActions": 13,
+      "lobbyRejected": 4,
+      "snapshots": 22,
+      "chatAccepted": 0,
+      "chatRejected": 0
+    },
+    "tickErrors": 0,
+    "lobby": {
+      "sessionId": 1,
+      "state": "in_game",
+      "hostId": "p1",
+      "count": 1,
+      "capacity": 8,
+      "revision": 16
+    },
+    "addresses": [
+      "http://10.201.177.74:35419"
+    ],
+    "chat": {
+      "accepted": 0,
+      "rejected": 0,
+      "rejections": {},
+      "maxLen": 160,
+      "burst": 5,
+      "windowMs": 3000,
+      "entries": 0,
+      "lastSeq": 0,
+      "last": null
+    },
+    "match": {
+      "state": "starting",
+      "roundState": "starting",
+      "roundNumber": 0,
+      "roundWinner": null,
+      "matchWinner": null,
+      "scores": {
+        "A": 0,
+        "B": 0
+      },
+      "teams": {
+        "A": [
+          "p1"
+        ],
+        "B": []
+      },
+      "lives": {
+        "A": 0,
+        "B": 0
+      },
+      "teamsAtRoundStart": {
+        "A": 0,
+        "B": 0
+      },
+      "roundEndsAt": 0,
+      "roundsToWin": 5,
+      "events": 1,
+      "revision": 4
+    },
+    "sync": {
+      "mode": "authoritative",
+      "authoritativeSessions": 1,
+      "frames": 16,
+      "players": 1,
+      "snapshotHz": 20,
+      "lastTickAt": 1789985353595
+    },
+    "perf": {
+      "budgetMs": 33.333,
+      "tick": {
+        "count": 340,
+        "avgMs": 0.282,
+        "minMs": 0.005,
+        "maxMs": 1.492,
+        "p50Ms": 0.258,
+        "p95Ms": 0.602,
+        "p99Ms": 1.241,
+        "window": 340,
+        "overruns": 0,
+        "overrunPct": 0,
+        "utilPct": 0.847
+      },
+      "snapshot": {
+        "count": 170,
+        "avgMs": 0.026,
+        "maxMs": 0.356,
+        "playersLast": 1,
+        "playersMax": 2
+      },
+      "ops": {
+        "inputs": 74,
+        "inputsAccepted": 74,
+        "inputsRejected": 0,
+        "chatAccepted": 0,
+        "chatRejected": 0,
+        "lobbyActions": 13,
+        "lobbyRejected": 4,
+        "malformed": 0,
+        "shotsAccepted": 0,
+        "shotsRejected": 0,
+        "events": 0
+      },
+      "life": {
+        "connections": 10,
+        "connectionsClosed": 9,
+        "sessions": 10,
+        "sessionsClosed": 9,
+        "members": 10,
+        "membersRemoved": 9,
+        "chatEntries": 0,
+        "chatEntriesDropped": 0,
+        "live": {
+          "connections": 1,
+          "sessions": 1,
+          "members": 1,
+          "chatEntries": 0
+        }
+      },
+      "memory": {
+        "samples": 12,
+        "rssMb": 76.33,
+        "heapMb": 10.39,
+        "externalMb": 3.69,
+        "rssDeltaMb": 3.59,
+        "heapDeltaMb": 1.17,
+        "maxHeapMb": 12.98,
+        "maxRssMb": 80.43,
+        "lastAt": 1789985353595
+      }
+    },
+    "resources": {
+      "connections": 1,
+      "sessions": 1,
+      "lobbyMembers": 1,
+      "lobbyState": "in_game",
+      "chatEntries": 0,
+      "activeResources": {
+        "total": 57,
+        "byType": {
+          "TCPServerWrap": 1,
+          "PipeWrap": 2,
+          "ProcessWrap": 1,
+          "TCPSocketWrap": 2,
+          "Timeout": 51
+        }
+      },
+      "opened": {
+        "connections": 10,
+        "sessions": 10,
+        "members": 10
+      },
+      "closed": {
+        "connections": 9,
+        "sessions": 9,
+        "members": 9
+      }
+    }
+  },
+  "uiAfterDisconnect": {
+    "players": "player-x3fp1SIZHOST",
+    "addr": "http://10.201.177.74:35419",
+    "state": "O‘YNASHDA · #1",
+    "you": "p1 · HOST"
+  },
+  "markers": {
+    "v4": 4,
+    "auth": {
+      "version": 5,
+      "phase": "phase5-authoritative-server"
+    },
+    "lobby": {
+      "version": 6,
+      "phase": "phase6-lan-lobby"
+    },
+    "combat": true,
+    "aim": true,
+    "serverState": true
+  },
+  "results": [
+    {
+      "name": "P6.1 real WebGL2 + real GPU (SwiftShader EMAS)",
+      "ok": true,
+      "detail": "renderer=\"ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)\""
+    },
+    {
+      "name": "P6.2 ikki mustaqil klient tarmoqqa ulandi (2 × alohida WS)",
+      "ok": true,
+      "detail": "A ws=true B ws=true · serverda ulanish=2 · protokol v6"
+    },
+    {
+      "name": "P6.2b har bir klient SERVER bergan shaxsiy ID ga ega (ikki xil)",
+      "ok": true,
+      "detail": "A=p1 B=p2"
+    },
+    {
+      "name": "P6.3 HOST real klik bilan LAN sessiya yaratdi (server xotirasida)",
+      "ok": true,
+      "detail": "klik=true rect={\"disabled\":false,\"hidden\":false,\"w\":652,\"x\":617,\"y\":140,\"vw\":1248,\"vh\":619,\"inView\":true,\"topId\":\"btnHost\"} tugma(oldin)={\"disabled\":false,\"hidden\":false,\"w\":652} · serverLobbyActions=1 clientLobbyNet={\"connected\":true,\"received\":2,\"sent\":1,\"lastError\":null} · sessionId=1 state=lobby count=1 · UI xato=\"\""
+    },
+    {
+      "name": "P6.4 host identity SERVER tayinlagan (klient da’vosi emas)",
+      "ok": true,
+      "detail": "server hostId=p1 · A you=p1 isHost=true"
+    },
+    {
+      "name": "P6.5 ikkinchi MUSTAQIL klient real klik bilan qo‘shildi (server xotirasida 2 a’zo)",
+      "ok": true,
+      "detail": "count=2 a’zolar=p1,p2"
+    },
+    {
+      "name": "P6.6 lobby UI ikkala klientda ham ikkala o‘yinchini ko‘rsatadi",
+      "ok": true,
+      "detail": "A roster=\"player-x3fp1SIZHOST | player-45pp2\" · B roster=\"player-x3fp1HOST | player-45pp2SIZ\""
+    },
+    {
+      "name": "P6.7 o‘yinchi soni va sig‘im to‘g‘ri ko‘rsatiladi (server bilan mos)",
+      "ok": true,
+      "detail": "UI=\"2 / 8\" · server count=2 capacity=8"
+    },
+    {
+      "name": "P6.8 sig‘im QAT’IY majburlanadi (to‘lganda join rad, serverdan oshmaydi)",
+      "ok": true,
+      "detail": "to‘ldi=8/8 · overflow=lobby_full · keyin=8 · UI=ok/8"
+    },
+    {
+      "name": "P6.8b uzilish sig‘imni bo‘shatadi (server holati tiklandi)",
+      "ok": true,
+      "detail": "count=2"
+    },
+    {
+      "name": "P6.9 ruxsatsiz host amali RAD (guest START qila olmaydi; holat o‘zgarmadi)",
+      "ok": true,
+      "detail": "UI tugma o‘chiq=true · server rad=\"SERVER RAD ETDI: not_host — lobby start rad etildi\" · holat=lobby"
+    },
+    {
+      "name": "P6.9b soxta identity/host da’vosi rad (server hech narsani qabul qilmadi)",
+      "ok": true,
+      "detail": "forbidden_authority + forbidden_authority · holat=lobby"
+    },
+    {
+      "name": "P6.10 HOST real klik bilan sessiyani boshladi (server qarori)",
+      "ok": true,
+      "detail": "state=in_game startedAt=1789985352629"
+    },
+    {
+      "name": "P6.11 holat in_game ikkala klientga yetdi + o‘yin sessiyasi boshlandi",
+      "ok": true,
+      "detail": "A=in_game B=in_game A running=true"
+    },
+    {
+      "name": "P6.12 real klient uzildi → SERVER a’zoni o‘chirdi (stale state yo‘q)",
+      "ok": true,
+      "detail": "count=1 a’zolar=p1 host=p1"
+    },
+    {
+      "name": "P6.13 SERVER uzilishdan keyin ham tirik (tickErrors=0, loop davom etdi)",
+      "ok": true,
+      "detail": "tick=322 tickErrors=0 ulanish=1"
+    },
+    {
+      "name": "P6.14 qolgan klient yangilangan lobby holatini oldi (B ro‘yxatdan yo‘qoldi)",
+      "ok": true,
+      "detail": "count=1 roster=\"player-x3fp1SIZHOST\" UI=\"1 / 8\""
+    },
+    {
+      "name": "P6.15 server 30 Hz loop barqaror (uzilish/malformed trafikdan keyin)",
+      "ok": true,
+      "detail": "600 ms da 18 tick · loop 0.3434 ms · tickErrors=0"
+    },
+    {
+      "name": "P6.16 konsol/runtime xatolari YO‘Q (klient + server)",
+      "ok": true,
+      "detail": "console=0 window.error=0 exception=0 loop=0 serverTick=0"
+    },
+    {
+      "name": "P6.17 Phase 1–5 regressiya (markerlar + NEON FACILITY + avtoritar API)",
+      "ok": true,
+      "detail": "P4=v4 P5=v5 P6=v6 protokol=v6 map=NEON FACILITY 44×32 kollayder=60"
+    },
+    {
+      "name": "P6.18 LAN bind (0.0.0.0) + LAN manzil orqali real ulanish dalili",
+      "ok": true,
+      "detail": "lan-interface · 0.0.0.0 bind · 10.201.177.74:3000 · http=true · ws welcome id=1 session=1 · LAN interfeys orqali ulanish ishladi"
+    }
+  ],
+  "passed": 21,
+  "failed": 0,
+  "screenshots": [
+    {
+      "name": "p6-01-in-game",
+      "file": "/home/paulinaj/neon-strike/logs/p6-01-in-game.png",
+      "bytes": 109476
+    },
+    {
+      "name": "p6-02-lobby-panel",
+      "file": "/home/paulinaj/neon-strike/logs/p6-02-lobby-panel.png",
+      "bytes": 569703
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "exceptions": []
+}

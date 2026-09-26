@@ -1,0 +1,441 @@
+
+=== NEON STRIKE server start: 2026-09-15T10:20:56.411Z ===
+[2026-09-15T10:20:56.417Z] [info] ==================================================
+[2026-09-15T10:20:56.419Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-15T10:20:56.421Z] [info]   Local : http://localhost:3000
+[2026-09-15T10:20:56.422Z] [info]   LAN   : http://10.201.177.41:3000
+[2026-09-15T10:20:56.424Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-15T10:20:56.425Z] [info] ==================================================
+[2026-09-15T10:22:03.626Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-15T10:22:03.627Z] [info] [net] hello #1 name="real-window"
+[2026-09-15T10:22:03.636Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T10:22:03.671Z] [info] [net] + connection #2 from 127.0.0.1 (online=2)
+[2026-09-15T10:22:03.675Z] [info] [net] hello #2 name="cli-cross"
+[2026-09-15T10:22:03.678Z] [info] [net] - #2 disconnected (online=1)
+[2026-09-15T10:22:04.087Z] [info] [net] - #1 disconnected (online=0)
+[2026-09-15T10:22:38.465Z] [info] [net] + connection #3 from 127.0.0.1 (online=1)
+[2026-09-15T10:22:38.468Z] [info] [net] hello #3 name="headless-check"
+[2026-09-15T10:22:38.476Z] [info] [gpu] #3 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T10:22:38.644Z] [info] [net] - #3 disconnected (online=0)
+[2026-09-15T11:19:23.914Z] [info] [net] + connection #4 from 127.0.0.1 (online=1)
+[2026-09-15T11:19:23.915Z] [info] [net] hello #4 name="headless-check"
+[2026-09-15T11:19:23.923Z] [info] [gpu] #4 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:19:39.005Z] [info] [net] - #4 disconnected (online=0)
+[2026-09-15T11:20:19.069Z] [info] [net] + connection #5 from 127.0.0.1 (online=1)
+[2026-09-15T11:20:19.073Z] [info] [net] hello #5 name="headless-check"
+[2026-09-15T11:20:19.083Z] [info] [gpu] #5 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:20:19.099Z] [info] [net] - #5 disconnected (online=0)
+[2026-09-15T11:20:35.055Z] [info] [net] + connection #6 from 127.0.0.1 (online=1)
+[2026-09-15T11:20:35.064Z] [info] [net] hello #6 name="headless-check"
+[2026-09-15T11:20:35.075Z] [info] [gpu] #6 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:20:35.096Z] [info] [net] - #6 disconnected (online=0)
+[2026-09-15T11:20:50.842Z] [info] [net] + connection #7 from 127.0.0.1 (online=1)
+[2026-09-15T11:20:50.845Z] [info] [net] hello #7 name="headless-check"
+[2026-09-15T11:20:50.854Z] [info] [gpu] #7 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:21:12.486Z] [info] [net] - #7 disconnected (online=0)
+[2026-09-15T11:21:13.153Z] [info] [net] + connection #8 from 127.0.0.1 (online=1)
+[2026-09-15T11:21:13.156Z] [info] [net] hello #8 name="headless-check"
+[2026-09-15T11:21:13.164Z] [info] [gpu] #8 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:21:28.516Z] [info] [net] - #8 disconnected (online=0)
+[2026-09-15T11:25:55.685Z] [info] [net] + connection #9 from 127.0.0.1 (online=1)
+[2026-09-15T11:25:55.685Z] [info] [net] hello #9 name="headless-check"
+[2026-09-15T11:25:55.692Z] [info] [gpu] #9 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:26:14.366Z] [info] [net] - #9 disconnected (online=0)
+[2026-09-15T11:27:20.062Z] [info] [net] + connection #10 from 127.0.0.1 (online=1)
+[2026-09-15T11:27:20.063Z] [info] [net] hello #10 name="headless-check"
+[2026-09-15T11:27:20.069Z] [info] [gpu] #10 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:27:39.524Z] [info] [net] - #10 disconnected (online=0)
+[2026-09-15T11:29:30.948Z] [info] [net] + connection #11 from 127.0.0.1 (online=1)
+[2026-09-15T11:29:30.949Z] [info] [net] hello #11 name="headless-check"
+[2026-09-15T11:29:30.956Z] [info] [gpu] #11 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:29:50.455Z] [info] [net] - #11 disconnected (online=0)
+[2026-09-15T11:32:32.444Z] [info] [net] + connection #12 from 127.0.0.1 (online=1)
+[2026-09-15T11:32:32.445Z] [info] [net] hello #12 name="headless-check"
+[2026-09-15T11:32:32.453Z] [info] [gpu] #12 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:32:52.101Z] [info] [net] - #12 disconnected (online=0)
+[2026-09-15T11:33:56.635Z] [info] [net] + connection #13 from 127.0.0.1 (online=1)
+[2026-09-15T11:33:56.636Z] [info] [net] hello #13 name="headless-check"
+[2026-09-15T11:33:56.642Z] [info] [gpu] #13 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:34:16.131Z] [info] [net] - #13 disconnected (online=0)
+[2026-09-15T11:36:18.815Z] [info] [net] + connection #14 from 127.0.0.1 (online=1)
+[2026-09-15T11:36:18.816Z] [info] [net] hello #14 name="headless-check"
+[2026-09-15T11:36:18.823Z] [info] [gpu] #14 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:36:40.492Z] [info] [net] - #14 disconnected (online=0)
+[2026-09-15T11:37:15.755Z] [info] [net] + connection #15 from 127.0.0.1 (online=1)
+[2026-09-15T11:37:15.756Z] [info] [net] hello #15 name="headless-check"
+[2026-09-15T11:37:15.765Z] [info] [gpu] #15 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:37:17.288Z] [info] [net] - #15 disconnected (online=0)
+[2026-09-15T11:38:26.102Z] [info] [net] + connection #16 from 127.0.0.1 (online=1)
+[2026-09-15T11:38:26.104Z] [info] [net] hello #16 name="headless-check"
+[2026-09-15T11:38:26.115Z] [info] [gpu] #16 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:38:28.252Z] [info] [net] - #16 disconnected (online=0)
+[2026-09-15T11:39:41.351Z] [info] [net] + connection #17 from 127.0.0.1 (online=1)
+[2026-09-15T11:39:41.352Z] [info] [net] hello #17 name="headless-check"
+[2026-09-15T11:39:41.359Z] [info] [gpu] #17 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:39:43.446Z] [info] [net] - #17 disconnected (online=0)
+[2026-09-15T11:40:21.088Z] [info] [net] + connection #18 from 127.0.0.1 (online=1)
+[2026-09-15T11:40:21.090Z] [info] [net] hello #18 name="headless-check"
+[2026-09-15T11:40:21.097Z] [info] [gpu] #18 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:40:23.026Z] [info] [net] - #18 disconnected (online=0)
+[2026-09-15T11:41:10.908Z] [info] [net] + connection #19 from 127.0.0.1 (online=1)
+[2026-09-15T11:41:10.910Z] [info] [net] hello #19 name="headless-check"
+[2026-09-15T11:41:10.929Z] [info] [gpu] #19 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:41:13.343Z] [info] [net] - #19 disconnected (online=0)
+[2026-09-15T11:41:44.839Z] [info] [net] + connection #20 from 127.0.0.1 (online=1)
+[2026-09-15T11:41:44.841Z] [info] [net] hello #20 name="headless-check"
+[2026-09-15T11:41:44.852Z] [info] [gpu] #20 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:41:47.184Z] [info] [net] - #20 disconnected (online=0)
+[2026-09-15T11:42:28.801Z] [info] [net] + connection #21 from 127.0.0.1 (online=1)
+[2026-09-15T11:42:28.803Z] [info] [net] hello #21 name="headless-check"
+[2026-09-15T11:42:28.813Z] [info] [gpu] #21 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:42:31.464Z] [info] [net] - #21 disconnected (online=0)
+[2026-09-15T11:43:12.024Z] [info] [net] + connection #22 from 127.0.0.1 (online=1)
+[2026-09-15T11:43:12.026Z] [info] [net] hello #22 name="headless-check"
+[2026-09-15T11:43:12.037Z] [info] [gpu] #22 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:43:14.655Z] [info] [net] - #22 disconnected (online=0)
+[2026-09-15T11:46:30.319Z] [info] [net] + connection #23 from 127.0.0.1 (online=1)
+[2026-09-15T11:46:30.321Z] [info] [net] hello #23 name="headless-check"
+[2026-09-15T11:46:30.328Z] [info] [gpu] #23 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:46:51.930Z] [info] [net] - #23 disconnected (online=0)
+[2026-09-15T11:47:02.216Z] [info] [net] + connection #24 from 127.0.0.1 (online=1)
+[2026-09-15T11:47:02.220Z] [info] [net] hello #24 name="real-window"
+[2026-09-15T11:47:02.228Z] [info] [gpu] #24 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T11:47:20.108Z] [info] [net] - #24 disconnected (online=0)
+[2026-09-15T11:53:12.031Z] [info] [net] + connection #25 from 127.0.0.1 (online=1)
+[2026-09-15T11:53:12.032Z] [info] [net] hello #25 name="headless-check"
+[2026-09-15T11:53:12.045Z] [info] [gpu] #25 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T11:53:33.731Z] [info] [net] - #25 disconnected (online=0)
+[2026-09-15T11:54:00.673Z] [info] [net] + connection #26 from 127.0.0.1 (online=1)
+[2026-09-15T11:54:00.674Z] [info] [net] hello #26 name="real-window"
+[2026-09-15T11:54:00.684Z] [info] [gpu] #26 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T11:54:18.186Z] [info] [net] - #26 disconnected (online=0)
+[2026-09-15T11:58:40.527Z] [info] [net] + connection #27 from 127.0.0.1 (online=1)
+[2026-09-15T11:58:40.529Z] [info] [net] hello #27 name="real-window"
+[2026-09-15T11:58:40.539Z] [info] [gpu] #27 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T11:58:58.064Z] [info] [net] - #27 disconnected (online=0)
+[2026-09-15T12:02:41.884Z] [info] [net] + connection #28 from 127.0.0.1 (online=1)
+[2026-09-15T12:02:41.885Z] [info] [net] hello #28 name="real-window"
+[2026-09-15T12:02:41.892Z] [info] [gpu] #28 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:03:01.155Z] [info] [net] - #28 disconnected (online=0)
+[2026-09-15T12:07:41.374Z] [info] [net] + connection #29 from 127.0.0.1 (online=1)
+[2026-09-15T12:07:41.377Z] [info] [net] hello #29 name="real-window"
+[2026-09-15T12:07:41.385Z] [info] [gpu] #29 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:07:59.345Z] [info] [net] - #29 disconnected (online=0)
+[2026-09-15T12:08:10.685Z] [info] [net] + connection #30 from 127.0.0.1 (online=1)
+[2026-09-15T12:08:10.690Z] [info] [net] hello #30 name="real-window"
+[2026-09-15T12:08:10.696Z] [info] [gpu] #30 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:08:29.960Z] [info] [net] - #30 disconnected (online=0)
+[2026-09-15T12:11:52.694Z] [info] [net] + connection #31 from 127.0.0.1 (online=1)
+[2026-09-15T12:11:52.695Z] [info] [net] hello #31 name="real-window"
+[2026-09-15T12:11:52.702Z] [info] [gpu] #31 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:11:55.320Z] [info] [net] - #31 disconnected (online=0)
+[2026-09-15T12:12:05.932Z] [info] [net] + connection #32 from 127.0.0.1 (online=1)
+[2026-09-15T12:12:05.935Z] [info] [net] hello #32 name="real-window"
+[2026-09-15T12:12:05.942Z] [info] [gpu] #32 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:12:08.550Z] [info] [net] - #32 disconnected (online=0)
+[2026-09-15T12:12:31.230Z] [info] [net] + connection #33 from 127.0.0.1 (online=1)
+[2026-09-15T12:12:31.231Z] [info] [net] hello #33 name="real-window"
+[2026-09-15T12:12:31.237Z] [info] [gpu] #33 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:12:49.164Z] [info] [net] - #33 disconnected (online=0)
+[2026-09-15T12:13:11.761Z] [info] [net] + connection #34 from 127.0.0.1 (online=1)
+[2026-09-15T12:13:11.763Z] [info] [net] hello #34 name="headless-check"
+[2026-09-15T12:13:11.770Z] [info] [gpu] #34 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T12:13:33.032Z] [info] [net] - #34 disconnected (online=0)
+[2026-09-15T12:13:53.007Z] [info] [net] + connection #35 from 127.0.0.1 (online=1)
+[2026-09-15T12:13:53.010Z] [info] [net] hello #35 name="headless-check"
+[2026-09-15T12:13:53.017Z] [info] [gpu] #35 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T12:14:14.231Z] [info] [net] - #35 disconnected (online=0)
+[2026-09-15T12:14:15.153Z] [info] [net] + connection #36 from 127.0.0.1 (online=1)
+[2026-09-15T12:14:15.156Z] [info] [net] hello #36 name="headless-check"
+[2026-09-15T12:14:15.162Z] [info] [gpu] #36 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-15T12:14:36.232Z] [info] [net] - #36 disconnected (online=0)
+[2026-09-15T12:15:55.051Z] [info] [net] + connection #37 from 127.0.0.1 (online=1)
+[2026-09-15T12:15:55.052Z] [info] [net] hello #37 name="real-window"
+[2026-09-15T12:15:55.058Z] [info] [gpu] #37 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:16:12.963Z] [info] [net] - #37 disconnected (online=0)
+[2026-09-15T12:16:31.069Z] [info] [net] + connection #38 from 127.0.0.1 (online=1)
+[2026-09-15T12:16:31.070Z] [info] [net] hello #38 name="real-window"
+[2026-09-15T12:16:31.079Z] [info] [gpu] #38 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-15T12:16:48.996Z] [info] [net] - #38 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-15T12:47:49.876Z ===
+[2026-09-15T12:47:49.881Z] [info] ==================================================
+[2026-09-15T12:47:49.881Z] [info] ==================================================
+[2026-09-15T12:47:49.884Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-15T12:47:49.884Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-15T12:47:49.887Z] [info]   Local : http://localhost:3000
+[2026-09-15T12:47:49.887Z] [info]   Local : http://localhost:3000
+[2026-09-15T12:47:49.889Z] [info]   LAN   : http://10.201.177.41:3000
+[2026-09-15T12:47:49.889Z] [info]   LAN   : http://10.201.177.41:3000
+[2026-09-15T12:47:49.891Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-15T12:47:49.891Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-15T12:47:49.894Z] [info] ==================================================
+[2026-09-15T12:47:49.894Z] [info] ==================================================
+[2026-09-15T12:47:51.366Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-15T12:47:51.366Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-15T12:47:51.370Z] [info] [net] hello #1 name="restart-check"
+[2026-09-15T12:47:51.370Z] [info] [net] hello #1 name="restart-check"
+[2026-09-15T12:47:51.373Z] [info] [net] - #1 disconnected (online=0)
+[2026-09-15T12:47:51.373Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-17T13:46:24.878Z ===
+[2026-09-17T13:46:24.884Z] [info] ==================================================
+[2026-09-17T13:46:24.887Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-17T13:46:24.890Z] [info]   Local : http://localhost:3000
+[2026-09-17T13:46:24.894Z] [info]   LAN   : http://10.201.177.76:3000
+[2026-09-17T13:46:24.896Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-17T13:46:24.901Z] [info] ==================================================
+[2026-09-17T13:46:27.460Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-17T13:46:27.465Z] [info] [net] hello #1 name="headless-check"
+[2026-09-17T13:46:27.471Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-09-17T13:46:52.757Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-17T13:50:25.990Z ===
+[2026-09-17T13:50:25.995Z] [info] ==================================================
+[2026-09-17T13:50:25.998Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-17T13:50:26.000Z] [info]   Local : http://localhost:3000
+[2026-09-17T13:50:26.003Z] [info]   LAN   : http://10.201.177.76:3000
+[2026-09-17T13:50:26.006Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-17T13:50:26.008Z] [info] ==================================================
+[2026-09-17T13:50:32.728Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-17T13:50:32.735Z] [info] [net] hello #1 name="real-window"
+[2026-09-17T13:50:32.743Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-17T13:50:51.097Z] [info] [net] - #1 disconnected (online=0)
+[2026-09-17T13:53:14.646Z] [info] [net] + connection #2 from 127.0.0.1 (online=1)
+[2026-09-17T13:53:14.649Z] [info] [net] hello #2 name="real-window"
+[2026-09-17T13:53:14.660Z] [info] [gpu] #2 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-17T13:53:33.268Z] [info] [net] - #2 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-18T10:00:09.113Z ===
+[2026-09-18T10:00:09.132Z] [info] ==================================================
+[2026-09-18T10:00:09.137Z] [info]   NEON STRIKE — Phase 1 server (ishlayapti)
+[2026-09-18T10:00:09.143Z] [info]   Local : http://localhost:3000
+[2026-09-18T10:00:09.150Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-18T10:00:09.156Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-18T10:00:09.161Z] [info] ==================================================
+[2026-09-18T10:00:12.637Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-18T10:00:12.647Z] [info] [net] hello #1 name="real-window"
+[2026-09-18T10:00:12.661Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-18T10:00:32.052Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T11:16:22.215Z ===
+[2026-09-19T11:16:22.226Z] [info] ==================================================
+[2026-09-19T11:16:22.232Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v2)
+[2026-09-19T11:16:22.238Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T11:16:22.243Z] [info]   Local : http://localhost:3000
+[2026-09-19T11:16:22.249Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T11:16:22.255Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T11:16:22.260Z] [info] ==================================================
+[2026-09-19T11:16:26.233Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T11:16:26.241Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T11:16:26.251Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T11:16:26.258Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T11:16:45.325Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T11:41:47.386Z ===
+[2026-09-19T11:41:47.398Z] [info] ==================================================
+[2026-09-19T11:41:47.404Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v3)
+[2026-09-19T11:41:47.410Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T11:41:47.415Z] [info]   Local : http://localhost:3000
+[2026-09-19T11:41:47.421Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T11:41:47.426Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T11:41:47.431Z] [info] ==================================================
+[2026-09-19T11:41:51.332Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T11:41:51.342Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T11:41:51.354Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T11:41:51.361Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T11:42:10.378Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T11:45:22.758Z ===
+[2026-09-19T11:45:22.769Z] [info] ==================================================
+[2026-09-19T11:45:22.776Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v3)
+[2026-09-19T11:45:22.781Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T11:45:22.787Z] [info]   Local : http://localhost:3000
+[2026-09-19T11:45:22.792Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T11:45:22.798Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T11:45:22.803Z] [info] ==================================================
+[2026-09-19T11:45:26.798Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T11:45:26.807Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T11:45:26.819Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T11:45:26.826Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T11:45:46.248Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T12:46:03.574Z ===
+[2026-09-19T12:46:03.584Z] [info] ==================================================
+[2026-09-19T12:46:03.589Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v4)
+[2026-09-19T12:46:03.594Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T12:46:03.599Z] [info]   Local : http://localhost:3000
+[2026-09-19T12:46:03.605Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T12:46:03.609Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T12:46:03.613Z] [info] ==================================================
+
+=== NEON STRIKE server start: 2026-09-19T12:47:39.611Z ===
+[2026-09-19T12:47:39.627Z] [info] ==================================================
+[2026-09-19T12:47:39.633Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v4)
+[2026-09-19T12:47:39.649Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T12:47:39.658Z] [info]   Local : http://localhost:3000
+[2026-09-19T12:47:39.670Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T12:47:39.684Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T12:47:39.699Z] [info] ==================================================
+[2026-09-19T12:47:43.371Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T12:47:43.389Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T12:47:43.404Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T12:47:43.412Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T12:48:03.671Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T14:30:41.258Z ===
+[2026-09-19T14:30:41.278Z] [info] ==================================================
+[2026-09-19T14:30:41.283Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v5)
+[2026-09-19T14:30:41.288Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T14:30:41.295Z] [info]   Local : http://localhost:3000
+[2026-09-19T14:30:41.302Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T14:30:41.307Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T14:30:41.312Z] [info] ==================================================
+[2026-09-19T14:30:45.411Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T14:30:45.417Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T14:30:45.425Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T14:30:45.431Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T14:31:04.927Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T15:44:52.860Z ===
+[2026-09-19T15:44:52.871Z] [info] ==================================================
+[2026-09-19T15:44:52.876Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-19T15:44:52.879Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T15:44:52.883Z] [info]   Local : http://localhost:3000
+[2026-09-19T15:44:52.886Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T15:44:52.889Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T15:44:52.892Z] [info] ==================================================
+[2026-09-19T15:44:55.990Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T15:44:56.000Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T15:44:56.017Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T15:44:56.025Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T15:45:15.153Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-19T16:56:25.575Z ===
+[2026-09-19T16:56:25.586Z] [info] ==================================================
+[2026-09-19T16:56:25.592Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-19T16:56:25.598Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-19T16:56:25.605Z] [info]   Local : http://localhost:3000
+[2026-09-19T16:56:25.613Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-19T16:56:25.618Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-19T16:56:25.624Z] [info] ==================================================
+[2026-09-19T16:56:28.659Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-19T16:56:28.669Z] [info] [net] hello #1 name="real-window"
+[2026-09-19T16:56:28.683Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-19T16:56:28.693Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-19T16:56:47.740Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-20T06:09:32.805Z ===
+[2026-09-20T06:09:32.827Z] [info] ==================================================
+[2026-09-20T06:09:32.831Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-20T06:09:32.836Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-20T06:09:32.840Z] [info]   Local : http://localhost:3000
+[2026-09-20T06:09:32.845Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-20T06:09:32.849Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-20T06:09:32.854Z] [info] ==================================================
+[2026-09-20T06:09:36.882Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-20T06:09:36.892Z] [info] [net] hello #1 name="real-window"
+[2026-09-20T06:09:36.904Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-20T06:09:36.911Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-20T06:09:55.686Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-20T06:35:51.067Z ===
+[2026-09-20T06:35:51.075Z] [info] ==================================================
+[2026-09-20T06:35:51.081Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-20T06:35:51.086Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-20T06:35:51.091Z] [info]   Local : http://localhost:33111
+[2026-09-20T06:35:51.098Z] [info]   LAN   : http://10.201.177.74:33111
+[2026-09-20T06:35:51.104Z] [info]   WS    : ws://<host>:33111/ws
+[2026-09-20T06:35:51.108Z] [info] ==================================================
+
+=== NEON STRIKE server start: 2026-09-20T06:42:05.907Z ===
+[2026-09-20T06:42:05.919Z] [info] ==================================================
+[2026-09-20T06:42:05.925Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-20T06:42:05.930Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-20T06:42:05.935Z] [info]   Local : http://localhost:3000
+[2026-09-20T06:42:05.941Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-20T06:42:05.946Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-20T06:42:05.951Z] [info] ==================================================
+[2026-09-20T06:42:10.044Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-20T06:42:10.054Z] [info] [net] hello #1 name="real-window"
+[2026-09-20T06:42:10.064Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-20T06:42:10.071Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-20T06:42:29.157Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-20T13:58:43.044Z ===
+[2026-09-20T13:58:43.085Z] [info] ==================================================
+[2026-09-20T13:58:43.092Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-20T13:58:43.098Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-20T13:58:43.104Z] [info]   Local : http://localhost:3000
+[2026-09-20T13:58:43.112Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-20T13:58:43.117Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-20T13:58:43.123Z] [info] ==================================================
+
+=== NEON STRIKE server start: 2026-09-21T10:05:33.769Z ===
+[2026-09-21T10:05:33.789Z] [info] ==================================================
+[2026-09-21T10:05:33.795Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-21T10:05:33.801Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-21T10:05:33.807Z] [info]   Local : http://localhost:3000
+[2026-09-21T10:05:33.815Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-21T10:05:33.821Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-21T10:05:33.827Z] [info] ==================================================
+
+=== NEON STRIKE server start: 2026-09-21T11:14:22.167Z ===
+[2026-09-21T11:14:22.180Z] [info] ==================================================
+[2026-09-21T11:14:22.184Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-21T11:14:22.188Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-21T11:14:22.191Z] [info]   Local : http://localhost:3000
+[2026-09-21T11:14:22.197Z] [info]   LAN   : http://10.201.177.74:3000
+[2026-09-21T11:14:22.202Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-21T11:14:22.207Z] [info] ==================================================
+[2026-09-21T11:14:31.324Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-21T11:14:31.331Z] [info] [net] hello #1 name="real-window"
+[2026-09-21T11:14:31.338Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-21T11:14:31.342Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-21T11:14:48.328Z] [info] [net] - #1 disconnected (online=0)
+[2026-09-21T11:14:48.401Z] [info] [net] + connection #2 from 127.0.0.1 (online=1)
+[2026-09-21T11:14:48.406Z] [info] [net] hello #2 name="real-window"
+[2026-09-21T11:14:48.412Z] [info] [sim] sessiya #2 (p2) yaratildi — nishon=8
+[2026-09-21T11:14:48.419Z] [info] [gpu] #2 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-21T11:16:27.303Z] [info] [lobby] create p2 ok=created state=lobby players=1
+[2026-09-21T11:16:35.170Z] [info] [lobby] leave p2 ok=left state=none players=0
+[2026-09-21T11:16:39.874Z] [info] [lobby] create p2 ok=created state=lobby players=1
+[2026-09-21T11:16:43.146Z] [info] [lobby] start p2 ok=started state=in_game players=1
+[2026-09-21T11:16:43.152Z] [info] [match] boshlandi — A=[p2] B=[] (start → starting)
+[2026-09-21T11:16:44.349Z] [info] [match] raund #1 boshlandi — A=[p2] B=[]
+[2026-09-21T11:17:31.452Z] [info] [lobby] - p2 chiqdi hostChanged=true newHost=— closed=true
+[2026-09-21T11:17:31.453Z] [info] [match] p2 jamoadan chiqarildi
+[2026-09-21T11:17:31.459Z] [info] [net] - #2 disconnected (online=0)
+[2026-09-21T11:19:13.380Z] [info] [net] + connection #3 from 127.0.0.1 (online=1)
+[2026-09-21T11:19:13.382Z] [info] [net] hello #3 name="real-window"
+[2026-09-21T11:19:13.387Z] [info] [sim] sessiya #3 (p3) yaratildi — nishon=8
+[2026-09-21T11:19:13.391Z] [info] [gpu] #3 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-21T11:20:00.489Z] [info] [lobby] create p3 ok=created state=lobby players=1
+[2026-09-21T11:20:45.818Z] [info] [chat] p3 (3 belgi) → 1 a'zo
+[2026-09-21T11:21:09.552Z] [info] [chat] p3 (15 belgi) → 1 a'zo
+[2026-09-21T11:21:13.153Z] [info] [chat] p3 (4 belgi) → 1 a'zo
+[2026-09-21T11:29:23.410Z] [info] [lobby] - p3 chiqdi hostChanged=true newHost=— closed=true
+[2026-09-21T11:29:23.411Z] [info] [net] - #3 disconnected (online=0)
+[2026-09-21T11:31:09.707Z] [info] [net] + connection #4 from 127.0.0.1 (online=1)
+[2026-09-21T11:31:09.708Z] [info] [net] hello #4 name="real-window"
+[2026-09-21T11:31:09.714Z] [info] [sim] sessiya #4 (p4) yaratildi — nishon=8
+[2026-09-21T11:31:09.718Z] [info] [gpu] #4 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-21T11:34:54.480Z] [info] [net] - #4 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-09-22T09:18:01.272Z ===
+[2026-09-22T09:18:01.289Z] [info] ==================================================
+[2026-09-22T09:18:01.294Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-09-22T09:18:01.301Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-09-22T09:18:01.308Z] [info]   Local : http://localhost:3000
+[2026-09-22T09:18:01.315Z] [info]   LAN   : http://10.201.177.60:3000
+[2026-09-22T09:18:01.320Z] [info]   WS    : ws://<host>:3000/ws
+[2026-09-22T09:18:01.325Z] [info] ==================================================
+[2026-09-22T09:18:35.237Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-09-22T09:18:35.239Z] [info] [net] hello #1 name="real-window"
+[2026-09-22T09:18:35.250Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-09-22T09:18:35.259Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+[2026-09-22T09:20:03.971Z] [info] [net] - #1 disconnected (online=0)
+[2026-09-22T09:20:04.046Z] [info] [net] + connection #2 from 127.0.0.1 (online=1)
+[2026-09-22T09:20:04.055Z] [info] [net] hello #2 name="real-window"
+[2026-09-22T09:20:04.064Z] [info] [sim] sessiya #2 (p2) yaratildi — nishon=8
+[2026-09-22T09:20:04.070Z] [info] [gpu] #2 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
