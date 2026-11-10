@@ -5,7 +5,6 @@ services:
     name: neonstrike
     runtime: node
     plan: free
-    branch: claude/telefon-koʻrish-boshqarish-8woq8e   # o'yinning yangi versiyasi shu branchda (main'ga birlashtirilsa — main deb yozing)
     buildCommand: npm install --omit=dev
     startCommand: npm start
     healthCheckPath: /
