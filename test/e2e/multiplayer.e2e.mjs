@@ -10,9 +10,9 @@ const require = createRequire(import.meta.url);
 let chromium;
 try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright')); }
 const N = +(process.argv[2] || 2);
-const srv = createNeonServer({ host: '0.0.0.0', port: 0, log: { info () {}, warn () {}, error () {} } });
-await srv.listen();
-const URL_ = `http://127.0.0.1:${srv.httpServer.address().port}/`;
+const server = createNeonServer({ host: '0.0.0.0', port: 0, log: { info () {}, warn () {}, error () {} } });
+await server.listen();
+const URL_ = `http://127.0.0.1:${server.httpServer.address().port}/`;
 const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process.exitCode = 1; };
 (async () => {
   const browsers = [];
@@ -63,14 +63,14 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   await pages[1].evaluate(() => { const i = window.__ns.input; i.keys.add('fwd'); });
   await pages[1].waitForTimeout(1500);
   await pages[1].evaluate(() => window.__ns.input.keys.delete('fwd'));
-  await host.waitForTimeout(600);
+  await host.waitForTimeout(2500);
   const after = await host.evaluate((id) => { const r = window.__ns.remotes.get(id); return { x: r.pos.x, z: r.pos.z, st: r.av.anim.state }; }, p1id);
   const srv = await pages[1].evaluate(() => ({ x: window.__ns.move.pos.x, z: window.__ns.move.pos.z, err: window.__ns.lastErr }));
   ok(Math.hypot(after.x - before.x, after.z - before.z) > 1.5, `harakat sinxron: ${before.x.toFixed(2)}→${after.x.toFixed(2)} (p1 lokal ${srv.x.toFixed(2)}, rekonsiliatsiya xatosi ${(srv.err || 0).toFixed(3)} m)`);
   ok(Math.hypot(after.x - srv.x, after.z - srv.z) < 1.0, `hostdagi ko‘rinish ≈ p1 bashorati (Δ=${Math.hypot(after.x - srv.x, after.z - srv.z).toFixed(2)} m; 100 ms interpolatsiya + ~10 FPS dasturiy render)`);
   // test garnituri: ochiq chiziqqa joylashtirish (z=-2.8: reaktor platformasi ustidan ko'rinish bor)
   const idOf = (p) => p.evaluate(() => window.__app.net.playerId);
-  const sessByPid = (pid) => [...srv.state.sessions.values()].find((s) => s.playerId === pid);
+  const sessByPid = (pid) => [...server.state.sessions.values()].find((s) => s.playerId === pid);
   for (const [p, x, yaw] of [[host, -10, Math.PI / 2], [pages[1], 10, -Math.PI / 2]]) {
     const s = sessByPid(await idOf(p));
     placePlayerAt(s, { x, y: 0, z: -2.8, yaw }, Date.now()); s.movement.pos = s.state.position;
@@ -130,6 +130,6 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   ok(true, 'uzilgan o‘yinchi boshqa mijozlardan olib tashlandi');
   ok(errs.length === 0, 'konsol/sahifa xatolari: ' + (errs.slice(0, 4).join(' | ') || 'yo‘q'));
   for (const bi of browsers) await bi.close();
-  await srv.close();
+  await server.close();
   process.exit(process.exitCode || 0);
 })().catch((e) => { console.log('FAIL exception', e.message); process.exit(1); });
