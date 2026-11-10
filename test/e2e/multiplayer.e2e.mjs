@@ -10,6 +10,9 @@ const require = createRequire(import.meta.url);
 let chromium;
 try { ({ chromium } = require('playwright')); } catch { ({ chromium } = require(process.env.PLAYWRIGHT_PATH || '/opt/node-tools/node_modules/playwright')); }
 const N = +(process.argv[2] || 2);
+// protokol mijozlari (xuddi shu WS protokoli; GPU brauzer xotirasi cheklangan muhitda 4 o'yinchi uchun)
+const BOTS = +(process.argv[3] || 0);
+import WS from 'ws';
 const server = createNeonServer({ host: '0.0.0.0', port: 0, log: { info () {}, warn () {}, error () {} } });
 await server.listen();
 const URL_ = `http://127.0.0.1:${server.httpServer.address().port}/`;
@@ -28,7 +31,7 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
     await p.addInitScript(() => localStorage.setItem('neonstrike.settings.v1', JSON.stringify({ quality: 'low', shadows: false, resolutionScale: 0.5 })));
     await p.goto(URL_);
     await p.waitForFunction(() => window.__app && window.__app.net.open, null, { timeout: 20000 });
-    await p.fill('#nameIn', ['Shaxin', 'Zoro', 'aybek', 'bekzod'][i]);
+    await p.waitForSelector('#nameIn', { timeout: 90000 }); await p.fill('#nameIn', ['Shaxin', 'Zoro', 'aybek', 'bekzod'][i]);
     pages.push(p);
   }
   const [host] = pages;
@@ -44,19 +47,48 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
     await p.waitForSelector('.screen-lobby', { timeout: 10000 });
   }
   ok(true, `${N - 1} ta mijoz JOIN ROOM`);
+  const bots = [];
+  for (let i = 0; i < BOTS; i++) {
+    const ws = new WS(URL_.replace('http', 'ws') + 'ws');
+    await new Promise((r) => ws.once('open', r));
+    const bot = { ws, q: [], seq: 0, send: (o) => ws.send(JSON.stringify(o)) };
+    ws.on('message', (raw) => { const m = JSON.parse(raw.toString()); if (m.type === 'session') bot.id = m.playerId; if (m.type === 'snapshot') bot.snap = m; });
+    bot.send({ type: 'hello', name: 'bot' + (i + 1) });
+    await new Promise((r) => setTimeout(r, 200));
+    bot.send({ type: 'join-session', name: 'bot' + (i + 1) });
+    await new Promise((r) => setTimeout(r, 200));
+    bot.send({ type: 'set-team', prefer: (N + i) % 2 ? 'B' : 'A' });
+    bot.timer = setInterval(() => {   // jonli kirish oqimi (30 Hz): aylanib yuradi
+      bot.seq += 1;
+      const t = bot.seq / 30;
+      bot.send({ type: 'input', seq: bot.seq, pose: { x: 0, y: 0, z: 0, yaw: t, pitch: 0 }, aim: { dir: [Math.sin(t), 0, Math.cos(t)] }, intents: {}, move: { forward: 0.6, right: 0, sprint: false } });
+    }, 33);
+    bots.push(bot);
+  }
+  if (BOTS) ok(true, `${BOTS} ta protokol mijozi qo‘shildi → jami ${N + BOTS} o‘yinchi`);
+  const TOTAL = N + BOTS;
   // jamoa tanlash: juft — BLUE, toq — RED
   for (let i = 0; i < N; i++) await pages[i].click(`[data-a="team"][data-t="${i % 2 ? 'B' : 'A'}"]`);
-  await host.waitForFunction((n) => window.__app.lobby.players.filter((p) => p.prefer).length === n, N, { timeout: 10000 });
+  await host.waitForFunction((n) => window.__app.lobby.players.filter((p) => p.prefer).length === n, TOTAL, { timeout: 10000 });
   const lob = await host.evaluate(() => window.__app.lobby.players.map((p) => `${p.name}:${p.prefer}`));
-  ok(lob.length === N, 'lobbyda jamoa tanlovi ko‘rinadi: ' + lob.join(', '));
+  ok(lob.length === TOTAL, 'lobbyda jamoa tanlovi ko‘rinadi: ' + lob.join(', '));
   await host.click('[data-a="start"]');
   for (const p of pages) await p.waitForFunction(() => window.__ns && window.__ns.match && window.__ns.match.roundState === 'live', null, { timeout: 25000 });
   ok(true, 'host START → hamma o‘yinda, raund LIVE');
   const teams = await Promise.all(pages.map((p) => p.evaluate(() => window.__ns.team)));
   ok(teams.every((t, i) => t === (i % 2 ? 'B' : 'A')), 'jamoalar server tomonidan tanlovga ko‘ra: ' + teams.join(','));
   // remote o'yinchilar ko'rinadi
-  for (const p of pages) await p.waitForFunction((n) => window.__ns.remotes.size === n - 1, N, { timeout: 15000 });
-  ok(true, `har mijozda ${N - 1} ta remote V-773`);
+  for (const p of pages) await p.waitForFunction((n) => window.__ns.remotes.size === n - 1, TOTAL, { timeout: 15000 });
+  ok(true, `har brauzer mijozida ${TOTAL - 1} ta remote V-773`);
+  if (BOTS) {
+    const snapN = bots[0].snap ? bots[0].snap.players.length : 0;
+    ok(snapN === TOTAL, `snapshot ${TOTAL} o‘yinchini olib keladi (bot ko‘rgan: ${snapN})`);
+    const botId = bots[0].id;
+    const p0 = await host.evaluate((id) => { const r = window.__ns.remotes.get(id); return r && [r.pos.x, r.pos.z]; }, botId);
+    await host.waitForTimeout(1500);
+    const p1 = await host.evaluate((id) => { const r = window.__ns.remotes.get(id); return r && [r.pos.x, r.pos.z, r.av.anim.state]; }, botId);
+    ok(p0 && p1 && Math.hypot(p1[0] - p0[0], p1[1] - p0[1]) > 0.5, `bot harakati brauzerda ko‘rinadi: ${JSON.stringify(p0)} → ${JSON.stringify(p1)}`);
+  }
   // harakat sinxronizatsiyasi: p1 oldinga yuradi — p0 da uning pozitsiyasi o'zgaradi
   const p1id = await pages[1].evaluate(() => window.__app.net.playerId);
   const before = await host.evaluate((id) => { const r = window.__ns.remotes.get(id); return { x: r.pos.x, z: r.pos.z }; }, p1id);
@@ -108,7 +140,7 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   ok(feed && feed.victim === shooterId && feed.weapon, 'kill-feed host mijozida: ' + JSON.stringify(feed));
   const hud = await host.evaluate(() => document.querySelector('#hFeed').textContent);
   ok(hud.includes('Zoro') && hud.includes('Shaxin'), 'kill-feed HUD da ismlar bilan: ' + hud.trim());
-  if (N === 2) {
+  if (TOTAL === 2) {
     await host.waitForFunction(() => window.__ns.match.scores.B >= 1, null, { timeout: 10000 });
     ok(true, 'raund natijasi: B jamoasiga ball');
     await host.waitForFunction(() => window.__ns.match.roundNumber >= 2 && window.__ns.match.roundState === 'live' && window.__ns.alive, null, { timeout: 15000 });
@@ -118,7 +150,7 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   await host.evaluate(() => { window.__ns.scoreHeld = true; window.__ns.input.keys.add('score'); });
   await host.waitForTimeout(400);
   const sb = await host.evaluate(() => document.querySelectorAll('#hScore tr').length);
-  ok(sb >= N + 2, 'scoreboard jadvali: ' + sb + ' qator');
+  ok(sb >= TOTAL + 2, 'scoreboard jadvali: ' + sb + ' qator');
   await host.evaluate(() => window.__ns.input.keys.delete('score'));
   // chat
   await pages[1].evaluate(() => window.__app.net.send({ type: 'chat', text: 'A da 2 ta bor' }));
@@ -128,7 +160,8 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   await pages[1].screenshot({ path: `mp${N}-p1.png` });
   // uzilish: oxirgi mijoz yopiladi → boshqalarda remote yo'qoladi
   await browsers[N - 1].close();
-  await host.waitForFunction((n) => window.__ns && window.__ns.remotes.size === n - 2, N, { timeout: 12000 });
+  await host.waitForFunction((n) => window.__ns && window.__ns.remotes.size === n - 2, TOTAL, { timeout: 12000 });
+  for (const bt of bots) { clearInterval(bt.timer); bt.ws.close(); }
   ok(true, 'uzilgan o‘yinchi boshqa mijozlardan olib tashlandi');
   ok(errs.length === 0, 'konsol/sahifa xatolari: ' + (errs.slice(0, 4).join(' | ') || 'yo‘q'));
   for (const bi of browsers) await bi.close();

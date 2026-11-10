@@ -59,7 +59,8 @@ class MenuScene {
   dispose () { this.on = false; removeEventListener('resize', this.resize); this.a.setWeapon(null); this.c.dispose(); this.env.dispose(); this.r.dispose(); }
 }
 function showMenuScene (on) {
-  if (on && !menuScene) menuScene = new MenuScene();
+  // LOW sifatda (kuchsiz qurilmalar) 3D menyu foni chizilmaydi — CSS fon
+  if (on && !menuScene && settings.quality !== 'low') menuScene = new MenuScene();
   if (!on && menuScene) { menuScene.dispose(); menuScene = null; }
 }
 

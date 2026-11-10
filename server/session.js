@@ -724,6 +724,7 @@ export function playerSyncState (session, out = {}) {
   out.faceYaw = +m.faceYaw.toFixed(3);
   out.airborne = !!m.airborne;
   out.crouch = !!m.crouching;
+  out.sprint = !!m.sprinting;
   // animatsiya sinxronizatsiyasi (FAQAT ko'rsatish uchun — server qiymatlari)
   const lo = st.loadout;
   const wid = lo.ids[lo.index];

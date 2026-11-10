@@ -103,6 +103,7 @@ export class RemotePlayer {
     if (!this.alive && s.alive) { this.av.anim.trigger('respawn'); this.events.push({ type: 'respawn' }); this.buf.length = 0; this.buf.push({ t, x: s.x, y: s.y, z: s.z, yaw: s.yaw, pitch: s.pitch }); }
     this.alive = s.alive;
     this.crouch = s.crouch;
+    this.sprint = !!s.sprint;
     this.kills = s.kills; this.deaths = s.deaths; this.hp = s.hp; this.team = s.teamId; this.name = s.name;
   }
   update (dt, renderT) {
@@ -123,7 +124,7 @@ export class RemotePlayer {
     const dy = Math.atan2(Math.sin(c.yaw - a.yaw), Math.cos(c.yaw - a.yaw));
     this.yaw = a.yaw + dy * Math.min(1, k);
     this.pitch = a.pitch + (c.pitch - a.pitch) * Math.min(1, k);
-    driveAvatar(this.av, dt, this.pos, this.vel, this.yaw, this.pitch, { airborne: !!c.airborne, crouch: this.crouch, sprint: Math.hypot(this.vel.x, this.vel.z) > 6.4, aiming: false });
+    driveAvatar(this.av, dt, this.pos, this.vel, this.yaw, this.pitch, { airborne: !!c.airborne, crouch: this.crouch, sprint: this.sprint, aiming: false });
   }
   dispose () { this.av.dispose(); }
 }
