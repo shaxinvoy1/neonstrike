@@ -346,6 +346,6 @@ export function applyAtmosphere (scene) {
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
   t.mapping = THREE.EquirectangularReflectionMapping;
   scene.background = t;
-  scene.fog = new THREE.FogExp2(0x0c1236, 0.018);
+  scene.fog = new THREE.FogExp2(0x0c1236, 0.011);
   return t;
 }

@@ -406,6 +406,7 @@ export class Game {
     // kamera + lokal avatar
     const vel = { x: this.move.vel.x, y: this.move.vy, z: this.move.vel.z };
     this.ots.update(dt, this.renderPos, this.aiming, this.move.crouching);
+    if (this.qaFreeCam) { const c = this.qaFreeCam; this.camera.position.set(...c.pos); this.camera.lookAt(...c.target); }
     driveAvatar(this.me, dt, this.renderPos, vel, this.ots.aimYaw(), this.ots.aimPitch(), { airborne: this.move.airborne, crouch: this.move.crouching, sprint: this.move.sprinting, aiming: this.aiming || !!this.fireHeld });
     this._footsteps(this.me, this.renderPos, 1);
     setListener(this.renderPos.x, this.renderPos.y + 1.5, this.renderPos.z, this.ots.yaw);

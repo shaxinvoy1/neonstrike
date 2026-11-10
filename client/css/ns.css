@@ -5,7 +5,7 @@
   --cyan: #46d2ff; --blue: #3d9bff; --red: #ff4466; --ink: #e6f3ff; --mute: #8fb0d8;
   --safe-l: env(safe-area-inset-left, 0px); --safe-r: env(safe-area-inset-right, 0px);
   --safe-t: env(safe-area-inset-top, 0px); --safe-b: env(safe-area-inset-bottom, 0px);
-  --s: 1;   /* JS (app.js) oyna o'lchamidan hisoblaydi — birliksiz masshtab */
+  --t: 1; --s: 1;   /* JS (app.js) oyna o'lchamidan hisoblaydi — birliksiz masshtab */
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; height: 100%; background: radial-gradient(ellipse at 70% 40%, #1a2a6a 0%, #0a1030 45%, var(--bg) 80%); color: var(--ink); overflow: hidden; font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; user-select: none; -webkit-user-select: none; overscroll-behavior: none; touch-action: none; }
@@ -171,25 +171,33 @@ body.playing .hud { display: block; }
 .touch.t-visible { display: block; }
 .touch .t-look { position: absolute; left: 40%; right: 0; top: 0; bottom: 0; pointer-events: auto; }
 .touch .t-joy { position: absolute; left: 0; width: 40%; top: 30%; bottom: 0; pointer-events: auto; }
-.t-joy-base { position: absolute; left: calc(70px + var(--safe-l)); bottom: calc(150px * var(--s) + var(--safe-b)); width: 130px; height: 130px; margin: -65px; border-radius: 50%; border: 2px solid rgba(120, 200, 255, .45); background: radial-gradient(circle, rgba(40, 90, 200, .25), rgba(10, 20, 60, .2)); }
+/* --t: sensor tugmalari masshtabi (ekran balandligiga ko'ra, app.js) — otish tugmasi atrofida yoy */
+.t-joy-base { position: absolute; left: calc(96px * var(--t) + var(--safe-l)); bottom: calc(100px * var(--t) + var(--safe-b)); width: calc(140px * var(--t)); height: calc(140px * var(--t)); transform: translate(-50%, 50%); border-radius: 50%; border: 2px solid rgba(120, 200, 255, .45); background: radial-gradient(circle, rgba(40, 90, 200, .25), rgba(10, 20, 60, .2)); }
 .t-joy.on .t-joy-base { border-color: var(--cyan); }
-.t-joy-knob { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #9fe0ff, #2f6fd6); box-shadow: 0 0 14px rgba(70,210,255,.7); }
-.t-btn { position: absolute; pointer-events: auto; width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(120, 200, 255, .55); background: rgba(10, 24, 70, .55); color: #e6f3ff; font-weight: 900; font-size: 18px; display: grid; place-items: center; touch-action: none; backdrop-filter: blur(4px); }
+.t-joy-knob { position: absolute; left: 50%; top: 50%; width: calc(58px * var(--t)); height: calc(58px * var(--t)); margin: calc(-29px * var(--t)); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #9fe0ff, #2f6fd6); box-shadow: 0 0 14px rgba(70,210,255,.7); }
+.t-btn { position: absolute; pointer-events: auto; border-radius: 50%; border: 2px solid rgba(120, 200, 255, .55); background: rgba(10, 24, 70, .55); color: #e6f3ff; font-weight: 900; font-size: calc(18px * var(--t)); display: grid; place-items: center; touch-action: none; backdrop-filter: blur(4px); padding: 0; }
 .t-btn.on { background: rgba(47, 140, 255, .65); border-color: #bfe8ff; }
 .t-btn.latched { background: rgba(70, 210, 255, .35); border-color: var(--cyan); box-shadow: 0 0 12px rgba(70,210,255,.6); }
-.t-fire { width: 92px; height: 92px; right: calc(150px * var(--s) + var(--safe-r)); bottom: calc(150px * var(--s) + var(--safe-b)); font-size: 34px; border-color: rgba(255, 120, 150, .7); background: rgba(120, 20, 50, .45); }
-.t-fire2 { width: 64px; height: 64px; left: calc(170px + var(--safe-l)); bottom: calc(260px * var(--s) + var(--safe-b)); font-size: 22px; border-color: rgba(255, 120, 150, .6); background: rgba(120, 20, 50, .35); }
-.t-aim { right: calc(260px * var(--s) + var(--safe-r)); bottom: calc(210px * var(--s) + var(--safe-b)); font-size: 13px; }
-.t-reload { right: calc(256px * var(--s) + var(--safe-r)); bottom: calc(130px * var(--s) + var(--safe-b)); }
-.t-jump { right: calc(60px * var(--s) + var(--safe-r)); bottom: calc(240px * var(--s) + var(--safe-b)); }
-.t-crouch { right: calc(160px * var(--s) + var(--safe-r)); bottom: calc(280px * var(--s) + var(--safe-b)); }
-.t-sprint { left: calc(40px + var(--safe-l)); bottom: calc(280px * var(--s) + var(--safe-b)); }
-.t-swap { right: calc(210px * var(--s) + var(--safe-r)); bottom: calc(10px + var(--safe-b)); width: 52px; height: 52px; }
-.t-gren { right: calc(60px * var(--s) + var(--safe-r)); bottom: calc(320px * var(--s) + var(--safe-b)); width: 52px; height: 52px; }
-.t-knife { right: calc(10px * var(--s) + var(--safe-r)); bottom: calc(170px * var(--s) + var(--safe-b)); width: 52px; height: 52px; }
+.t-fire { font-size: calc(34px * var(--t)); border-color: rgba(255, 120, 150, .7); background: rgba(120, 20, 50, .45); }
+.t-aim { font-size: calc(13px * var(--t)); }
+.t-fire { right: calc(82px * var(--t) + var(--safe-r)); bottom: calc(60px * var(--t) + var(--safe-b)); width: calc(96px * var(--t)); height: calc(96px * var(--t)); }
+.t-reload { right: calc(198px * var(--t) + var(--safe-r)); bottom: calc(50px * var(--t) + var(--safe-b)); width: calc(56px * var(--t)); height: calc(56px * var(--t)); }
+.t-aim { right: calc(188px * var(--t) + var(--safe-r)); bottom: calc(142px * var(--t) + var(--safe-b)); width: calc(56px * var(--t)); height: calc(56px * var(--t)); }
+.t-crouch { right: calc(112px * var(--t) + var(--safe-r)); bottom: calc(184px * var(--t) + var(--safe-b)); width: calc(56px * var(--t)); height: calc(56px * var(--t)); }
+.t-jump { right: calc(18px * var(--t) + var(--safe-r)); bottom: calc(144px * var(--t) + var(--safe-b)); width: calc(56px * var(--t)); height: calc(56px * var(--t)); }
+.t-knife { right: calc(9px * var(--t) + var(--safe-r)); bottom: calc(53px * var(--t) + var(--safe-b)); width: calc(50px * var(--t)); height: calc(50px * var(--t)); }
+.t-gren { right: calc(40px * var(--t) + var(--safe-r)); bottom: calc(224px * var(--t) + var(--safe-b)); width: calc(48px * var(--t)); height: calc(48px * var(--t)); }
+/* chap tomon: ikkinchi otish (joystik ustida, o'ngda) va sprint (joystik ustida) */
+.t-fire2 { left: calc(186px * var(--t) + var(--safe-l)); bottom: calc(178px * var(--t) + var(--safe-b)); width: calc(60px * var(--t)); height: calc(60px * var(--t)); font-size: calc(22px * var(--t)); border-color: rgba(255, 120, 150, .6); background: rgba(120, 20, 50, .35); }
+.t-sprint { left: calc(70px * var(--t) + var(--safe-l)); bottom: calc(205px * var(--t) + var(--safe-b)); width: calc(52px * var(--t)); height: calc(52px * var(--t)); }
+.t-swap { right: calc(250px * var(--t) + var(--safe-r)); bottom: calc(14px * var(--t) + var(--safe-b)); width: calc(48px * var(--t)); height: calc(48px * var(--t)); }
+/* sensorli rejimda HUD qayta joylashadi: HP — pastda markazda, qurol — o'ng-yuqorida */
 body.is-touch .h-slots { display: none; }
-body.is-touch .h-chat { bottom: auto; top: calc(150px * var(--s) + var(--safe-t)); width: calc(260px * var(--s)); }
-body.is-touch .h-weapon { transform: scale(.85); transform-origin: right bottom; }
+body.is-touch .h-chat { bottom: auto; top: calc(130px * var(--s) + var(--safe-t)); width: calc(250px * var(--s)); }
+body.is-touch .h-me { left: 50%; transform: translateX(-50%) scale(.82); transform-origin: center bottom; bottom: calc(4px + var(--safe-b)); }
+body.is-touch .h-weapon { top: calc(56px * var(--s) + var(--safe-t)); bottom: auto; transform: scale(.72); transform-origin: right top; }
+body.is-touch .h-feed { top: calc(10px + var(--safe-t)); }
+body.is-touch .h-weapon .h-wcard { display: none; }
 @media (orientation: portrait) and (pointer: coarse) {
   body.playing .rotate { display: grid; position: fixed; inset: 0; z-index: 50; place-items: center; background: rgba(4,7,20,.94); text-align: center; font-size: 48px; }
   .rotate p { font-size: 16px; color: var(--mute); }

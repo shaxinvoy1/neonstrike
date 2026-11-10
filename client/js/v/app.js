@@ -290,7 +290,7 @@ async function boot () {
   }
 }
 // HUD masshtabi (CSS'da uzunlikni uzunlikka bo'lib bo'lmaydi — shu yerda)
-function hudScale () { const k = Math.max(0.55, Math.min(1.25, Math.min(innerWidth / 1280, innerHeight / 760))); document.documentElement.style.setProperty('--s', k.toFixed(3)); }
+function hudScale () { const k = Math.max(0.55, Math.min(1.25, Math.min(innerWidth / 1280, innerHeight / 760))); document.documentElement.style.setProperty('--s', k.toFixed(3)); document.documentElement.style.setProperty('--t', Math.max(0.62, Math.min(1.3, innerHeight / 440)).toFixed(3)); }
 addEventListener('resize', hudScale); hudScale();
 // telefon: o'yin paytida orientatsiya ogohlantirishi (CSS bilan), gesture'larni bloklash
 document.addEventListener('gesturestart', (e) => e.preventDefault());

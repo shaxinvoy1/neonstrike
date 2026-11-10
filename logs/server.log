@@ -750,3 +750,16 @@
 [2026-11-10T12:49:55.197Z] [info] [lobby] - p9 chiqdi hostChanged=true newHost=— closed=true
 [2026-11-10T12:49:55.197Z] [info] [match] p9 jamoadan chiqarildi
 [2026-11-10T12:49:55.197Z] [info] [net] - #9 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-11-10T13:14:58.168Z ===
+[2026-11-10T13:14:58.179Z] [info] ==================================================
+[2026-11-10T13:14:58.179Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-11-10T13:14:58.179Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-11-10T13:14:58.179Z] [info]   Local : http://localhost:3000
+[2026-11-10T13:14:58.180Z] [info]   LAN   : http://192.0.2.2:3000
+[2026-11-10T13:14:58.180Z] [info]   WS    : ws://<host>:3000/ws
+[2026-11-10T13:14:58.180Z] [info] ==================================================
+[2026-11-10T13:14:59.733Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-11-10T13:15:01.918Z] [info] [net] hello #1 name="Shaxin"
+[2026-11-10T13:15:01.924Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-11-10T13:16:05.768Z] [info] [net] - #1 disconnected (online=0)
