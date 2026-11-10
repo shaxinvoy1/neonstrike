@@ -64,6 +64,14 @@ function showMenuScene (on) {
   if (!on && menuScene) { menuScene.dispose(); menuScene = null; }
 }
 
+// Taklif manzili: onlayn (https) serverda — joriy sayt manzili; LAN'da — server bergan LAN manzillar
+function shareAddrs () {
+  const online = location.protocol === 'https:' || !/^(\d+\.){3}\d+$|^localhost$/.test(location.hostname);
+  if (online) return [location.origin];
+  const list = lobby && lobby.addresses && lobby.addresses.length ? lobby.addresses : [location.host];
+  return list.map((a) => 'http://' + String(a).replace(/^https?:\/\//, ''));
+}
+
 // ---------------- ekranlar ----------------
 function render () {
   const name = settings.name || '';
@@ -79,7 +87,7 @@ function render () {
           <h1 class="logo">NEON <b>STRIKE</b></h1>
           <p class="tag">LAN MULTIPLAYER · NEON FACILITY</p>
           <label class="field"><span>ISMINGIZ</span><input id="nameIn" maxlength="16" value="${esc(name)}" placeholder="Player"></label>
-          <button class="btn primary" data-a="mp">MULTIPLAYER (LAN)</button>
+          <button class="btn primary" data-a="mp">MULTIPLAYER</button>
           <button class="btn" data-a="training">TRAINING</button>
           <button class="btn" data-a="settings">SETTINGS</button>
           <button class="btn" data-a="help">HOW TO PLAY</button>
@@ -91,9 +99,9 @@ function render () {
       const started = lobby && lobby.state === 'in_game';
       ui.innerHTML = `
         <div class="panel">
-          <h2>MULTIPLAYER · LAN</h2>
-          <p class="muted">Bir Wi-Fi tarmog‘idagi qurilmalar shu server manzilini ochib bir xonaga qo‘shiladi.</p>
-          <div class="addr">${(lobby && lobby.addresses && lobby.addresses.length ? lobby.addresses : [location.host]).map((a) => `<code>http://${esc(String(a).replace(/^https?:\/\//, ''))}</code>`).join('')}</div>
+          <h2>MULTIPLAYER</h2>
+          <p class="muted">Shu server manzilini ochgan har bir qurilma (Wi-Fi yoki internet orqali) bir xonaga qo‘shiladi.</p>
+          <div class="addr">${shareAddrs().map((a) => `<code>${esc(a)}</code>`).join('')}</div>
           ${exists ? `<div class="room"><b>XONA #${lobby.sessionId}</b><span>${lobby.count}/${lobby.capacity} o‘yinchi · ${started ? 'o‘yin ketmoqda' : 'kutilmoqda'}</span></div>
             <button class="btn primary" data-a="join">JOIN ROOM${started ? ' (o‘yinga qo‘shilish)' : ''}</button>`
             : `<p class="muted">Hozircha xona yo‘q.</p><button class="btn primary" data-a="create">CREATE ROOM (HOST)</button>`}
@@ -110,7 +118,7 @@ function render () {
       ui.innerHTML = `
         <div class="panel wide">
           <h2>LOBBY · XONA #${esc(L.sessionId)}</h2>
-          <p class="muted">Boshqa qurilmalar: ${(L.addresses || []).map((a) => `<code>${esc(String(a))}</code>`).join(' ') || `<code>${esc(location.host)}</code>`}</p>
+          <p class="muted">Do‘stlaringiz shu manzilni ochadi: ${shareAddrs().map((a) => `<code>${esc(a)}</code>`).join(' ')}</p>
           <div class="teams">${col('A', 'BLUE TEAM', 'blue')}${col('B', 'RED TEAM', 'red')}</div>
           ${auto.length ? `<p class="muted small">Avtomatik taqsimlanadi: ${auto.map((p) => esc(p.name || p.id)).join(', ')}</p>` : ''}
           <p class="muted small">${L.count}/${L.capacity} o‘yinchi · 10 raund · birinchi 6 g‘alaba · raund ${100} s</p>

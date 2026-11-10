@@ -20,9 +20,9 @@
 <body>
 <main><div class="card">
   <h1>NEON <b>STRIKE</b></h1>
-  <p>Kompyuterda o‘yin serverini ishga tushiring (<code>npm start</code>) va u ko‘rsatgan <b>LAN</b> manzilni kiriting. Telefon va kompyuter bitta Wi-Fi’da bo‘lishi kerak.</p>
-  <label for="host">KOMPYUTER MANZILI</label>
-  <input id="host" inputmode="url" autocomplete="off" placeholder="192.168.1.20:3000">
+  <p><b>Onlayn:</b> server manzilini kiriting, masalan <code>neonstrike.onrender.com</code>.<br><b>LAN:</b> kompyuterda <code>npm start</code> ko‘rsatgan manzil, masalan <code>192.168.1.20:3000</code>.</p>
+  <label for="host">SERVER MANZILI</label>
+  <input id="host" inputmode="url" autocomplete="off" placeholder="neonstrike.onrender.com">
   <div class="recent" id="recent"></div>
   <button id="go">ULANISH</button>
   <p class="err" id="err"></p>
@@ -34,18 +34,28 @@
   inp.value = list[0] || '';
   rec.innerHTML = list.map((h) => `<span>${h.replace(/[<>&"]/g, '')}</span>`).join('');
   rec.onclick = (e) => { if (e.target.tagName === 'SPAN') { inp.value = e.target.textContent; connect(); } };
-  function norm (v) { v = v.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, ''); if (v && !/:\d+$/.test(v)) v += ':3000'; return v; }
+  // to'liq URL: sxema berilgan bo'lsa — saqlanadi; IP/localhost → http (+:3000); domen → https
+  function norm (v) {
+    v = v.trim().replace(/\/+$/, '');
+    if (!v) return '';
+    const m = v.match(/^(https?):\/\/([^/]+)/i);
+    if (m) return m[1].toLowerCase() + '://' + m[2];
+    const host = v.replace(/\/.*$/, '');
+    const isLan = /^(\d+\.){3}\d+(:\d+)?$/.test(host) || /^localhost(:\d+)?$/.test(host);
+    if (isLan) return 'http://' + (/:\d+$/.test(host) ? host : host + ':3000');
+    return 'https://' + host;
+  }
   async function connect () {
     const h = norm(inp.value);
     if (!h) { err.textContent = 'Manzilni kiriting'; return; }
-    err.textContent = 'Tekshirilmoqda…';
+    err.textContent = 'Ulanmoqda… (bepul onlayn server uxlab qolgan bo‘lsa, uyg‘onishi 1 daqiqagacha)';
     try {
-      const c = new AbortController(); const t = setTimeout(() => c.abort(), 5000);
-      const r = await fetch(`http://${h}/`, { signal: c.signal }); clearTimeout(t);
+      const c = new AbortController(); const t = setTimeout(() => c.abort(), 75000);
+      const r = await fetch(`${h}/`, { signal: c.signal, cache: 'no-store' }); clearTimeout(t);
       const txt = await r.text();
       if (!/NEON STRIKE/.test(txt)) throw new Error('Bu manzilda NEON STRIKE server topilmadi');
       list = [h, ...list.filter((x) => x !== h)].slice(0, 5); localStorage.setItem(K, JSON.stringify(list));
-      location.href = `http://${h}/`;
+      location.href = `${h}/`;
     } catch (e) {
       err.textContent = e.name === 'AbortError' || e instanceof TypeError ? 'Server topilmadi — manzilni, Wi-Fi’ni va kompyuterda server yoqilganini tekshiring' : (e.message || 'Ulanib bo‘lmadi');
     }
