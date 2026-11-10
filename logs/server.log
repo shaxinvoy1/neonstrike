@@ -719,3 +719,34 @@
 [2026-11-10T12:44:00.384Z] [info] [lobby] start p7 ok=started state=in_game players=2
 [2026-11-10T12:44:00.384Z] [info] [match] boshlandi — A=[p7] B=[p8] (start → starting)
 [2026-11-10T12:44:01.615Z] [info] [match] raund #1 boshlandi — A=[p7] B=[p8]
+[2026-11-10T12:45:41.634Z] [info] [match] raund #1 tugadi — g'olib draw (A:0 B:0)
+[2026-11-10T12:45:44.641Z] [info] [match] raund #2 boshlandi — A=[p7] B=[p8]
+[2026-11-10T12:46:46.125Z] [info] [chat] p8 (13 belgi) → 2 a'zo
+[2026-11-10T12:46:58.425Z] [info] [lobby] - p8 chiqdi hostChanged=false newHost=p7 closed=false
+[2026-11-10T12:46:58.425Z] [info] [match] p8 jamoadan chiqarildi
+[2026-11-10T12:46:58.426Z] [info] [match] raund #2 tugadi — g'olib A (A:1 B:0)
+[2026-11-10T12:46:58.426Z] [info] [net] - #8 disconnected (online=1)
+[2026-11-10T12:46:59.436Z] [info] [lobby] - p7 chiqdi hostChanged=true newHost=— closed=true
+[2026-11-10T12:46:59.436Z] [info] [match] p7 jamoadan chiqarildi
+[2026-11-10T12:46:59.436Z] [info] [net] - #7 disconnected (online=0)
+[2026-11-10T12:47:19.285Z] [info] [net] + connection #9 from 127.0.0.1 (online=1)
+[2026-11-10T12:47:21.356Z] [info] [net] hello #9 name="Player"
+[2026-11-10T12:47:21.361Z] [info] [sim] sessiya #9 (p9) yaratildi — nishon=8
+[2026-11-10T12:47:22.373Z] [info] [net] + connection #10 from 127.0.0.1 (online=2)
+[2026-11-10T12:47:25.286Z] [info] [net] hello #10 name="Player"
+[2026-11-10T12:47:25.287Z] [info] [sim] sessiya #10 (p10) yaratildi — nishon=8
+[2026-11-10T12:47:28.646Z] [info] [lobby] create p9 ok=created state=lobby players=1
+[2026-11-10T12:47:32.519Z] [info] [lobby] join p10 ok=joined state=lobby players=2
+[2026-11-10T12:47:36.832Z] [info] [lobby] start p9 ok=started state=in_game players=2
+[2026-11-10T12:47:36.832Z] [info] [match] boshlandi — A=[p9] B=[p10] (start → starting)
+[2026-11-10T12:47:38.047Z] [info] [match] raund #1 boshlandi — A=[p9] B=[p10]
+[2026-11-10T12:49:18.089Z] [info] [match] raund #1 tugadi — g'olib draw (A:0 B:0)
+[2026-11-10T12:49:21.118Z] [info] [match] raund #2 boshlandi — A=[p9] B=[p10]
+[2026-11-10T12:49:36.493Z] [info] [chat] p10 (13 belgi) → 2 a'zo
+[2026-11-10T12:49:53.609Z] [info] [lobby] - p10 chiqdi hostChanged=false newHost=p9 closed=false
+[2026-11-10T12:49:53.609Z] [info] [match] p10 jamoadan chiqarildi
+[2026-11-10T12:49:53.609Z] [info] [match] raund #2 tugadi — g'olib A (A:1 B:0)
+[2026-11-10T12:49:53.609Z] [info] [net] - #10 disconnected (online=1)
+[2026-11-10T12:49:55.197Z] [info] [lobby] - p9 chiqdi hostChanged=true newHost=— closed=true
+[2026-11-10T12:49:55.197Z] [info] [match] p9 jamoadan chiqarildi
+[2026-11-10T12:49:55.197Z] [info] [net] - #9 disconnected (online=0)
