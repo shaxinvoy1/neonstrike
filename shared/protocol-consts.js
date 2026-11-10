@@ -53,6 +53,7 @@ export const MSG = {
   JOIN_SESSION: 'join-session',      // {name?, sessionId?} — mavjud LAN sessiyaga qo'shilish
   LEAVE_SESSION: 'leave-session',    // {} — sessiyadan chiqish
   START_SESSION: 'start-session',    // {} — FAQAT host: session state lobby → in_game
+  RETURN_LOBBY: 'return-lobby',      // {} — FAQAT host, FAQAT match tugagach: in_game → lobby (restart uchun)
   SET_TEAM: 'set-team',              // {prefer:'A'|'B'} — lobby'da jamoa TANLASH niyati (server muvozanatlaydi)
 
   // --- PHASE 6: LAN LOBBY (server -> klient) — AVTORITAR lobby holati ---

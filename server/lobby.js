@@ -198,6 +198,23 @@ export function startSession (hub, playerId, now = Date.now()) {
   return { ok: true, reason: 'started', session: s };
 }
 
+/**
+ * Match tugagach (yoki host qaror qilsa) sessiyani LOBBY holatiga qaytarish —
+ * FAQAT host. Shundan keyin host qayta START qila oladi (restart).
+ */
+export function returnToLobby (hub, playerId, now = Date.now()) {
+  if (!hub) return { ok: false, reason: LOBBY_REJECT.BAD_MSG };
+  const s = hub.session;
+  if (!s) return { ok: false, reason: LOBBY_REJECT.NO_SESSION };
+  if (!findMember(hub, playerId)) return { ok: false, reason: LOBBY_REJECT.NOT_IN };
+  if (s.hostId !== String(playerId)) return { ok: false, reason: LOBBY_REJECT.NOT_HOST };
+  if (s.state !== LOBBY_PHASE.IN_GAME) return { ok: true, reason: 'already', session: s };
+  s.state = LOBBY_PHASE.LOBBY;
+  s.startedAt = 0;
+  hub.revision += 1;
+  return { ok: true, reason: 'lobby', session: s };
+}
+
 /** Ism xavfsizligi: boshqaruv belgilarini olib tashlaydi; matn bo'lmasa null */
 export function sanitizeLobbyName (name) {
   if (name === undefined || name === null) return '';

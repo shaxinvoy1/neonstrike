@@ -214,3 +214,37 @@ test('server: pichoq 4 m masofada tegmaydi', async () => {
   await poll(() => server.state.connections.size === 0, 'yopildi');
   await server.close();
 });
+
+test('server: match tugagach host lobbyga qaytaradi va qayta boshlaydi (restart)', async () => {
+  const srv = createNeonServer({ host: '127.0.0.1', port: 0, log: quietLog });
+  await srv.listen();
+  const url = `ws://127.0.0.1:${srv.httpServer.address().port}/ws`;
+  const mk = async (name) => {
+    const ws = new WebSocket(url); const q = [];
+    ws.on('message', (r) => q.push(JSON.parse(r.toString())));
+    await new Promise((r) => ws.once('open', r));
+    ws.send(JSON.stringify({ type: MSG.HELLO, name }));
+    await poll(() => q.find((m) => m.type === MSG.SESSION), 'session');
+    return { ws, q, send: (o) => ws.send(JSON.stringify(o)) };
+  };
+  const h = await mk('host'); h.send({ type: MSG.CREATE_SESSION });
+  await poll(() => srv.state.lobby.session, 'lobby');
+  const g = await mk('guest'); g.send({ type: MSG.JOIN_SESSION });
+  await poll(() => srv.state.lobby.session.players.length === 2, 'join');
+  h.send({ type: MSG.START_SESSION });
+  await poll(() => srv.state.match.roundState === MATCH_PHASE.LIVE, 'LIVE');
+  h.send({ type: MSG.RETURN_LOBBY });
+  await poll(() => h.q.some((m) => m.type === MSG.ERROR && m.code === 'bad_state'), 'match tugamaguncha rad');
+  srv.state.match.state = MATCH_PHASE.MATCH_END;          // test: matchni tugagan holatga keltirish
+  g.send({ type: MSG.RETURN_LOBBY });
+  await poll(() => g.q.some((m) => m.type === MSG.ERROR && m.code === 'not_host'), 'faqat host');
+  h.send({ type: MSG.RETURN_LOBBY });
+  await poll(() => srv.state.lobby.session.state === 'lobby', 'lobbyga qaytdi');
+  assert.equal(srv.state.match.state, MATCH_PHASE.NONE);
+  h.send({ type: MSG.START_SESSION });
+  await poll(() => srv.state.match.roundState === MATCH_PHASE.LIVE, 'qayta LIVE');
+  assert.deepEqual(srv.state.match.scores, { A: 0, B: 0 });
+  h.ws.terminate(); g.ws.terminate();
+  await poll(() => srv.state.connections.size === 0, 'yopildi');
+  await srv.close();
+});

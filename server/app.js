@@ -33,7 +33,7 @@ import {
 import {
   createLobbyHub, createLobbyMember, validateLobbyMessage, lobbySnapshot,
   createSession as lobbyCreate, joinSession as lobbyJoin, leaveSession as lobbyLeave,
-  startSession as lobbyStart, removeMember as lobbyRemove, LOBBY_PHASE
+  startSession as lobbyStart, removeMember as lobbyRemove, returnToLobby, LOBBY_PHASE
 } from './lobby.js';
 // PHASE 8: jamoa / raund / ball — SOF qoidalar (server/session.js combat'idan alohida)
 import {
@@ -141,7 +141,8 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
     // ---- PHASE 8: match (jamoa/raund/ball) — BITTA egasi: lobby sessiyasi ----
     match: createMatch(),
     _matchSnap: {},
-    killFeed: [],               // umumiy kill-feed (oxirgi 8 ta, server hodisalari)
+    killFeed: [],
+    _syncGrenades: [],               // umumiy kill-feed (oxirgi 8 ta, server hodisalari)
     killSeq: 0,             // SNAPSHOT uchun qayta ishlatiladigan match bloki
     _lobbyMatchSnap: {},        // LOBBY_STATE uchun
     _peerScratch: [],           // peer nishon deskriptorlari (qayta ishlatiladi)
@@ -309,6 +310,9 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
     const prefs = {};
     for (const p of s.players) if (p.prefer) prefs[p.id] = p.prefer;
     const res = startMatch(state.match, ids, nowTs, prefs);
+    // yangi match: kill-feed va o'yinchi hisoblari (scoreboard) noldan
+    state.killFeed.length = 0;
+    for (const session of state.sessions.values()) { session.state.stats.kills = 0; session.state.stats.deaths = 0; }
     assignTeams();
     spawnTeams(nowTs);
     state.matchEvents += 1;
@@ -457,6 +461,13 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
     }
     if (!n) { players.length = 0; return 0; }
     players.length = n;
+    // havodagi granatalar (barcha o'yinchilar ko'rsin) — server pozitsiyalari
+    const gl = state._syncGrenades;
+    gl.length = 0;
+    for (const session of state.sessions.values()) {
+      if (!session.authoritativeMovement) continue;
+      for (const g of session.state.grenades) gl.push({ id: `${session.playerId}-${g.id}`, owner: session.playerId, x: +g.pos[0].toFixed(2), y: +g.pos[1].toFixed(2), z: +g.pos[2].toFixed(2) });
+    }
 
     state.sync.frames += 1;
     state.sync.players = n;
@@ -473,6 +484,7 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
         serverTime: nowTs,
         count: n,
         players,
+        grenades: state._syncGrenades,
         // PHASE 8: AVTORITAR match holati (jamoa/raund/ball) — alohida
         // kanal YO'Q, mavjud SNAPSHOT kengaytirildi.
         match: matchBlock
@@ -723,6 +735,17 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
             }
           }
           broadcastLobby(nowTs);
+          break;
+        }
+        case MSG.RETURN_LOBBY: {
+          const member = memberBySocket.get(socket);
+          if (!member) return sendErr(socket, 'no_session', 'sessiya yo‘q');
+          if (state.match.state !== MATCH_PHASE.MATCH_END) return sendErr(socket, 'bad_state', 'match hali tugamagan');
+          const r = returnToLobby(state.lobby, member.id, Date.now());
+          if (!r.ok) return sendErr(socket, r.reason, 'lobbyga qaytish rad etildi');
+          resetMatchFlow();
+          log.info(`[lobby] ${member.id} sessiyani lobbyga qaytardi (restart uchun)`);
+          broadcastLobby(Date.now());
           break;
         }
         case MSG.SET_TEAM: {

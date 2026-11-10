@@ -563,6 +563,15 @@ export function sessionSnapshot (session, out = {}) {
     lastReason: s.weapon.lastReason
   };
   out.grenades = s.grenades;
+  // HUD: to'liq qurol ro'yxati (o'q-dori — SERVER qiymati; granata zaxirasi shu yerda)
+  const lo = session.state.loadout;
+  const ld = out.loadout || (out.loadout = []);
+  ld.length = lo.ids.length;
+  for (let i = 0; i < lo.ids.length; i++) {
+    const sl = lo.slots[lo.ids[i]];
+    const o = ld[i] || (ld[i] = {});
+    o.id = lo.ids[i]; o.mag = sl.mag; o.reserve = sl.reserve; o.active = i === lo.index;
+  }
   out.stats = {
     shots: s.stats.shots, hits: s.stats.hits, blocked: s.stats.blocked,
     kills: s.stats.kills, deaths: s.stats.deaths, respawns: s.stats.respawns,
