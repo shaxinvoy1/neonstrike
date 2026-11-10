@@ -250,7 +250,7 @@ export function lobbySnapshot (hub, viewerId, { addresses = [], serverTime = 0 }
       const p = s.players[i];
       const host = p.id === s.hostId;
       if (p.id === you) { isHostFlag = host; inSessionFlag = true; }
-      players.push({ id: p.id, name: p.name, host, connected: true, joinedAt: p.joinedAt });
+      players.push({ id: p.id, name: p.name, host, connected: true, joinedAt: p.joinedAt, prefer: p.prefer || null });
     }
   }
   return {

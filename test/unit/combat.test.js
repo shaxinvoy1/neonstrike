@@ -598,7 +598,8 @@ test('chegara: server/app.js Phase 5 avtoritet + Phase 6 lobby + Phase 7 sinxron
   assert.match(code, /broadcastChat/, 'server chatni tarqatmaydi');
   // Phase 10+: voip/ranking/matchmaking/scoreboard YO'Q
   // (interpolatsiya/rekonsiliatsiya KLIENTDA — serverda bo'lmasligi kerak)
-  const forbidden = /\b(interpolat\w*|reconcil\w*|rollback|lagComp\w*|scoreboard|voiceChat|voip|matchmak\w*|ranking|killfeed|inventory|spectat\w*|replay)\b/i;
+  // V-773 rebuild: umumiy kill-feed va scoreboard endi talab qilinadi (mission §8/§10) — ro'yxatdan chiqarildi.
+  const forbidden = /\b(interpolat\w*|reconcil\w*|rollback|lagComp\w*|voiceChat|voip|matchmak\w*|ranking|inventory|spectat\w*|replay)\b/i;
   const m = code.match(forbidden);
   assert.equal(m, null, `server/app.jsda Phase 10+ termini: ${m && m[0]}`);
 });

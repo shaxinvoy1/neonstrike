@@ -439,3 +439,17 @@
 [2026-09-22T09:20:04.055Z] [info] [net] hello #2 name="real-window"
 [2026-09-22T09:20:04.064Z] [info] [sim] sessiya #2 (p2) yaratildi — nishon=8
 [2026-09-22T09:20:04.070Z] [info] [gpu] #2 webgl2=true renderer="ANGLE (Intel, Mesa Intel(R) Graphics (RPL-P), OpenGL 4.6)" platform="Linux x86_64"
+
+=== NEON STRIKE server start: 2026-11-10T11:24:07.353Z ===
+[2026-11-10T11:24:07.361Z] [info] ==================================================
+[2026-11-10T11:24:07.361Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-11-10T11:24:07.361Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-11-10T11:24:07.361Z] [info]   Local : http://localhost:3000
+[2026-11-10T11:24:07.362Z] [info]   LAN   : http://192.0.2.2:3000
+[2026-11-10T11:24:07.362Z] [info]   WS    : ws://<host>:3000/ws
+[2026-11-10T11:24:07.362Z] [info] ==================================================
+[2026-11-10T11:25:00.819Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-11-10T11:25:00.826Z] [info] [net] hello #1 name="headless-check"
+[2026-11-10T11:25:00.830Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-11-10T11:25:00.862Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
+[2026-11-10T11:25:08.448Z] [info] [net] - #1 disconnected (online=0)

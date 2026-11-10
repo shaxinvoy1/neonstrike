@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server/index.js",
-    "test": "node --test test/unit/smoke.test.js test/unit/collision.test.js test/unit/map.test.js test/unit/weapons.test.js test/unit/combat.test.js test/unit/grenade.test.js test/unit/server-authority.test.js test/unit/lobby.test.js test/unit/multiplayer.test.js test/unit/round-team-score.test.js test/unit/hud-chat.test.js test/unit/stability.test.js test/unit/lan-qa.test.js test/unit/final-hardening.test.js test/unit/core-gameplay.test.js",
+    "test": "node --test test/unit/smoke.test.js test/unit/collision.test.js test/unit/map.test.js test/unit/weapons.test.js test/unit/combat.test.js test/unit/grenade.test.js test/unit/server-authority.test.js test/unit/lobby.test.js test/unit/multiplayer.test.js test/unit/round-team-score.test.js test/unit/hud-chat.test.js test/unit/stability.test.js test/unit/lan-qa.test.js test/unit/final-hardening.test.js test/unit/core-gameplay.test.js test/unit/v773-foundation.test.js",
     "verify": "node tools/verify-phase2.mjs",
     "verify:phase2": "node tools/verify-phase2.mjs",
     "verify:phase3": "node tools/verify-phase3.mjs",

@@ -27,7 +27,8 @@ export const MATCH_RULES = Object.freeze({
   ROUNDS_TO_WIN: SIM.ROUNDS_TO_WIN,
   ROUND_END_MS: SIM.ROUND_END_MS,
   STARTING_MS: SIM.STARTING_MS,
-  MAX_ROUNDS: SIM.MAX_ROUNDS
+  MAX_ROUNDS: SIM.MAX_ROUNDS,
+  ROUND_TIME_MS: SIM.ROUND_TIME_MS
 });
 
 /** Rad etish sabablari (testlar/telemetriya shu matnlarni o'qiydi) */
@@ -128,6 +129,21 @@ export function removePlayer (match, playerId) {
   return removed;
 }
 
+/** Durang raund/match natijasi (raund vaqti tugaganda tirik a'zolar teng) */
+export const DRAW = 'draw';
+
+/**
+ * Raund vaqti tugaganini tekshirish va g'olibni aniqlash (SERVER vaqti).
+ * @returns {string|null} TEAM.A | TEAM.B | DRAW | null (vaqt hali bor)
+ */
+export function evaluateRoundTimeout (match, lives, now = 0) {
+  if (!match || match.roundState !== MATCH_PHASE.LIVE || !teamsComplete(match)) return null;
+  if (!match.roundStartedAt || now - match.roundStartedAt < MATCH_RULES.ROUND_TIME_MS) return null;
+  const a = lives ? lives.A : match.lives.A;
+  const b = lives ? lives.B : match.lives.B;
+  return a > b ? TEAM.A : b > a ? TEAM.B : DRAW;
+}
+
 /** Ikkala jamoada ham a'zo bo'lganmi (raund tugashi uchun shart) */
 export function teamsComplete (match) {
   return match.teamsAtRoundStart.A > 0 && match.teamsAtRoundStart.B > 0;
@@ -158,7 +174,7 @@ export function beginRound (match, roundNumber, now = 0) {
  * Raund FAQAT serverda belgilangan `STARTING_MS` dan keyin LIVE bo'ladi.
  * @returns {{ok:boolean, reason?:string, match:object}}
  */
-export function startMatch (match, playerIds, now = 0) {
+export function startMatch (match, playerIds, now = 0, prefs = null) {
   if (!match) return { ok: false, reason: MATCH_REJECT.NO_MATCH };
   match.scores.A = 0;
   match.scores.B = 0;
@@ -172,7 +188,19 @@ export function startMatch (match, playerIds, now = 0) {
   match.teamsAtRoundStart.A = 0;
   match.teamsAtRoundStart.B = 0;
   const list = Array.isArray(playerIds) ? playerIds : [];
-  for (const id of list) assignTeam(match, id);   // deterministik tartib (qo'shilish tartibi)
+  // jamoa tanlovi: istak qondiriladi, lekin jamoalar farqi 1 dan oshmaydi
+  // (ortiqchalar qo'shilish tartibida kichik jamoaga o'tadi); tanlamaganlar —
+  // kichik jamoaga (deterministik).
+  const cap = Math.ceil(list.length / 2);
+  if (prefs) {
+    for (const id of list) {
+      const want = prefs[id];
+      if ((want === TEAM.A || want === TEAM.B) && match.teams[want].length < cap) {
+        match.teams[want].push(String(id));
+      }
+    }
+  }
+  for (const id of list) assignTeam(match, id);
   match.roundNumber = 0;
   match.roundState = MATCH_PHASE.STARTING;
   match.state = MATCH_PHASE.STARTING;
@@ -208,14 +236,14 @@ export function endRound (match, winner, now = 0) {
   if (match.roundState !== MATCH_PHASE.LIVE) {
     return { ok: false, reason: MATCH_REJECT.ALREADY };
   }
-  if (winner !== TEAM.A && winner !== TEAM.B) {
+  if (winner !== TEAM.A && winner !== TEAM.B && winner !== DRAW) {
     return { ok: false, reason: MATCH_REJECT.TEAMS_INCOMPLETE };
   }
   match.roundWinner = winner;
-  match.scores[winner] += 1;
+  if (winner !== DRAW) match.scores[winner] += 1;
   match.roundState = MATCH_PHASE.ROUND_END;
   match.roundEndsAt = now + MATCH_RULES.ROUND_END_MS;
-  const matchEnded = match.scores[winner] >= MATCH_RULES.ROUNDS_TO_WIN;
+  const matchEnded = winner !== DRAW && match.scores[winner] >= MATCH_RULES.ROUNDS_TO_WIN;
   if (matchEnded) {
     match.matchWinner = winner;
     match.state = MATCH_PHASE.MATCH_END;
@@ -243,7 +271,7 @@ export function stepMatch (match, now = 0) {
   }
   if (match.state === MATCH_PHASE.ROUND_END && now >= match.roundEndsAt) {
     const w = match.roundWinner;
-    if (w && match.scores[w] >= MATCH_RULES.ROUNDS_TO_WIN) {
+    if (w && w !== DRAW && match.scores[w] >= MATCH_RULES.ROUNDS_TO_WIN) {
       match.matchWinner = w;
       match.state = MATCH_PHASE.MATCH_END;
       ev.matchEnded = true;
@@ -252,7 +280,8 @@ export function stepMatch (match, now = 0) {
     }
     if (match.roundNumber >= MATCH_RULES.MAX_ROUNDS) {
       // himoya chegarasi: raundlar tugadi — ball bo'yicha g'olib
-      match.matchWinner = match.scores.A >= match.scores.B ? TEAM.A : TEAM.B;
+      match.matchWinner = match.scores.A > match.scores.B ? TEAM.A
+        : match.scores.B > match.scores.A ? TEAM.B : DRAW;
       match.state = MATCH_PHASE.MATCH_END;
       ev.matchEnded = true;
       ev.event = 'match-end-max';
@@ -291,6 +320,10 @@ export function matchSnapshot (match, out = {}, now = 0) {
     for (let i = 0; i < match.teams.B.length; i++) teams.B.push(match.teams.B[i]);
   }
   out.roundsToWin = MATCH_RULES.ROUNDS_TO_WIN;
+  out.maxRounds = MATCH_RULES.MAX_ROUNDS;
+  out.roundTimeLeft = match && match.roundState === MATCH_PHASE.LIVE && match.roundStartedAt
+    ? +Math.max(0, (MATCH_RULES.ROUND_TIME_MS - (now - match.roundStartedAt)) / 1000).toFixed(1)
+    : 0;
   out.roundEndsIn = match && match.roundState === MATCH_PHASE.ROUND_END && Number.isFinite(match.roundEndsAt)
     ? +Math.max(0, (match.roundEndsAt - now) / 1000).toFixed(2)
     : 0;

@@ -57,13 +57,14 @@ export function placeHumanoidZones (zones, x, y, z, opts = {}) {
   if (!Array.isArray(zones)) return zones;
   const r = opts.radius || TARGET_RADIUS;
   const scale = r / TARGET_RADIUS;
+  const hs = opts.heightScale || 1;
   for (let i = 0; i < zones.length; i++) {
     const b = ZONE_BOUNDS[zones[i].zone];
     if (!b) continue;
     const zr = b.r * scale;
     const box = zones[i].box;
-    box.min[0] = x - zr; box.min[1] = y + b.y0; box.min[2] = z - zr;
-    box.max[0] = x + zr; box.max[1] = y + b.y1; box.max[2] = z + zr;
+    box.min[0] = x - zr; box.min[1] = y + b.y0 * hs; box.min[2] = z - zr;
+    box.max[0] = x + zr; box.max[1] = y + b.y1 * hs; box.max[2] = z + zr;
   }
   return zones;
 }

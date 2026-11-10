@@ -54,7 +54,8 @@ test('protocol-consts: kutilgan qiymatlar', () => {
   assert.equal(SIM.SNAPSHOT_HZ, 20);
   assert.equal(SIM.INTERP_DELAY_MS, 100);
   assert.equal(SIM.MAX_SNAPSHOT_PLAYERS, 8);
-  assert.equal(SIM.ROUNDS_TO_WIN, 5);
+  assert.equal(SIM.ROUNDS_TO_WIN, 6);
+  assert.equal(SIM.MAX_ROUNDS, 10);
 });
 
 test('vendor: three.module.js mavjud, r160, butun fayl', () => {

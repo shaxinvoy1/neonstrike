@@ -196,8 +196,10 @@ export function setPeerTargets (state, peers) {
     // ta'sir qilmaydi; klient bu maydonni HECH QACHON o'rnatmaydi.
     t.owner = p.owner || null;
     t.alive = p.alive !== false;
-    placeHumanoidZones(t.zones, p.x, p.y, p.z);
-    t.centre.x = p.x; t.centre.y = p.y + TARGET_CENTRE_Y; t.centre.z = p.z;
+    // cho'kkalagan o'yinchining hit-zonalari past (movement CROUCH.SCALE bilan bir xil)
+    const hs = p.crouch ? 0.68 : 1;
+    placeHumanoidZones(t.zones, p.x, p.y, p.z, { heightScale: hs });
+    t.centre.x = p.x; t.centre.y = p.y + TARGET_CENTRE_Y * hs; t.centre.z = p.z;
   }
   // 2) id → nishon xaritasi (otish natijasini hal qilish uchun)
   state.peerById.clear();

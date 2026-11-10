@@ -23,7 +23,7 @@ import { refillLoadout, WEAPONS } from '../shared/weapons.js';
 import { TRAINING_DUMMIES, TRAINING_RINGS, MAP, SPAWNS, SOLID_BOXES } from '../shared/map.js';
 import { PLAYER, headroomClear } from '../shared/collision.js';
 import {
-  createMovementState, resetMovement, stepMovement, normalizeAxis
+  createMovementState, resetMovement, stepMovement, normalizeAxis, CROUCH
 } from '../shared/movement.js';
 import { SIM } from '../shared/protocol-consts.js';
 
@@ -147,7 +147,7 @@ export function createSession ({ id = 1, name = '', seed = 0, now = Date.now() }
      * har tick `stepSession` uni EVENTS oqimiga qo'shib bo'shatadi.
      */
     incoming: [],
-    moveIntent: { forward: 0, right: 0, sprint: false },
+    moveIntent: { forward: 0, right: 0, sprint: false, jump: false, crouch: false },
     syncFrames: 0,
     lastInputAt: now,
     lastTickAt: now,
@@ -251,7 +251,10 @@ export function validateInput (session, msg, now = 0) {
     if (msg.move.sprint !== undefined && typeof msg.move.sprint !== 'boolean') {
       return { ok: false, reason: SESSION_REJECT.BAD_MOVE };
     }
-    move = { forward: ax.forward, right: ax.right, sprint: msg.move.sprint === true };
+    for (const k of ['jump', 'crouch']) {
+      if (msg.move[k] !== undefined && typeof msg.move[k] !== 'boolean') return { ok: false, reason: SESSION_REJECT.BAD_MOVE };
+    }
+    move = { forward: ax.forward, right: ax.right, sprint: msg.move.sprint === true, jump: msg.move.jump === true, crouch: msg.move.crouch === true };
   }
 
   // 5) intentlar
@@ -330,6 +333,9 @@ export function applyInput (session, msg, now = session.state.now) {
       session.moveIntent.forward = v.move.forward;
       session.moveIntent.right = v.move.right;
       session.moveIntent.sprint = v.move.sprint;
+      // sakrash — bir martalik (latched) niyat: tick iste'mol qilguncha saqlanadi
+      if (v.move.jump) session.moveIntent.jump = true;
+      session.moveIntent.crouch = v.move.crouch;
       if (Math.abs(v.move.forward) > 0.01 || Math.abs(v.move.right) > 0.01) {
         session.pending.moving = true;
       }
@@ -337,6 +343,7 @@ export function applyInput (session, msg, now = session.state.now) {
       session.moveIntent.forward = 0;
       session.moveIntent.right = 0;
       session.moveIntent.sprint = false;
+      session.moveIntent.crouch = false;
     }
     session.counters.poseIgnored += 1;
   } else {
@@ -406,13 +413,15 @@ export function stepSession (session, now, dtMs) {
   if (session.authoritativeMovement) {
     const mi = session.moveIntent;
     stepMovement(session.movement, dt / 1000,
-      { forward: mi.forward, right: mi.right }, st.yaw, mi.sprint);
+      { forward: mi.forward, right: mi.right }, st.yaw, mi.sprint,
+      { jump: mi.jump, crouch: mi.crouch });
+    mi.jump = false;
     session.counters.movedTicks += 1;
   }
 
   // origin har tick qayta hisoblanadi (pozitsiya HARAKATDAN keyin)
   st.aimOrigin[0] = st.position.x;
-  st.aimOrigin[1] = st.position.y + PLAYER.EYE;
+  st.aimOrigin[1] = st.position.y + PLAYER.EYE * (session.movement.crouching ? CROUCH.SCALE : 1);
   st.aimOrigin[2] = st.position.z;
 
   const p = session.pending;
@@ -702,6 +711,17 @@ export function playerSyncState (session, out = {}) {
   out.pitch = +st.pitch.toFixed(3);
   out.faceYaw = +m.faceYaw.toFixed(3);
   out.airborne = !!m.airborne;
+  out.crouch = !!m.crouching;
+  // animatsiya sinxronizatsiyasi (FAQAT ko'rsatish uchun — server qiymatlari)
+  const lo = st.loadout;
+  const wid = lo.ids[lo.index];
+  out.weapon = wid;
+  out.reloading = !!lo.slots[wid].reloading;
+  out.switching = !!lo.switching;
+  out.shots = st.stats.shots;
+  out.kills = st.stats.kills;
+  out.deaths = st.stats.deaths;
+  out.name = session.name || '';
   out.alive = !!st.health.alive;
   out.hp = st.health.hp;
   // PHASE 8: avtoritar jamoa (server tayinlagan) — klient FAQAT ko'rsatadi

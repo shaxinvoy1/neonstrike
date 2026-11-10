@@ -37,7 +37,7 @@ import {
 } from './lobby.js';
 // PHASE 8: jamoa / raund / ball — SOF qoidalar (server/session.js combat'idan alohida)
 import {
-  createMatch, resetMatch, startMatch, stepMatch, evaluateRound, endRound,
+  createMatch, resetMatch, startMatch, stepMatch, evaluateRound, evaluateRoundTimeout, endRound,
   assignTeam, teamOf, removePlayer as matchRemovePlayer, matchSnapshot,
   MATCH_PHASE, TEAM, MATCH_RULES
 } from './match.js';
@@ -140,7 +140,9 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
     _syncPlayers: [],           // qayta ishlatiladigan player obyektlari (alloc yo'q)
     // ---- PHASE 8: match (jamoa/raund/ball) — BITTA egasi: lobby sessiyasi ----
     match: createMatch(),
-    _matchSnap: {},             // SNAPSHOT uchun qayta ishlatiladigan match bloki
+    _matchSnap: {},
+    killFeed: [],               // umumiy kill-feed (oxirgi 8 ta, server hodisalari)
+    killSeq: 0,             // SNAPSHOT uchun qayta ishlatiladigan match bloki
     _lobbyMatchSnap: {},        // LOBBY_STATE uchun
     _peerScratch: [],           // peer nishon deskriptorlari (qayta ishlatiladi)
     matchEvents: 0,
@@ -304,7 +306,9 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
     const s = state.lobby.session;
     if (!s) return null;
     const ids = s.players.map((p) => p.id);
-    const res = startMatch(state.match, ids, nowTs);
+    const prefs = {};
+    for (const p of s.players) if (p.prefer) prefs[p.id] = p.prefer;
+    const res = startMatch(state.match, ids, nowTs, prefs);
     assignTeams();
     spawnTeams(nowTs);
     state.matchEvents += 1;
@@ -382,6 +386,7 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
           scratch.push({
             id: other.playerId,
             x: st.position.x, y: st.position.y, z: st.position.z,
+            crouch: !!other.movement.crouching,
             health: st.health,
             alive: st.health.alive,
             teamId: other.teamId,
@@ -422,7 +427,7 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
       if (t === TEAM.A) lives.A += 1;
       else if (t === TEAM.B) lives.B += 1;
     }
-    const winner = evaluateRound(state.match, lives);
+    const winner = evaluateRound(state.match, lives) || evaluateRoundTimeout(state.match, lives, nowTs);
     if (!winner) return null;
     const res = endRound(state.match, winner, nowTs);
     if (res.ok) {
@@ -441,6 +446,7 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
   function sendSnapshots (nowTs) {
     const players = state._syncPlayers;
     const matchBlock = matchSnapshot(state.match, state._matchSnap, nowTs);
+    matchBlock.feed = state.killFeed;
     let n = 0;
     for (const session of state.sessions.values()) {
       if (!session.authoritativeMovement) continue;
@@ -518,6 +524,15 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
         // PHASE 10: o'q qabul/rad hisobi (o'lchov — mantiq o'zgarmaydi)
         if (R) metrics.recordShots(R.shotsAccepted ? 1 : 0, R.shotsRejected ? 1 : 0);
         if (session.events.length) {
+          // umumiy kill-feed: o'yinchi o'ldirilgan hodisalar (SERVER hodisasi)
+          for (const ev of session.events) {
+            if (!ev || ev.type !== 'kill' || !session.authoritativeMovement) continue;
+            const vid = String(ev.targetId || '');
+            if (!vid.startsWith('p')) continue;
+            state.killSeq += 1;
+            state.killFeed.push({ seq: state.killSeq, killer: session.playerId, victim: vid, weapon: ev.weaponId || '', zone: ev.zone || '', at: nowTs });
+            if (state.killFeed.length > 8) state.killFeed.shift();
+          }
           safeSend(session.socket, {
             type: MSG.EVENTS, sessionId: session.id, tick: session.tick,
             serverTime: nowTs, events: session.events
@@ -708,6 +723,21 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
             }
           }
           broadcastLobby(nowTs);
+          break;
+        }
+        case MSG.SET_TEAM: {
+          // FAQAT lobby bosqichida, FAQAT A/B — server qaror qiladi (start paytida muvozanat)
+          const member = memberBySocket.get(socket);
+          const sess = state.lobby.session;
+          if (!member || !sess || !sess.players.some((p) => p.id === member.id)) return sendErr(socket, 'no_session', 'lobby yo‘q');
+          if (sess.state !== LOBBY_PHASE.LOBBY) return sendErr(socket, 'bad_state', 'jamoa faqat lobby bosqichida tanlanadi');
+          const wish = msg.prefer;
+          if (wish !== TEAM.A && wish !== TEAM.B) return sendErr(socket, 'bad_team', 'jamoa A yoki B');
+          const cap = Math.ceil(state.lobby.capacity / 2);
+          const taken = sess.players.filter((p) => p.prefer === wish && p.id !== member.id).length;
+          if (taken >= cap) return sendErr(socket, 'team_full', 'jamoa to‘la');
+          member.prefer = wish;
+          broadcastLobby(Date.now());
           break;
         }
         case MSG.PING:

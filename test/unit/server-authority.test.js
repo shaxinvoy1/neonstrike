@@ -580,7 +580,7 @@ test('WS: hello → welcome + session (server holat EGASI) + dastlabki state', a
   assert.equal(w.protocol, PROTOCOL_VERSION);
   const sess = await next(ws, MSG.SESSION);
   assert.equal(sess.map.name, MAP.NAME);
-  assert.equal(sess.weapons.length, 4);
+  assert.equal(sess.weapons.length, 5);
   const st = await next(ws, MSG.STATE);
   assert.equal(st.hp, 100);
   assert.equal(st.weapon.mag, RIFLE.magSize);

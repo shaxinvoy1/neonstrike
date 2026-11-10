@@ -35,10 +35,10 @@ function maxCone (out, count, dir) {
 }
 
 // ---------------- 1) konfiguratsiya ----------------
-test('weapons: 4 qurol, muzlatilgan, slot/tartib izchil', () => {
-  assert.equal(WEAPON_ORDER.length, 4);
-  assert.deepEqual([...WEAPON_ORDER], ['neon-rifle', 'pulse-pistol', 'scatter-shot', 'energy-grenade']);
-  assert.equal(Object.keys(WEAPONS).length, 4);
+test('weapons: 5 qurol, muzlatilgan, slot/tartib izchil', () => {
+  assert.equal(WEAPON_ORDER.length, 5);
+  assert.deepEqual([...WEAPON_ORDER], ['neon-rifle', 'pulse-pistol', 'scatter-shot', 'energy-grenade', 'combat-knife']);
+  assert.equal(Object.keys(WEAPONS).length, 5);
   for (const id of WEAPON_ORDER) {
     const w = getWeapon(id);
     assert.ok(w, `${id} yo‘q`);
@@ -47,8 +47,8 @@ test('weapons: 4 qurol, muzlatilgan, slot/tartib izchil', () => {
     assert.ok(Object.isFrozen(w.falloff) && Object.isFrozen(w.spreadDeg), `${id} nested muzlatilmagan`);
     assert.equal(typeof w.name, 'string');
     assert.ok(w.name.length > 3, `${id}: nom yo‘q`);
-    assert.ok([1, 2, 3, 4].includes(w.slot), `${id}: slot`);
-    assert.ok(['hitscan', 'projectile'].includes(w.mode), `${id}: mode`);
+    assert.ok([1, 2, 3, 4, 5].includes(w.slot), `${id}: slot`);
+    assert.ok(['hitscan', 'projectile', 'melee'].includes(w.mode), `${id}: mode`);
     assert.equal(typeof w.auto, 'boolean', `${id}: auto belgilanmagan`);
     assert.ok(w.rpm > 0 && w.rpm <= 1200, `${id}: rpm=${w.rpm}`);
     assert.ok(w.damage > 0 && w.damageMin > 0 && w.damageMin <= w.damage, `${id}: damage`);

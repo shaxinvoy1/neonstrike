@@ -9,7 +9,7 @@
 // Cheklovlar: three.js YO'Q, DOM YO'Q, Mathdan boshqa global YO'Q.
 // Node'da to'g'ridan-to'g'ri test qilinadi.
 // ============================================================
-import { moveAABB, groundHeight, PLAYER, MOVE, damp } from './collision.js';
+import { moveAABB, groundHeight, headroomClear, PLAYER, MOVE, damp } from './collision.js';
 import { SOLID_BOXES, SPAWNS, MAP } from './map.js';
 // PHASE 1: gorizontal bazis YAGONA manbadan (shared/aim.js) — klient harakati,
 // server simulyatsiyasi va crosshair nuri bir xil ramkada bo'lishi uchun.
@@ -17,6 +17,10 @@ import { moveWish } from './aim.js';
 
 /** Tushish tezlanishi (m/s²) — sakrash YO'Q, faqat tushish (Phase 3) */
 export const GRAVITY = 22;
+/** Sakrash boshlang'ich tezligi (m/s) → ~0.9 m balandlik (v²/2g) */
+export const JUMP_VELOCITY = 6.3;
+/** Cho'kkalash: tezlik, kollizion balandlik va ko'z/hit-zona masshtabi */
+export const CROUCH = Object.freeze({ SPEED: 2.6, HEIGHT: 1.2, SCALE: 0.68 });
 /** Vertikal snap uchun epsilon */
 export const MOVEMENT_EPS = 1e-4;
 
@@ -48,6 +52,9 @@ export function resetMovement (m) {
   m.speed = 0;
   m.faceYaw = m.spawn.yaw;
   m.sprinting = false;
+  m.crouching = false;
+  m.jumps = 0;
+  m.landings = 0;
   m.hitX = false;
   m.hitZ = false;
   m.stepped = false;
@@ -65,7 +72,9 @@ export function resetMovement (m) {
  * @param {boolean} sprint
  * @returns {{x:number,y:number,z:number,hitX:boolean,hitZ:boolean,stepped:number}}
  */
-export function stepMovement (m, dt, axis, yaw, sprint = false) {
+export function stepMovement (m, dt, axis, yaw, sprint = false, opts = null) {
+  const wantJump = !!(opts && opts.jump);
+  const wantCrouch = !!(opts && opts.crouch);
   const forward = axis && Number.isFinite(axis.forward) ? axis.forward : 0;
   const right = axis && Number.isFinite(axis.right) ? axis.right : 0;
 
@@ -78,8 +87,12 @@ export function stepMovement (m, dt, axis, yaw, sprint = false) {
   let wishZ = wish[1];
   const len = wish[2];
 
-  m.sprinting = sprint && len > 0.01;
-  const maxSpeed = m.sprinting ? MOVE.SPRINT : MOVE.WALK;
+  // cho'kkalash: turishga qaytish faqat bosh ustida joy bo'lsa (shift tagida tiqilmaslik)
+  if (wantCrouch) m.crouching = true;
+  else if (m.crouching && headroomClear(m.pos.x, m.pos.y, m.pos.z, PLAYER.RADIUS, PLAYER.HEIGHT, m.boxes)) m.crouching = false;
+  const bodyH = m.crouching ? CROUCH.HEIGHT : PLAYER.HEIGHT;
+  m.sprinting = sprint && !m.crouching && len > 0.01;
+  const maxSpeed = m.crouching ? CROUCH.SPEED : m.sprinting ? MOVE.SPRINT : MOVE.WALK;
   const k = damp(MOVE.ACCEL, dt);
   m.vel.x += (wishX * maxSpeed - m.vel.x) * k;
   m.vel.z += (wishZ * maxSpeed - m.vel.z) * k;
@@ -87,7 +100,7 @@ export function stepMovement (m, dt, axis, yaw, sprint = false) {
   if (Math.abs(m.vel.z) < 0.001) m.vel.z = 0;
 
   const res = moveAABB(m.pos, { x: m.vel.x * dt, z: m.vel.z * dt },
-    PLAYER.RADIUS, PLAYER.HEIGHT, m.boxes);
+    PLAYER.RADIUS, bodyH, m.boxes);
 
   if (res.hitX) m.vel.x = 0;
   if (res.hitZ) m.vel.z = 0;
@@ -108,14 +121,24 @@ export function stepMovement (m, dt, axis, yaw, sprint = false) {
   }
   if (res.hitX || res.hitZ) m.collisions++;
 
-  // ---------- vertikal: tushish (platformadan/qinadan sakrab tushish) ----------
-  // STEP-UP moveAABB ichida yuqoriga o'tkazadi; bu yerda faqat PASTGA tushish:
+  // ---------- vertikal: sakrash, tushish, qo'nish ----------
+  // STEP-UP moveAABB ichida yuqoriga o'tkazadi; bu yerda sakrash va gravitatsiya.
+  if (wantJump && !m.airborne && !m.crouching) {
+    m.vy = JUMP_VELOCITY;
+    m.airborne = true;
+    m.jumps++;
+  }
   const g = groundHeight(m.pos.x, m.pos.z, m.pos.y, PLAYER.RADIUS, m.boxes, m.floorY);
-  if (m.pos.y > g + MOVEMENT_EPS) {
+  if (m.vy > 0 || m.pos.y > g + MOVEMENT_EPS) {
     m.airborne = true;
     m.vy -= GRAVITY * dt;
     let ny = m.pos.y + m.vy * dt;
-    if (ny <= g) { ny = g; m.vy = 0; m.airborne = false; }
+    // shiftga urilish: yuqoriga harakat to'xtaydi
+    if (m.vy > 0 && !headroomClear(m.pos.x, ny, m.pos.z, PLAYER.RADIUS, bodyH, m.boxes)) {
+      ny = m.pos.y;
+      m.vy = 0;
+    }
+    if (ny <= g) { ny = g; m.vy = 0; m.airborne = false; m.landings++; }
     m.pos.y = ny;
   } else {
     m.pos.y = g;
@@ -141,6 +164,7 @@ export function teleportMovement (m, x, z, yaw, y) {
   m.vel.z = 0;
   m.vy = 0;
   m.airborne = false;
+  m.crouching = false;
   m.speed = 0;
   if (typeof yaw === 'number') m.faceYaw = yaw;
   return m;

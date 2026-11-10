@@ -284,7 +284,7 @@ test('aim/converge: degenerativ holatda null (juda yaqin nuqta) + deviationAngle
 // ============================================================
 // C) QUROLLAR / HOLAT MASHINASI
 // ============================================================
-test('weapons/roles: 4 qurol — o‘zaro FARQLI rol, har birida spread/recoil konfiguratsiyasi', () => {
+test('weapons/roles: 5 qurol — o‘zaro FARQLI rol, har birida spread/recoil konfiguratsiyasi', () => {
   const sig = new Set();
   for (const id of WEAPON_ORDER) {
     const w = WEAPONS[id];
@@ -294,7 +294,7 @@ test('weapons/roles: 4 qurol — o‘zaro FARQLI rol, har birida spread/recoil k
       Number.isFinite(w.spreadDeg.recover), `${id}: bloom konfiguratsiyasi`);
     assert.ok(w.spreadDeg.bloomMax >= 0 && w.spreadDeg.bloom >= 0, `${id}: bloom manfiy`);
   }
-  assert.equal(sig.size, 4, 'qurollar bir xil — rollar ajralmagan');
+  assert.equal(sig.size, 5, 'qurollar bir xil — rollar ajralmagan');
   assert.equal(RIFLE.auto, true, 'rifle avtomat');
   assert.equal(PISTOL.auto, false, 'pistol yarim-avtomat');
   assert.equal(SCATTER.pellets, 9, 'scatter pelletlar');

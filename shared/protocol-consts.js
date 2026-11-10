@@ -53,6 +53,7 @@ export const MSG = {
   JOIN_SESSION: 'join-session',      // {name?, sessionId?} — mavjud LAN sessiyaga qo'shilish
   LEAVE_SESSION: 'leave-session',    // {} — sessiyadan chiqish
   START_SESSION: 'start-session',    // {} — FAQAT host: session state lobby → in_game
+  SET_TEAM: 'set-team',              // {prefer:'A'|'B'} — lobby'da jamoa TANLASH niyati (server muvozanatlaydi)
 
   // --- PHASE 6: LAN LOBBY (server -> klient) — AVTORITAR lobby holati ---
   LOBBY_STATE: 'lobby-state', // {sessionId, state, hostId, capacity, count, you, isHost,
@@ -112,9 +113,11 @@ export const SIM = Object.freeze({
   /** Raund tugagach keyingi raundgacha tanaffus (ms) */
   ROUND_END_MS: 3000,
   /** Match g'alabasi uchun kerakli raund g'alabalari */
-  ROUNDS_TO_WIN: 5,
-  /** Bitta matchdagi maksimal raund (himoya chegarasi) */
-  MAX_ROUNDS: 99
+  ROUNDS_TO_WIN: 6,
+  /** Bitta matchdagi raundlar soni (10 raundli match; 6 g'alaba — muddatidan oldin) */
+  MAX_ROUNDS: 10,
+  /** Raund vaqti (ms): tugasa tirik a'zolari ko'p jamoa yutadi, teng bo'lsa — durang */
+  ROUND_TIME_MS: 100000
 });
 
 /**

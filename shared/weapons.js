@@ -95,7 +95,7 @@ export const WEAPONS = Object.freeze({
     recoil: { pitch: 0.03, yaw: 0.006 }
   }),
   'energy-grenade': W({
-    id: 'energy-grenade', name: 'ENERGY GRENADE', slot: 4, mode: 'projectile', auto: false,
+    id: 'energy-grenade', name: 'FRAG GRENADE', slot: 4, mode: 'projectile', auto: false,
     rpm: 60, damage: 95, damageMin: 15, falloff: { start: 0, end: 0 }, range: 60,
     magSize: 1, startReserve: 2, reloadMs: 1200,
     spreadDeg: { base: 0, moving: 0, bloom: 0, bloomMax: 0, recover: 6 },
@@ -111,11 +111,20 @@ export const WEAPONS = Object.freeze({
       minDamage: 15,      // radius chegarasida
       selfDamageScale: 0.6
     }
+  }),
+  // Yaqin jang pichog'i: o'q-dori YO'Q, qisqa masofali server-hisob "nur"
+  // (devor/jamoadosh qoidalari hitscan bilan bir xil yo'ldan o'tadi).
+  'combat-knife': W({
+    id: 'combat-knife', name: 'COMBAT KNIFE', slot: 5, mode: 'melee', auto: false,
+    rpm: 100, damage: 55, damageMin: 55, falloff: { start: 0, end: 2 }, range: 2.1,
+    magSize: 1, startReserve: 0, reloadMs: 400,
+    spreadDeg: { base: 0, moving: 0, bloom: 0, bloomMax: 0, recover: 6 },
+    recoil: { pitch: 0, yaw: 0 }
   })
 });
 
 /** Slot tartibi (1..4 tugmalari va HUD shu tartibni ishlatadi) */
-export const WEAPON_ORDER = Object.freeze(['neon-rifle', 'pulse-pistol', 'scatter-shot', 'energy-grenade']);
+export const WEAPON_ORDER = Object.freeze(['neon-rifle', 'pulse-pistol', 'scatter-shot', 'energy-grenade', 'combat-knife']);
 
 export function getWeapon (id) { return WEAPONS[id] || null; }
 
@@ -314,7 +323,7 @@ export function fireBlockReason (loadout, now, flags = {}) {
   if (st.reloading) return FIRE_REASON.RELOADING;
   if (!wp.auto && !flags.triggerEdge) return FIRE_REASON.SEMI;
   if (now < st.nextFireAt) return FIRE_REASON.COOLDOWN;
-  if (st.mag <= 0) return FIRE_REASON.EMPTY;
+  if (wp.mode !== 'melee' && st.mag <= 0) return FIRE_REASON.EMPTY;
   return '';
 }
 
@@ -350,7 +359,7 @@ export function tryFire (loadout, now, flags = {}) {
   }
 
   if (loadout.switching) loadout.switching = false;   // muddati o'tgan draw
-  st.mag -= 1;
+  if (wp.mode !== 'melee') st.mag -= 1;
   st.shotsFired += 1;
   st.nextFireAt = now + wp.intervalMs;
   st.lastReason = '';
