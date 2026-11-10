@@ -88,8 +88,10 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
     g.input.fire = true;
     while (performance.now() - t0 < 9000) {
       const R = r(); if (!R || !R.alive) break;
-      const dx = R.pos.x - g.move.pos.x, dz = R.pos.z - g.move.pos.z, dy = R.pos.y + 1.1 - (g.move.pos.y + 2.2);
-      g.ots.yaw = Math.atan2(dx, dz); g.ots.pitch = Math.atan2(dy, Math.hypot(dx, dz));
+      // crosshair'ni nishon ko'kragiga: haqiqiy kamera pozitsiyasidan (o'yinchi qanday ko'rsa)
+      const c = g.ots.pos;
+      const dx = R.pos.x - c.x, dz = R.pos.z - c.z, dy = R.pos.y + 1.0 - c.y;
+      g.ots.yaw = Math.atan2(dx, dz) - g.ots.recoilY; g.ots.pitch = Math.atan2(dy, Math.hypot(dx, dz)) - g.ots.recoilP;
       await new Promise((r) => setTimeout(r, 80));
     }
     g.input.fire = false; off();
