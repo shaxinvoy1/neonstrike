@@ -22,6 +22,10 @@ Open `http://localhost:3000`, type a name, then **MULTIPLAYER (LAN)** or **TRAIN
 ## LAN — join (desktop or phone, same Wi-Fi)
 Open the host's LAN address → MULTIPLAYER (LAN) → **JOIN ROOM** → pick a team. Players joining mid-match spawn immediately. Phones: hold the device in landscape.
 
+## Online server (Render.com, free)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/shaxinvoy1/neonstrike)
+`render.yaml` describes the service (Node 22, `npm start`, WebSocket on the same port, https → wss automatically). After deploy the game is at `https://<service>.onrender.com`; share that link or type it into the APK. Free instances sleep after ~15 min idle; the first visit wakes them (≈30–60 s). One room per server.
+
 ## Android APK (telefon)
 `mobile/` — Capacitor launcher (`uz.neonstrike.game`). The APK is a **client**: the game server runs on a computer in the same Wi-Fi.
 1. Computer: run `start-windows.bat` (Windows) or `./start.sh` (Linux/macOS) — needs Node.js ≥ 20. It prints `LAN : http://192.168.x.x:3000`.
