@@ -17,7 +17,7 @@ import {
   PLAYER, CAMERA, MOVE, moveAABB, groundHeight, headroomClear, sweepCamera, overlapsY
 } from '../../shared/collision.js';
 
-const KIND_COUNTS = { wall: 4, divider: 4, platform: 1, core: 1, stair: 28, catwalk: 2, pillar: 10, crate: 10 };
+const KIND_COUNTS = { wall: 4, divider: 4, platform: 1, core: 1, stair: 28, catwalk: 2, pillar: 10, crate: 10, container: 4 };
 const kindList = () => {
   const by = {};
   for (const c of COLLIDERS) by[c.kind] = (by[c.kind] || 0) + 1;
@@ -25,15 +25,15 @@ const kindList = () => {
 };
 
 // ---------- 1) ma'lumot yaxlitligi ----------
-test('map: NEON FACILITY 44×32 m · 60 kollayder · kind taqsimoti', () => {
+test('map: NEON FACILITY 44×32 m · 64 kollayder (V-773: +4 konteyner) · kind taqsimoti', () => {
   assert.equal(MAP.NAME, 'NEON FACILITY');
   assert.equal(MAP.WIDTH, 44);
   assert.equal(MAP.DEPTH, 32);
-  assert.equal(COLLIDERS.length, 60);
-  assert.equal(SOLID_BOXES.length, 60);
-  assert.equal(CAMERA_BOXES.length, 61, 'kollayder + pol plastinkasi');
+  assert.equal(COLLIDERS.length, 64);
+  assert.equal(SOLID_BOXES.length, 64);
+  assert.equal(CAMERA_BOXES.length, 65, 'kollayder + pol plastinkasi');
   assert.deepEqual(kindList(), KIND_COUNTS);
-  assert.equal(new Set(COLLIDERS.map((c) => c.id)).size, 60, 'id’lar takrorlanmasligi kerak');
+  assert.equal(new Set(COLLIDERS.map((c) => c.id)).size, 64, 'id’lar takrorlanmasligi kerak');
 });
 
 test('map: kollayder budjeti ≤120 (Phase 3 talabi) va 5 callout', () => {

@@ -105,6 +105,10 @@ add('crate-3', 'crate', b3(-6.3, 0, -13.0), b3(-4.7, 1.0, -11.4));    // 1.6×1.
 add('crate-4', 'crate', b3(-15.9, 0, 0.1), b3(-14.1, 1.2, 1.9));      // 1.8×1.2×1.8
 add('crate-5', 'crate', b3(-2.4, 0, -9.6), b3(-1.2, 1.2, -8.4));      // 1.2³
 
+// --- YIRIK SANOAT KONTEYNERLARI (Reference B): cover + ko'rish chizig'ini bo'ladi ---
+add('container-1', 'container', b3(-21.4, 0, -9.6), b3(-18.6, 2.6, -6.4));   // spawn A shimoli
+add('container-2', 'container', b3(2.5, 0, -7.6), b3(5.5, 2.6, -6.0));       // LONG markazi (MID devori oldida)
+
 // ---------- yakuniy kollayderlar: BASE + o'zagi bo'lmaganlarning aksi ----------
 const MIRRORED = BASE
   .filter((c) => !sameBox(c.box, mirrorBox(c.box)))
@@ -130,6 +134,12 @@ export const SPAWNS = Object.freeze({
 
 /** Phase 2 moslik: standart spawn = A */
 export const SPAWN = SPAWNS.A;
+
+// ---------- A-SITE (Reference B: katta "A →" belgisi bilan hudud) ----------
+// Belgi shimoliy devorda; hudud — LONG koridorining sharqiy qismi (kollayder EMAS).
+export const SITES = Object.freeze({
+  A: Object.freeze({ id: 'A', min: b3(8, 0, -16), max: b3(17, 3, -4.8), sign: Object.freeze({ x: 11.5, y: 4.6, z: -HZ + 0.02, facing: 0 }) })
+});
 
 // ---------- lanelar (o'qish/qamrov uchun hududlar, KOLLIZIYA EMAS) ----------
 export const LANES = Object.freeze([
