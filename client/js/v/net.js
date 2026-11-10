@@ -2,7 +2,8 @@
 import { MSG } from '/shared/protocol-consts.js';
 export class Net {
   constructor () {
-    this.ws = null; this.handlers = new Map(); this.open = false; this.rtt = 0; this.playerId = null; this.sessionId = null;
+    this.ws = null; this.handlers = new Map(); this.seq = 0;  // input seq — ulanish bo'yicha uzluksiz (server eski seq ni rad etadi)
+    this.open = false; this.rtt = 0; this.playerId = null; this.sessionId = null;
     this._pingT = 0;
   }
   on (type, fn) { if (!this.handlers.has(type)) this.handlers.set(type, new Set()); this.handlers.get(type).add(fn); return () => this.handlers.get(type).delete(fn); }

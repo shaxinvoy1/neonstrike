@@ -453,3 +453,44 @@
 [2026-11-10T11:25:00.830Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
 [2026-11-10T11:25:00.862Z] [info] [gpu] #1 webgl2=true renderer="ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader drive" platform="Linux x86_64"
 [2026-11-10T11:25:08.448Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-11-10T12:20:25.197Z ===
+[2026-11-10T12:20:25.208Z] [info] ==================================================
+[2026-11-10T12:20:25.208Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-11-10T12:20:25.208Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-11-10T12:20:25.208Z] [info]   Local : http://localhost:3000
+[2026-11-10T12:20:25.208Z] [info]   LAN   : http://192.0.2.2:3000
+[2026-11-10T12:20:25.208Z] [info]   WS    : ws://<host>:3000/ws
+[2026-11-10T12:20:25.208Z] [info] ==================================================
+[2026-11-10T12:20:27.039Z] [info] [net] + connection #1 from 127.0.0.1 (online=1)
+[2026-11-10T12:20:29.310Z] [info] [net] hello #1 name="Player"
+[2026-11-10T12:20:29.314Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-11-10T12:21:03.895Z] [info] [net] - #1 disconnected (online=0)
+[2026-11-10T12:21:35.959Z] [info] [net] + connection #2 from 127.0.0.1 (online=1)
+[2026-11-10T12:21:38.005Z] [info] [net] hello #2 name="Player"
+[2026-11-10T12:21:38.008Z] [info] [sim] sessiya #2 (p2) yaratildi — nishon=8
+[2026-11-10T12:22:14.356Z] [info] [net] - #2 disconnected (online=0)
+[2026-11-10T12:22:36.740Z] [info] [net] + connection #3 from 127.0.0.1 (online=1)
+[2026-11-10T12:22:38.945Z] [info] [net] hello #3 name="Player"
+[2026-11-10T12:22:38.948Z] [info] [sim] sessiya #3 (p3) yaratildi — nishon=8
+[2026-11-10T12:23:14.745Z] [info] [net] - #3 disconnected (online=0)
+[2026-11-10T12:23:42.797Z] [info] [net] + connection #4 from 127.0.0.1 (online=1)
+[2026-11-10T12:23:44.859Z] [info] [net] hello #4 name="Player"
+[2026-11-10T12:23:44.861Z] [info] [sim] sessiya #4 (p4) yaratildi — nishon=8
+[2026-11-10T12:24:15.571Z] [info] [net] - #4 disconnected (online=0)
+[2026-11-10T12:24:31.510Z] [info] [net] + connection #5 from 127.0.0.1 (online=1)
+[2026-11-10T12:24:31.513Z] [info] [net] hello #5 name="t"
+[2026-11-10T12:24:31.514Z] [info] [sim] sessiya #5 (p5) yaratildi — nishon=8
+[2026-11-10T12:24:31.823Z] [info] [net] - #5 disconnected (online=0)
+[2026-11-10T12:24:45.599Z] [info] [net] + connection #6 from 127.0.0.1 (online=1)
+[2026-11-10T12:24:47.950Z] [info] [net] hello #6 name="Player"
+[2026-11-10T12:24:47.950Z] [info] [sim] sessiya #6 (p6) yaratildi — nishon=8
+[2026-11-10T12:25:20.186Z] [info] [net] - #6 disconnected (online=0)
+[2026-11-10T12:26:39.480Z] [info] [net] + connection #7 from 127.0.0.1 (online=1)
+[2026-11-10T12:26:41.892Z] [info] [net] hello #7 name="Player"
+[2026-11-10T12:26:41.893Z] [info] [sim] sessiya #7 (p7) yaratildi — nishon=8
+[2026-11-10T12:28:49.816Z] [info] [net] - #7 disconnected (online=0)
+[2026-11-10T12:28:50.485Z] [info] [net] + connection #8 from 127.0.0.1 (online=1)
+[2026-11-10T12:28:52.375Z] [info] [net] hello #8 name="Player"
+[2026-11-10T12:28:52.377Z] [info] [sim] sessiya #8 (p8) yaratildi — nishon=8
+[2026-11-10T12:29:52.708Z] [info] [net] - #8 disconnected (online=0)

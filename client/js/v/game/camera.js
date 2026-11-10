@@ -12,7 +12,7 @@ import { PLAYER } from '/shared/collision.js';
 import { CROUCH } from '/shared/movement.js';
 
 export const CAM = Object.freeze({
-  DIST: 2.75, DIST_AIM: 1.55, SHOULDER: 0.62, SHOULDER_AIM: 0.52, PIVOT_Y: 1.9, PIVOT_Y_AIM: 1.82,
+  DIST: 3.55, DIST_AIM: 2.0, SHOULDER: 0.92, SHOULDER_AIM: 0.7, PIVOT_Y: 2.2, PIVOT_Y_AIM: 2.05,
   PITCH_MIN: -1.1, PITCH_MAX: 0.95, RADIUS: 0.22, SENS: 0.0023, FOV_AIM: 0.72
 });
 

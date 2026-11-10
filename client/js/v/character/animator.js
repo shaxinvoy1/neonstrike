@@ -29,7 +29,7 @@ const ANKLE_H = 0.075;     // bind: to'piq balandligi
 
 /** Qurol tutish nuqtalari (root-local, yaw=0, pitch=0) — qisqa qo'llarga mos */
 const HOLD = {
-  rifle: { anchor: [-0.06, 0.86, 0.15], sprint: [-0.1, 0.74, 0.1], blade: -0.55 },
+  rifle: { anchor: [-0.1, 0.86, 0.15], sprint: [-0.12, 0.74, 0.1], blade: -0.62 },
   pistol: { anchor: [-0.03, 0.88, 0.25], sprint: [-0.1, 0.72, 0.14], blade: -0.12 },
   grenade: { anchor: [-0.16, 0.8, 0.16], sprint: [-0.16, 0.74, 0.1] },
   knife: { anchor: [-0.15, 0.78, 0.2], sprint: [-0.16, 0.72, 0.12] }

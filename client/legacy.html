@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070b1c'/%3E%3Cpath d='M10 24V8l12 16V8' stroke='%2335c8ff' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+<title>NEON STRIKE</title>
+<link rel="stylesheet" href="/css/hud.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+<main class="menu" id="menu">
+  <header class="logo">
+    <h1>NEON <span>STRIKE</span></h1>
+    <p class="sub">PHASE 9 — HUD · POLISH · CHAT · NEON FACILITY MAP</p>
+  </header>
+
+  <!-- Fazalar tugagani sari yoqiladi; hozirgi fazadan oldingilari ataylab o'chiriq -->
+  <nav class="menu-buttons" aria-label="Asosiy menyu">
+    <button class="mbtn live" id="btnHost" disabled>HOST LAN SESSION <small>Phase 6 · HOST</small></button>
+    <button class="mbtn live" id="btnJoin" disabled>JOIN LAN SESSION <small>Phase 6 · JOIN</small></button>
+    <button class="mbtn live" id="btnTraining">TRAINING <small>OFFLINE · Phase 4 COMBAT</small></button>
+    <button class="mbtn" disabled>SETTINGS <small>TEZ KUNDA</small></button>
+    <button class="mbtn" disabled>HOW TO PLAY <small>TEZ KUNDA</small></button>
+  </nav>
+
+  <!-- ============ PHASE 6 — LAN LOBBY (server avtoritar) ============ -->
+  <section class="panel lobby-panel" id="lobbyPanel" aria-label="Phase 6 LAN lobby">
+    <h2>PHASE 6 — LAN LOBBY</h2>
+    <div class="gate-row"><span class="glabel">ULANISH (NETWORK)</span><span class="badge wait" id="lobbyNet">ulanmoqda…</span></div>
+    <div class="gate-row"><span class="glabel">SESSIYA HOLATI</span><span class="badge wait" id="lobbyState">—</span></div>
+    <div class="gate-row"><span class="glabel">MEN (server bergan ID)</span><span class="badge wait" id="lobbyYou">—</span></div>
+    <div class="gate-row"><span class="glabel">O‘YINCHILAR</span><span class="badge wait" id="lobbyCount">0 / —</span></div>
+    <div class="gate-row"><span class="glabel">MATCH (JAMOA · RAUND · BALL)</span><span class="badge wait" id="lobbyMatch">—</span></div>
+    <ul class="lobby-players" id="lobbyPlayers" aria-label="Lobby o‘yinchilari"></ul>
+    <p class="lobby-addr">LAN manzil (boshqa qurilmada shu manzilni oching): <b id="lobbyAddress">—</b></p>
+    <div class="lobby-actions">
+      <button class="pbtn primary" id="btnLobbyStart" disabled>START SESSION (HOST)</button>
+      <button class="pbtn" id="btnLobbyLeave" disabled>LEAVE LOBBY</button>
+    </div>
+    <p class="lobby-error" id="lobbyError" hidden></p>
+    <p class="note">Server avtoritar: sessiya, host va player ID ni SERVER beradi (klient da’vo qilolmaydi).
+    Host boshlagach holat <b>in_game</b> bo‘ladi va o‘yin sessiyasi lobby oqimi orqali boshlanadi.
+    O‘yinchilar orasidagi sinxronizatsiya YO‘Q — u Phase 7. Bu bosqich faqat LAN yig‘ilish oqimi.</p>
+  </section>
+
+  <section class="panel syscheck" aria-label="Phase 1 tekshiruv paneli">
+    <h2>PHASE 1 GATES (regressiya)</h2>
+    <div class="gate-row"><span class="glabel">WEBGL2 (real GPU)</span><span class="badge wait" id="badgeWebgl">tekshirilmoqda…</span></div>
+    <div class="gate-row"><span class="glabel">THREE.JS (vendored)</span><span class="badge wait" id="badgeThree">tekshirilmoqda…</span></div>
+    <div class="gate-row"><span class="glabel">PHASE 4 (map + combat modul)</span><span class="badge wait" id="badgeGame">yuklanmoqda…</span></div>
+    <div class="gate-row"><span class="glabel">SERVER WS (/ws)</span><span class="badge wait" id="badgeWs">tekshirilmoqda…</span></div>
+    <div class="gate-row"><span class="glabel">LATENCY (live ping)</span><span class="badge wait" id="badgePing">—</span></div>
+    <div class="gate-row"><span class="glabel">SERVER VAQTI</span><span class="badge wait" id="badgeTime">—</span></div>
+    <p class="note">TRAINING — Phase 4 offline combat: NEON FACILITY (44×32 m, 60 AABB kollayder:
+    reaktor platformasi + zinalar, 3 qatorli catwalk, 3 lane) — shared/map.js geometriyasi
+    klientda procedural quriladi (asset yo‘q), yumaloq humanoid, yelka-usti kamera (Pointer Lock),
+    WASD harakat + gravitatsiya/qadam ko‘tarilish, kamera kolliziyasi, blob shadow.
+    PHASE 4 COMBAT: 4 qurol (Neon Rifle, Pulse Pistol, Scatter Shot, Energy Grenade), hitscan
+    hit-zonalar (head ×2 / body ×1 / legs ×0.75), devor to‘sishi, o‘q-dori/reload, o‘lim va
+    respawn (2500 ms) + o‘z granatasi zarari.
+    PHASE 5: avtoritar server (o‘q-dori/cooldown/reload/hit/zarar/HP/o‘lim/granata — serverda).
+    PHASE 6: LAN lobby (sessiya/host/a’zolik serverda). PHASE 7: sinxronizatsiya.
+    PHASE 8: jamoa/raund/ball. PHASE 9: HUD avtoritar holatdan (HP/o‘q-dori/jamoa/
+    raund/ball serverdan) + sessiya chati (server orqali tarqatiladi).
+    Gate natijalari server logiga yoziladi (evidence).</p>
+  </section>
+
+  <footer class="foot">LAN pre-alpha · server: <span id="wsUrl">—</span></footer>
+</main>
+<!-- ============ O'YIN SAHNASI (Phase 3 — NEON FACILITY) ============ -->
+<div class="stage" id="stage" hidden>
+  <canvas id="gl"></canvas>
+  <div class="hud">
+    <div class="hud-top">
+      <span class="hud-mode">SESSION · NEON FACILITY · P8 MATCH · PHASE 9 HUD</span>
+      <span class="hud-chip" id="hudFps">— FPS</span>
+      <span class="hud-chip" id="hudPointer">POINTER LOCK: OFF</span>
+      <span class="hud-chip conn" id="hudConn">ULANISH: …</span>
+      <span class="hud-chip" id="hudTeam">JAMOA —</span>
+      <span class="hud-chip" id="hudMe">ID —</span>
+    </div>
+    <pre class="debug" id="debugOverlay" hidden></pre>
+    <!-- ============ PHASE 8: MINIMAL MATCH HUD (jamoa/raund/ball) ============
+         Qiymatlar FAQAT server SNAPSHOT'idan (avtoritar) — P9 da to'liq
+         scoreboard/chat bilan almashtiriladi. -->
+    <div class="match-hud" id="matchHud" hidden aria-label="Phase 8 match holati">
+      <span class="mh-team" id="mhTeam">JAMOA —</span>
+      <span class="mh-round" id="mhRound">RAUND —</span>
+      <span class="mh-score" id="mhScore">A 0 : 0 B</span>
+    </div>
+
+    <!-- ============ PHASE 9: RAUND/MATCH TUGASH BANNERI ============
+         Matn FAQAT server `match` blokidan (g'olib/ball serverda hal qilinadi). -->
+    <div class="round-banner" id="roundBanner" hidden aria-live="polite">
+      <h3 id="rbTitle">ROUND 1</h3>
+      <p id="rbSub">GET READY</p>
+    </div>
+
+    <!-- ============ PHASE 4 COMBAT HUD ============ -->
+    <div class="combat-hud" id="combatHud">
+      <div class="reticle" id="chCrosshair" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="ch-hitmarker" id="chHitmarker" aria-hidden="true"></div>
+      <div class="ch-damage" id="chDamage" aria-hidden="true"></div>
+      <!-- PHASE 1: avtoritar zarar raqami (server EVENTS dan) -->
+      <div class="ch-dmgnum" id="chDmgNum" aria-hidden="true"></div>
+      <!-- PHASE 1: zarar YO'NALISHI indikatori (avtoritar zarar vektori) -->
+      <div class="ch-dmgdir" id="chDmgDir" aria-hidden="true" hidden><i></i></div>
+      <div class="ch-bottom-left">
+        <div class="ch-health" id="chHealthBar" data-band="ok">
+          <span class="ch-hp-label">HP</span>
+          <div class="ch-hp-track"><i id="chHealthFill"></i></div>
+          <b class="ch-hp" id="chHp">100</b>
+        </div>
+        <div class="ch-score">KILLS <b id="chKills">0</b> · DEATHS <b id="chDeaths">0</b></div>
+      </div>
+      <div class="ch-bottom-right" id="chAmmoBlock">
+        <div class="ch-weapon">
+          <span id="chWeaponName">NEON RIFLE</span>
+          <span class="ch-slot" id="chWeaponSlot">1/4</span>
+        </div>
+        <div class="ch-ammo"><b id="chMag">30</b><span>/</span><i id="chReserve">120</i></div>
+        <div class="ch-reload" id="chReload" hidden>
+          <div class="ch-reload-track"><i id="chReloadFill"></i></div>
+          <span id="chReloadText">RELOADING 0%</span>
+        </div>
+      </div>
+      <div class="ch-slots" id="chSlots" aria-label="Qurol slotlari"></div>
+      <div class="ch-feed" id="chFeed"></div>
+      <div class="ch-dead" id="chDead" hidden>
+        <h3 id="chDeadTitle">DOWNED</h3>
+        <p class="ch-dead-note">
+          <span id="chDeadRespawn">RESPAWN IN <b id="chRespawnIn">2.5</b>s</span>
+          <span id="chDeadWait" hidden>KEYINGI RAUNDNI KUTING</span>
+        </p>
+      </div>
+    </div>
+    <!-- ============ PHASE 9: SESSIYA CHATI (server orqali tarqatiladi) ============
+         Klient xabar yuboradi → SERVER tekshiradi → sessiya a'zolariga yuboradi. -->
+    <div class="chat" id="chatPanel" aria-label="Sessiya chati">
+      <div class="chat-head">
+        <span class="chat-title">CHAT · SESSION</span>
+        <span class="chat-hint" id="chatHint">T / ENTER — yozish</span>
+      </div>
+      <ul class="chat-log" id="chatLog" aria-live="polite"></ul>
+      <div class="chat-row">
+        <input class="chat-input" id="chatInput" type="text" maxlength="160"
+               autocomplete="off" spellcheck="false" aria-label="Chat xabari" placeholder="Xabar yozing…">
+        <button class="pbtn chat-send" id="chatSend">SEND</button>
+      </div>
+      <p class="chat-error" id="chatError" hidden></p>
+    </div>
+
+    <div class="hud-bottom">
+      <div class="hud-stats">
+        <span>VAQT <b id="hudTimer">0.0 s</b></span>
+        <span>POZITSIYA <b id="hudPos">— / —</b></span>
+        <span>TEZLIK <b id="hudSpeed">0.00 m/s</b></span>
+        <span>NISHONLAR <b id="hudTargets">—</b></span>
+      </div>
+      <div class="hud-hint">WASD — harakat · SICHQONCHA — kamera · LMB — o‘q · R — reload · 1–4 — qurol · T — chat · SHIFT — yugurish · P — spawn · F3 — debug · ESC — pauza</div>
+    </div>
+    <div class="pause" id="pause" hidden>
+      <div class="pause-card">
+        <h2>PAUZA</h2>
+        <p>Sichqoncha bo‘shatildi. Kamera boshqaruvi uchun <b>RESUME</b> ni bosing.</p>
+        <div class="pause-actions">
+          <button class="pbtn primary" id="btnResume">RESUME</button>
+          <button class="pbtn" id="btnBackMenu">MENYUGA</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

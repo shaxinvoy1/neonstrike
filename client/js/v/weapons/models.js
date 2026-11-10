@@ -16,12 +16,12 @@ function M (key, envMap) {
   const k = key + (envMap ? ':e' : '');
   if (mats.has(k)) return mats.get(k);
   const def = {
-    body: { color: 0x1b2236, roughness: 0.38, metalness: 0.75 },
+    body: { color: 0x2a3550, roughness: 0.35, metalness: 0.7 },
     dark: { color: 0x0b0f1a, roughness: 0.5, metalness: 0.6 },
     steel: { color: 0x9aa7bd, roughness: 0.22, metalness: 1.0 },
     grip: { color: 0x141824, roughness: 0.8, metalness: 0.1 },
-    neon: { color: 0x0b2a55, emissive: 0x2fb8ff, emissiveIntensity: 2.4, roughness: 0.3 },
-    neonV: { color: 0x2a1055, emissive: 0x9a5cff, emissiveIntensity: 2.2, roughness: 0.3 },
+    neon: { color: 0x0b2a55, emissive: 0x3fc4ff, emissiveIntensity: 3.4, roughness: 0.3 },
+    neonV: { color: 0x2a1055, emissive: 0xa070ff, emissiveIntensity: 3.0, roughness: 0.3 },
     frag: { color: 0x2b3a2c, roughness: 0.55, metalness: 0.35 },
     blade: { color: 0xd8e2f0, roughness: 0.12, metalness: 1.0 }
   }[key];
@@ -77,8 +77,8 @@ function rifle (env) {
   box(g, M('dark', env), 0.06, 0.06, 0.14, 0, 0.012, 0.19);            // handguard
   box(g, M('neon', env), 0.074, 0.012, 0.2, 0, 0.068, 0.08);          // neon rail
   box(g, M('neon', env), 0.072, 0.01, 0.12, 0, 0.0, 0.26);            // handguard stripe
-  box(g, M('body', env), 0.055, 0.07, 0.15, 0, 0.0, -0.15);            // stock
-  box(g, M('dark', env), 0.06, 0.09, 0.03, 0, -0.005, -0.23);          // butt pad
+  box(g, M('body', env), 0.055, 0.07, 0.1, 0, 0.0, -0.1);              // stock (qisqa — tanaga kirmaydi)
+  box(g, M('dark', env), 0.06, 0.09, 0.03, 0, -0.005, -0.15);          // butt pad
   box(g, M('grip', env), 0.045, 0.1, 0.05, 0, -0.06, -0.005, 0.25);    // pistol grip
   const mag = box(g, M('dark', env), 0.04, 0.12, 0.06, 0, -0.07, 0.1, -0.18);   // magazine
   box(g, M('dark', env), 0.04, 0.04, 0.06, 0, 0.09, 0.02);             // optic base
@@ -104,7 +104,7 @@ function shotgun (env) {
   cyl(g, M('dark', env), 0.02, 0.24, 0, 0.0, 0.26);                    // tube magazine
   const pump = box(g, M('grip', env), 0.065, 0.055, 0.1, 0, 0.005, 0.13);   // pump
   box(g, M('neonV', env), 0.077, 0.012, 0.18, 0, 0.065, 0.04);         // violet glow
-  box(g, M('body', env), 0.06, 0.08, 0.17, 0, -0.005, -0.17, 0.08);    // stock
+  box(g, M('body', env), 0.06, 0.08, 0.11, 0, -0.005, -0.12, 0.08);    // stock
   box(g, M('grip', env), 0.045, 0.095, 0.05, 0, -0.06, -0.03, 0.3);
   const mag = box(g, M('steel', env), 0.03, 0.03, 0.05, 0.04, 0.0, 0.06);   // shell port
   return finish(g, { grip: [0, -0.045, -0.025], support: [0, -0.01, 0.125], muzzle: [0, 0.045, 0.43], mag: [0.04, 0, 0.06], magMesh: mag, pump });

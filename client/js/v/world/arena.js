@@ -139,11 +139,11 @@ export function createArena ({ envMap = null, quality = 'high' } = {}) {
 
   const M = {
     floor: mk(THREE.MeshStandardMaterial, { map: t.floor, color: 0xa8b4e6, roughness: 0.32, metalness: 0.55, envMapIntensity: 0.8 }),
-    wall: mk(THREE.MeshStandardMaterial, { map: t.wall, color: 0xb8c2ee, roughness: 0.6, metalness: 0.35 }),
+    wall: mk(THREE.MeshStandardMaterial, { map: t.wall, color: 0xd0d8ff, roughness: 0.55, metalness: 0.3 }),
     wallDark: mk(THREE.MeshStandardMaterial, { color: 0x10173a, roughness: 0.7, metalness: 0.3 }),
     metal: mk(THREE.MeshStandardMaterial, { color: 0x2a3566, roughness: 0.35, metalness: 0.8 }),
     trim: mk(THREE.MeshStandardMaterial, { color: 0x0b1028, roughness: 0.5, metalness: 0.6 }),
-    crate: mk(THREE.MeshStandardMaterial, { map: t.crate, color: 0xb2bcf0, roughness: 0.55, metalness: 0.45 }),
+    crate: mk(THREE.MeshStandardMaterial, { map: t.crate, color: 0xc6cff8, roughness: 0.5, metalness: 0.4 }),
     container: mk(THREE.MeshStandardMaterial, { map: t.container, color: 0xb6c0f0, roughness: 0.5, metalness: 0.5 }),
     grate: mk(THREE.MeshStandardMaterial, { map: t.grate, color: 0xb0bcf0, roughness: 0.45, metalness: 0.7 }),
     rail: mk(THREE.MeshStandardMaterial, { color: 0x0c1124, roughness: 0.35, metalness: 0.9 }),
@@ -301,8 +301,8 @@ export function createArena ({ envMap = null, quality = 'high' } = {}) {
 
   // ---------- yorug'lik ----------
   const lights = new THREE.Group();
-  lights.add(new THREE.HemisphereLight(0x8aa6ff, 0x141838, quality === 'low' ? 1.2 : 0.9));
-  const moon = new THREE.DirectionalLight(0xbfd0ff, quality === 'low' ? 1.0 : 1.25);
+  lights.add(new THREE.HemisphereLight(0x9ab4ff, 0x1c2250, quality === 'low' ? 1.6 : 1.25));
+  const moon = new THREE.DirectionalLight(0xc8d6ff, quality === 'low' ? 1.3 : 1.6);
   moon.position.set(-14, 26, 10);
   moon.target.position.set(0, 0, 0);
   if (quality !== 'low') {
