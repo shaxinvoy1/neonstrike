@@ -95,7 +95,9 @@ function staticHandler (req, res) {
     res.writeHead(200, {
       'Content-Type': type,
       'Cache-Control': 'no-cache',
-      'X-Content-Type-Options': 'nosniff'
+      'X-Content-Type-Options': 'nosniff',
+      // ochiq statik fayllar: Android ishga tushirgichi (boshqa origin) server mavjudligini tekshira oladi
+      'Access-Control-Allow-Origin': '*'
     });
     res.end(data);
   });

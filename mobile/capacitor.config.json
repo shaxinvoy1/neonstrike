@@ -1,0 +1,8 @@
+{
+  "appId": "uz.neonstrike.game",
+  "appName": "NEON STRIKE",
+  "webDir": "www",
+  "backgroundColor": "#070b1c",
+  "server": { "androidScheme": "http", "cleartext": true, "allowNavigation": ["*"] },
+  "android": { "allowMixedContent": true }
+}

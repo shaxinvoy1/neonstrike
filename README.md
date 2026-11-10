@@ -22,6 +22,13 @@ Open `http://localhost:3000`, type a name, then **MULTIPLAYER (LAN)** or **TRAIN
 ## LAN — join (desktop or phone, same Wi-Fi)
 Open the host's LAN address → MULTIPLAYER (LAN) → **JOIN ROOM** → pick a team. Players joining mid-match spawn immediately. Phones: hold the device in landscape.
 
+## Android APK (telefon)
+`mobile/` — Capacitor launcher (`uz.neonstrike.game`). The APK is a **client**: the game server runs on a computer in the same Wi-Fi.
+1. Computer: run `start-windows.bat` (Windows) or `./start.sh` (Linux/macOS) — needs Node.js ≥ 20. It prints `LAN : http://192.168.x.x:3000`.
+2. Phone: install `NEON-STRIKE-v1.0.0.apk`, open it, type that address (e.g. `192.168.1.20:3000`), tap **ULANISH**. Recent addresses are remembered.
+3. The game opens full-screen in landscape with touch controls.
+Build: `cd mobile && npm install && npx cap sync android && cd android && ./gradlew assembleRelease`.
+
 ## Controls
 | Action | Desktop | Phone |
 |---|---|---|

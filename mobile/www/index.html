@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEON STRIKE</title>
+<style>
+  html, body { margin: 0; height: 100%; background: radial-gradient(ellipse at 70% 40%, #1a2a6a, #070b1c 70%); color: #e6f3ff; font-family: system-ui, sans-serif; }
+  main { min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+  .card { width: min(520px, 100%); background: rgba(10,18,48,.75); border: 1px solid rgba(80,170,255,.45); border-radius: 18px; padding: 20px; box-shadow: 0 0 40px rgba(40,120,255,.15); }
+  h1 { margin: 0 0 4px; font-size: 36px; font-weight: 900; letter-spacing: .08em; text-shadow: 0 0 16px #2f8cff; } h1 b { color: #46d2ff; }
+  p { color: #8fb0d8; line-height: 1.5; margin: 8px 0; font-size: 14px; }
+  label { display: block; font-size: 12px; letter-spacing: .1em; font-weight: 700; color: #8fb0d8; margin-top: 12px; }
+  input { width: 100%; box-sizing: border-box; margin-top: 6px; padding: 14px; font-size: 18px; border-radius: 12px; border: 1px solid rgba(80,170,255,.5); background: rgba(4,10,30,.8); color: #fff; }
+  button { width: 100%; margin-top: 14px; padding: 15px; font-size: 16px; font-weight: 800; letter-spacing: .12em; border-radius: 12px; border: 1px solid #7fc8ff; background: linear-gradient(180deg,#2f8cff,#1a56d6); color: #fff; }
+  .err { color: #ff8095; min-height: 1.2em; } code { color: #46d2ff; }
+  .recent { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; } .recent span { padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(80,170,255,.35); font-size: 13px; }
+</style>
+</head>
+<body>
+<main><div class="card">
+  <h1>NEON <b>STRIKE</b></h1>
+  <p>Kompyuterda o‘yin serverini ishga tushiring (<code>npm start</code>) va u ko‘rsatgan <b>LAN</b> manzilni kiriting. Telefon va kompyuter bitta Wi-Fi’da bo‘lishi kerak.</p>
+  <label for="host">KOMPYUTER MANZILI</label>
+  <input id="host" inputmode="url" autocomplete="off" placeholder="192.168.1.20:3000">
+  <div class="recent" id="recent"></div>
+  <button id="go">ULANISH</button>
+  <p class="err" id="err"></p>
+</div></main>
+<script>
+  const K = 'neonstrike.hosts';
+  const inp = document.getElementById('host'), err = document.getElementById('err'), rec = document.getElementById('recent');
+  let list = []; try { list = JSON.parse(localStorage.getItem(K) || '[]'); } catch {}
+  inp.value = list[0] || '';
+  rec.innerHTML = list.map((h) => `<span>${h.replace(/[<>&"]/g, '')}</span>`).join('');
+  rec.onclick = (e) => { if (e.target.tagName === 'SPAN') { inp.value = e.target.textContent; connect(); } };
+  function norm (v) { v = v.trim().replace(/^https?:\/\//, '').replace(/\/.*$/, ''); if (v && !/:\d+$/.test(v)) v += ':3000'; return v; }
+  async function connect () {
+    const h = norm(inp.value);
+    if (!h) { err.textContent = 'Manzilni kiriting'; return; }
+    err.textContent = 'Tekshirilmoqda…';
+    try {
+      const c = new AbortController(); const t = setTimeout(() => c.abort(), 5000);
+      const r = await fetch(`http://${h}/`, { signal: c.signal }); clearTimeout(t);
+      const txt = await r.text();
+      if (!/NEON STRIKE/.test(txt)) throw new Error('Bu manzilda NEON STRIKE server topilmadi');
+      list = [h, ...list.filter((x) => x !== h)].slice(0, 5); localStorage.setItem(K, JSON.stringify(list));
+      location.href = `http://${h}/`;
+    } catch (e) {
+      err.textContent = e.name === 'AbortError' || e instanceof TypeError ? 'Server topilmadi — manzilni, Wi-Fi’ni va kompyuterda server yoqilganini tekshiring' : (e.message || 'Ulanib bo‘lmadi');
+    }
+  }
+  document.getElementById('go').onclick = connect;
+  inp.onkeydown = (e) => { if (e.key === 'Enter') connect(); };
+</script>
+</body>
+</html>

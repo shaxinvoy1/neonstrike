@@ -780,3 +780,16 @@
 [2026-11-10T13:29:11.608Z] [info] [net] hello #1 name="Player"
 [2026-11-10T13:29:11.612Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
 [2026-11-10T13:29:27.593Z] [info] [net] - #1 disconnected (online=0)
+
+=== NEON STRIKE server start: 2026-11-10T13:38:57.287Z ===
+[2026-11-10T13:38:57.295Z] [info] ==================================================
+[2026-11-10T13:38:57.295Z] [info]   NEON STRIKE — Phase 5 avtoritativ server (protokol v6)
+[2026-11-10T13:38:57.295Z] [info]   Sim   : 30 Hz tick · 20 Hz snapshot
+[2026-11-10T13:38:57.295Z] [info]   Local : http://localhost:3000
+[2026-11-10T13:38:57.296Z] [info]   LAN   : http://192.0.2.2:3000
+[2026-11-10T13:38:57.296Z] [info]   WS    : ws://<host>:3000/ws
+[2026-11-10T13:38:57.296Z] [info] ==================================================
+[2026-11-10T13:39:06.044Z] [info] [net] + connection #1 from 192.0.2.2 (online=1)
+[2026-11-10T13:39:08.010Z] [info] [net] hello #1 name="Player"
+[2026-11-10T13:39:08.014Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
+[2026-11-10T13:39:08.474Z] [info] [net] - #1 disconnected (online=0)
