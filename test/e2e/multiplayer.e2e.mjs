@@ -156,8 +156,8 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   await pages[1].evaluate(() => window.__app.net.send({ type: 'chat', text: 'A da 2 ta bor' }));
   await host.waitForFunction(() => document.querySelector('#hChatLog') && document.querySelector('#hChatLog').textContent.includes('A da 2 ta bor'), null, { timeout: 8000 });
   ok(true, 'chat boshqa mijozda ko‘rinadi');
-  await host.screenshot({ path: `mp${N}-host.png` });
-  await pages[1].screenshot({ path: `mp${N}-p1.png` });
+  await host.screenshot({ path: (process.env.SHOT_DIR || '.') + `/mp${TOTAL}-host.png` });
+  await pages[1].screenshot({ path: (process.env.SHOT_DIR || '.') + `/mp${TOTAL}-p1.png` });
   // uzilish: oxirgi mijoz yopiladi → boshqalarda remote yo'qoladi
   await browsers[N - 1].close();
   await host.waitForFunction((n) => window.__ns && window.__ns.remotes.size === n - 2, TOTAL, { timeout: 12000 });
