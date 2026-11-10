@@ -763,3 +763,7 @@
 [2026-11-10T13:15:01.918Z] [info] [net] hello #1 name="Shaxin"
 [2026-11-10T13:15:01.924Z] [info] [sim] sessiya #1 (p1) yaratildi — nishon=8
 [2026-11-10T13:16:05.768Z] [info] [net] - #1 disconnected (online=0)
+[2026-11-10T13:25:46.715Z] [info] [net] + connection #2 from 192.0.2.2 (online=1)
+[2026-11-10T13:25:48.455Z] [info] [net] hello #2 name="Player"
+[2026-11-10T13:25:48.457Z] [info] [sim] sessiya #2 (p2) yaratildi — nishon=8
+[2026-11-10T13:25:54.834Z] [info] [net] - #2 disconnected (online=0)

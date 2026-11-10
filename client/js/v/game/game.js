@@ -45,7 +45,7 @@ export class Game {
     this.camera = new THREE.PerspectiveCamera(settings.fov, 1, 0.05, 220);
     this.ots = new OTSCamera(this.camera);
     this.ots.baseFov = settings.fov;
-    this.effects = new Effects(this.scene, { quality: Q.material, envMap: this.env.texture });
+    this.effects = new Effects(this.scene, { quality: Q.material, envMap: this.env.texture, effects: settings.effects });
     this.input = new Input(canvas, touchRoot);
     this.hud = new Hud(hudRoot);
     this.hudRoot = hudRoot;

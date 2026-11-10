@@ -1,8 +1,8 @@
 {
   "name": "neon-strike",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "NEON STRIKE — lightweight 3D LAN multiplayer shooter (browser client + authoritative Node server)",
+  "description": "NEON STRIKE \u2014 lightweight 3D LAN multiplayer shooter (browser client + authoritative Node server)",
   "type": "module",
   "scripts": {
     "start": "node server/index.js",
@@ -21,7 +21,9 @@
     "verify:phase12": "node tools/verify-phase12.mjs",
     "verify:core": "node tools/verify-core-gameplay.mjs",
     "verify:headless": "node tools/verify-phase2.mjs --headless",
-    "harness": "node test/integration/harness.js"
+    "harness": "node test/integration/harness.js",
+    "test:e2e": "node test/e2e/weapons.e2e.mjs && node test/e2e/aim.e2e.mjs && node test/e2e/mobile.e2e.mjs && node test/e2e/multiplayer.e2e.mjs 2 && node test/e2e/multiplayer.e2e.mjs 2 2 && MOBILE=1 node test/e2e/multiplayer.e2e.mjs 2",
+    "perf": "node test/e2e/perf.e2e.mjs"
   },
   "engines": {
     "node": ">=20"

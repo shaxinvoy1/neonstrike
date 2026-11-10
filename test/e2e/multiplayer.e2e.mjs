@@ -22,17 +22,26 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   const pages = [];
   const errs = [];
   for (let i = 0; i < N; i++) {
-    const bi = await chromium.launch({ args: ['--use-gl=angle', '--enable-unsafe-swiftshader', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows'] });
+    // LAN IP to'g'ridan-to'g'ri (agent proksisiz) — haqiqiy Wi-Fi tarmog'idagi kabi
+    const env = { ...process.env }; for (const k of ['HTTP_PROXY', 'HTTPS_PROXY', 'http_proxy', 'https_proxy', 'ALL_PROXY', 'all_proxy']) delete env[k];
+    const bi = await chromium.launch({ env, args: ['--use-gl=angle', '--enable-unsafe-swiftshader', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--disable-backgrounding-occluded-windows', '--no-proxy-server', '--proxy-bypass-list=*'] });
     browsers.push(bi);
-    const ctx = await bi.newContext({ viewport: { width: 480, height: 270 } });
+    // MOBILE=1: ikkinchi o'yinchi — telefon (landshaft, sensorli) va serverga LAN IP orqali ulanadi
+    const mobile = process.env.MOBILE === '1' && i === 1;
+    const ctx = await bi.newContext(mobile ? { viewport: { width: 640, height: 300 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Mobile Safari/537.36' } : { viewport: { width: 480, height: 270 } });
     const p = await ctx.newPage();
     p.on('pageerror', (e) => errs.push(`[p${i}] ${e.message}`));
     p.on('console', (m) => m.type() === 'error' && errs.push(`[p${i}] ${m.text()}`));
     await p.addInitScript(() => localStorage.setItem('neonstrike.settings.v1', JSON.stringify({ quality: 'low', shadows: false, resolutionScale: 0.5 })));
-    await p.goto(URL_);
+    const lan = server.state ? (await import('node:os')).networkInterfaces() : {};
+    const lanIp = Object.values(lan).flat().find((a) => a && a.family === 'IPv4' && !a.internal);
+    const target = mobile && lanIp ? URL_.replace('127.0.0.1', lanIp.address) : URL_;
+    if (mobile) console.log('INFO mobil mijoz URL:', target);
+    await p.goto(target);
     await p.waitForFunction(() => window.__app && window.__app.net.open, null, { timeout: 20000 });
     await p.waitForSelector('#nameIn', { timeout: 90000 }); await p.fill('#nameIn', ['Shaxin', 'Zoro', 'aybek', 'bekzod'][i]);
     pages.push(p);
+    if (mobile) ok(await p.evaluate(() => window.__app && document.body.classList.contains('is-touch')), 'mobil mijoz: sensorli rejim');
   }
   const [host] = pages;
   await host.click('[data-a="mp"]');

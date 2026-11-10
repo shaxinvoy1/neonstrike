@@ -133,6 +133,7 @@ function render () {
             <label class="field"><span>Ovoz balandligi <b id="vVol">${Math.round(settings.volume * 100)}%</b></span><input type="range" min="0" max="1" step="0.05" data-s="volume" value="${settings.volume}"></label>
             <label class="field"><span>Grafika sifati</span><select data-s="quality">${Object.keys(QUALITY).map((q) => `<option value="${q}" ${q === settings.quality ? 'selected' : ''}>${q.toUpperCase()}</option>`).join('')}</select></label>
             <label class="field"><span>Ruxsat masshtabi <b id="vRes">${Math.round(settings.resolutionScale * 100)}%</b></span><input type="range" min="0.5" max="1.25" step="0.05" data-s="resolutionScale" value="${settings.resolutionScale}"></label>
+            <label class="field"><span>Effektlar (uchqun/portlash) <b id="vFx">${Math.round(settings.effects * 100)}%</b></span><input type="range" min="0.25" max="1" step="0.05" data-s="effects" value="${settings.effects}"></label>
             <label class="check"><input type="checkbox" data-s="shadows" ${settings.shadows ? 'checked' : ''}> Soyalar</label>
             <label class="check"><input type="checkbox" data-s="invertY" ${settings.invertY ? 'checked' : ''}> Y o‘qini teskari</label>
             <label class="check"><input type="checkbox" data-s="sfx" ${settings.sfx ? 'checked' : ''}> Ovoz effektlari</label>
@@ -192,10 +193,11 @@ function bindSettings () {
       const k = el.dataset.s;
       const v = el.type === 'checkbox' ? el.checked : el.tagName === 'SELECT' ? el.value : Number(el.value);
       settings[k] = v;
-      const lab = { sensitivity: 'vSens', touchSensitivity: 'vTSens', fov: 'vFov', volume: 'vVol', resolutionScale: 'vRes' }[k];
-      if (lab) ui.querySelector('#' + lab).textContent = k === 'volume' || k === 'resolutionScale' ? Math.round(v * 100) + '%' : k === 'fov' ? v : v.toFixed(2);
+      const lab = { sensitivity: 'vSens', touchSensitivity: 'vTSens', fov: 'vFov', volume: 'vVol', resolutionScale: 'vRes', effects: 'vFx' }[k];
+      if (lab) ui.querySelector('#' + lab).textContent = k === 'volume' || k === 'resolutionScale' || k === 'effects' ? Math.round(v * 100) + '%' : k === 'fov' ? v : v.toFixed(2);
       if (game && k === 'fov') game.ots.baseFov = v;
       if (game && k === 'resolutionScale') game.resize();
+      if (game && k === 'effects') game.effects.k = game.effects.baseK * v;
     });
   }
   const n = ui.querySelector('#nameIn');

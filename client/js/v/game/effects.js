@@ -13,9 +13,11 @@ function glowTex () {
 }
 
 export class Effects {
-  constructor (scene, { quality = 'high', envMap = null } = {}) {
+  constructor (scene, opts = {}) {
+    const { quality = 'high', envMap = null } = opts;
     this.scene = scene;
-    this.k = quality === 'low' ? 0.5 : quality === 'medium' ? 0.8 : 1;
+    this.baseK = quality === 'low' ? 0.5 : quality === 'medium' ? 0.8 : 1;
+    this.k = this.baseK * (opts.effects ?? 1);
     this.tex = glowTex();
     this.flashes = [];
     for (let i = 0; i < 8; i++) {
