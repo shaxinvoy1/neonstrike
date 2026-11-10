@@ -85,24 +85,19 @@ test('client: game indeksi NEON FACILITY mapini ishlatadi (eski arena-mesh emas)
   assert.match(mapview, /\bCOLLIDERS\b/, 'mapview kollayderlardan qurmaydi');
 });
 
-test('client: statik sahna fayllari mavjud (PHASE 4 combat: index.html → main → combat HUD)', () => {
+test('client: V-773 mijoz fayllari mavjud (index.html → js/v/app.js, HUD/touch ildizlari)', () => {
   const html = fs.readFileSync(path.join(ROOT, 'client', 'index.html'), 'utf8');
-  // Phase 4 combat qatlami hali ham e'lon qilingan (regressiya belgisi)
-  assert.match(html, /PHASE 4 COMBAT/i, 'index.html Phase 4 combat belgisi yo‘q');
-  // PHASE 9: joriy bosqich belgisi + chat paneli (yangi qatlam)
-  assert.match(html, /PHASE 9/, 'index.html Phase 9 belgisi yo‘q');
-  assert.match(html, /id="chatInput"/, 'chat kiritish maydoni yo‘q');
-  assert.match(html, /id="roundBanner"/, 'raund banneri yo‘q');
-  assert.match(html, /NEON FACILITY MAP/i, 'xarita nomi yo‘qoldi');
-  assert.match(html, /js\/main\.js/);
-  assert.match(html, /id="combatHud"/, 'combat HUD elementi yo‘q');
-  assert.match(html, /id="chCrosshair"/, 'crosshair yo‘q');
-  assert.match(html, /id="chReload"/, 'reload indikatori yo‘q');
-  const main = fs.readFileSync(path.join(ROOT, 'client', 'js', 'main.js'), 'utf8');
-  assert.match(main, /setMapVisible/, 'setMapVisible test hook yo‘q');
-  assert.match(main, /version: 4/, 'client versiyasi 4 emas');
-  assert.match(main, /combatQa/, 'combat QA hook yo‘q');
-  assert.match(main, /aimAt/, 'aimAt QA hook yo‘q');
+  assert.match(html, /NEON STRIKE/);
+  assert.match(html, /js\/v\/app\.js/);
+  for (const id of ['gl', 'hud', 'touch', 'ui']) assert.match(html, new RegExp(`id="${id}"`), `#${id} yo‘q`);
+  for (const f of ['app.js', 'net.js', 'settings.js', 'audio.js', 'viewer.js', 'character/model.js', 'character/animator.js', 'character/ik.js',
+    'weapons/models.js', 'world/arena.js', 'world/env.js', 'game/game.js', 'game/camera.js', 'game/input.js', 'game/hud.js', 'game/players.js', 'game/effects.js']) {
+    assert.ok(fs.existsSync(path.join(ROOT, 'client', 'js', 'v', f)), `client/js/v/${f} yo‘q`);
+  }
+  assert.ok(fs.existsSync(path.join(ROOT, 'client', 'viewer.html')), 'model tekshiruv sahnasi yo‘q');
+  // eski (Phase 2–12) mijoz saqlangan — eski verify skriptlari uchun
+  const legacy = fs.readFileSync(path.join(ROOT, 'client', 'legacy.html'), 'utf8');
+  assert.match(legacy, /js\/main\.js/);
 });
 
 // ---------- real server (ephemeral port) ----------
@@ -210,7 +205,7 @@ test('HTTP: / -> index.html 200, NEON STRIKE', async () => {
   assert.equal(res.status, 200);
   const html = await res.text();
   assert.match(html, /NEON STRIKE/);
-  assert.match(html, /js\/main\.js/);
+  assert.match(html, /js\/v\/app\.js/);
 });
 
 test('HTTP: /vendor/three.module.js xizmat qiladi (js MIME)', async () => {

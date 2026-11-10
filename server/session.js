@@ -630,8 +630,11 @@ export function placePlayerAt (session, spawn, now = session.state.now) {
   st.grenades.length = 0;
   st.grenadeSeq = 0;
   st.result.eventCount = 0;
+  // yangi raund = yangi hayot: peer-o'lim hisobi qayta ochiladi; kills/deaths esa
+  // MATCH davomida saqlanadi (scoreboard) — ular faqat match boshida nollanadi.
+  st.externalDeath = false;
   Object.assign(st.stats, {
-    shots: 0, hits: 0, blocked: 0, kills: 0, deaths: 0, respawns: st.stats.respawns,
+    shots: 0, hits: 0, blocked: 0, kills: st.stats.kills, deaths: st.stats.deaths, respawns: st.stats.respawns,
     damageDealt: 0, damageTaken: 0, selfDamage: 0, dryFires: 0,
     grenadeThrows: 0, grenadeExplosions: 0, targetsKilled: 0
   });

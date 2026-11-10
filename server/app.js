@@ -700,7 +700,7 @@ export function createNeonServer ({ host = SERVER_DEFAULTS.HOST, port = SERVER_D
             return sendErr(socket, v.reason,
               `lobby ${kind} rad etildi${v.field ? ' (' + v.field + ')' : ''}`);
           }
-          if (v.name) member.name = v.name;
+          if (v.name) { member.name = v.name; const ss = sessionOf(member); if (ss) ss.name = v.name; }
           const nowTs = Date.now();
           const res = kind === 'create' ? lobbyCreate(state.lobby, member, nowTs)
             : kind === 'join' ? lobbyJoin(state.lobby, member, nowTs)

@@ -248,3 +248,17 @@ test('server: match tugagach host lobbyga qaytaradi va qayta boshlaydi (restart)
   await poll(() => srv.state.connections.size === 0, 'yopildi');
   await srv.close();
 });
+
+test('session: raund spawn (placePlayerAt) kills/deaths ni saqlaydi va peer-o‘lim hisobini qayta ochadi', async () => {
+  const { createSession } = await import('../../server/session.js');
+  const { registerExternalDeath } = await import('../../shared/combat.js');
+  const s = createSession({ id: 77 });
+  s.state.stats.kills = 3;
+  registerExternalDeath(s.state, 0);
+  assert.equal(s.state.stats.deaths, 1);
+  placePlayerAt(s, { x: -19.5, y: 0, z: 0, yaw: 0 }, 10);
+  assert.equal(s.state.stats.kills, 3, 'kills raund spawn’da nollanmasligi kerak');
+  assert.equal(s.state.stats.deaths, 1);
+  assert.equal(registerExternalDeath(s.state, 20), true, 'keyingi raunddagi o‘lim hisoblanishi kerak');
+  assert.equal(s.state.stats.deaths, 2);
+});

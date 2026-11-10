@@ -63,7 +63,8 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   await pages[1].evaluate(() => { const i = window.__ns.input; i.keys.add('fwd'); });
   await pages[1].waitForTimeout(1500);
   await pages[1].evaluate(() => window.__ns.input.keys.delete('fwd'));
-  await host.waitForTimeout(2500);
+  await host.waitForFunction(([id, bx]) => { const r = window.__ns.remotes.get(id); return r && Math.abs(r.pos.x - bx) > 1.5; }, [p1id, before.x], { timeout: 15000 }).catch(() => {});
+  await host.waitForTimeout(800);
   const after = await host.evaluate((id) => { const r = window.__ns.remotes.get(id); return { x: r.pos.x, z: r.pos.z, st: r.av.anim.state }; }, p1id);
   const srv = await pages[1].evaluate(() => ({ x: window.__ns.move.pos.x, z: window.__ns.move.pos.z, err: window.__ns.lastErr }));
   ok(Math.hypot(after.x - before.x, after.z - before.z) > 1.5, `harakat sinxron: ${before.x.toFixed(2)}→${after.x.toFixed(2)} (p1 lokal ${srv.x.toFixed(2)}, rekonsiliatsiya xatosi ${(srv.err || 0).toFixed(3)} m)`);
@@ -71,11 +72,12 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
   // test garnituri: ochiq chiziqqa joylashtirish (z=-2.8: reaktor platformasi ustidan ko'rinish bor)
   const idOf = (p) => p.evaluate(() => window.__app.net.playerId);
   const sessByPid = (pid) => [...server.state.sessions.values()].find((s) => s.playerId === pid);
-  for (const [p, x, yaw] of [[host, -10, Math.PI / 2], [pages[1], 10, -Math.PI / 2]]) {
+  // reaktor platformasi ustida (y=1.2), 7 m oraliq, yadro chizig'idan tashqarida
+  for (const [p, x, yaw] of [[host, -3.5, Math.PI / 2], [pages[1], 3.5, -Math.PI / 2]]) {
     const s = sessByPid(await idOf(p));
-    placePlayerAt(s, { x, y: 0, z: -2.8, yaw }, Date.now()); s.movement.pos = s.state.position;
+    placePlayerAt(s, { x, y: 1.2, z: -2.8, yaw }, Date.now()); s.movement.pos = s.state.position;
   }
-  await host.waitForFunction(() => Math.abs(window.__ns.move.pos.x + 10) < 0.6, null, { timeout: 10000 });
+  await host.waitForFunction(() => Math.abs(window.__ns.move.pos.x + 3.5) < 0.6, null, { timeout: 10000 });
   ok(true, 'garnitur joylashtirdi; mijoz bashorati server pozitsiyasiga snap qildi');
   // jang: p0 (A) va p1 (B) ni yonma-yon qo'yib (server test API emas — haqiqiy harakat): p1 ni p0 tomonga burab otamiz
   const shooterId = await host.evaluate(() => window.__app.net.playerId);
@@ -98,21 +100,19 @@ const ok = (c, m) => { console.log((c ? 'PASS ' : 'FAIL ') + m); if (!c) process
     return { ev: [...new Set(ev)], kills: g.state.stats.kills, hits: g.state.stats.hits, targetAlive: r() ? r().alive : null };
   }, shooterId);
   ok(res.hits > 0, `PvP zarar server orqali: hits=${res.hits} kills=${res.kills} events=${res.ev.join(',')}`);
-  const vict = await host.evaluate(() => ({ hp: window.__ns.state.hp, alive: window.__ns.alive, dmgEv: true }));
-  ok(vict.hp < 100 || !vict.alive, `jabrlanuvchi (host) HP serverdan: ${vict.hp} alive=${vict.alive}`);
-  if (!vict.alive) {
-    const feed = await pages[0].evaluate(() => (window.__ns.match.feed || []).slice(-1)[0]);
-    ok(feed && feed.weapon, 'kill-feed hamma mijozga: ' + JSON.stringify(feed));
-    const deadAnim = await pages[1].evaluate((id) => window.__ns.remotes.get(id).av.anim.state, shooterId);
-    ok(deadAnim === 'death', 'o‘lim animatsiyasi remote mijozda: ' + deadAnim);
-  }
-  // raund natijasi (2 o'yinchi: bitta o'lim → raund tugaydi)
-  if (N === 2 && !vict.alive) {
-    await host.waitForFunction(() => window.__ns.match.roundState === 'round_end' || window.__ns.match.roundNumber >= 2, null, { timeout: 10000 });
-    const m = await host.evaluate(() => window.__ns.match);
-    ok(m.scores.B === 1, `raund g‘olibi B, hisob ${m.scores.A}:${m.scores.B}`);
-    await host.waitForFunction(() => window.__ns.match.roundNumber === 2 && window.__ns.match.roundState === 'live' && window.__ns.alive, null, { timeout: 12000 });
-    ok(true, 'keyingi raund: respawn, raund 2/10 LIVE');
+  // jabrlanuvchi tomoni: server o'lim hisobi + host mijozidagi kill-feed + remote o'lim animatsiyasi
+  const hostSess = sessByPid(shooterId);
+  ok(hostSess.state.stats.deaths >= 1 || !hostSess.state.health.alive, `jabrlanuvchi (host) serverda o‘lgan: deaths=${hostSess.state.stats.deaths}`);
+  await host.waitForFunction(() => (window.__ns.match.feed || []).length > 0, null, { timeout: 8000 }).catch(() => {});
+  const feed = await host.evaluate(() => (window.__ns.match.feed || []).slice(-1)[0]);
+  ok(feed && feed.victim === shooterId && feed.weapon, 'kill-feed host mijozida: ' + JSON.stringify(feed));
+  const hud = await host.evaluate(() => document.querySelector('#hFeed').textContent);
+  ok(hud.includes('Zoro') && hud.includes('Shaxin'), 'kill-feed HUD da ismlar bilan: ' + hud.trim());
+  if (N === 2) {
+    await host.waitForFunction(() => window.__ns.match.scores.B >= 1, null, { timeout: 10000 });
+    ok(true, 'raund natijasi: B jamoasiga ball');
+    await host.waitForFunction(() => window.__ns.match.roundNumber >= 2 && window.__ns.match.roundState === 'live' && window.__ns.alive, null, { timeout: 15000 });
+    ok(true, 'keyingi raund: host respawn bo‘ldi, ROUND 2/10 LIVE');
   }
   // scoreboard (Tab)
   await host.evaluate(() => { window.__ns.scoreHeld = true; window.__ns.input.keys.add('score'); });
