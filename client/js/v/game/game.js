@@ -8,7 +8,7 @@ import { MSG, SIM } from '/shared/protocol-consts.js';
 import { createMovementState, stepMovement, teleportMovement, CROUCH } from '/shared/movement.js';
 import { SPAWNS, SOLID_BOXES } from '/shared/map.js';
 import { WEAPONS, WEAPON_ORDER } from '/shared/weapons.js';
-import { PLAYER } from '/shared/collision.js';
+import { PLAYER, moveAABB } from '/shared/collision.js';
 import { createNeonEnvironment } from '../world/env.js';
 import { createArena, applyAtmosphere } from '../world/arena.js';
 import { OTSCamera, rayWorld } from './camera.js';
@@ -57,7 +57,7 @@ export class Game {
     this.ots.yaw = SPAWNS.A.yaw;
     this.prev = { x: this.move.pos.x, y: this.move.pos.y, z: this.move.pos.z };
     this.renderPos = new THREE.Vector3();
-    this.seq = 0; this.acc = 0; this.history = [];
+    this.seq = 0; this.acc = 0;
     this.authoritative = false;
     this.team = null;
     this.state = null;          // oxirgi STATE (server)
@@ -116,7 +116,7 @@ export class Game {
     this.state = m;
     this.loadout = m.loadout || this.loadout;
     if (m.weapon && m.weapon.weaponId !== this.weaponId) { this.weaponId = m.weapon.weaponId; this.me.setWeapon(this.weaponId); }
-    if (m.teamId !== this.team) { this.team = m.teamId; this.me.setIdentity(this.playerName, m.teamId); }
+    if (m.teamId !== this.team) { this.team = m.teamId; this.me.setIdentity(this.playerName, m.teamId); this._faceSpawn(true); }
     this.authoritative = !!m.authoritativeMovement;
     if (this.alive && !m.alive) this._died();
     if (!this.alive && m.alive) this._respawned(m.position);
@@ -140,7 +140,7 @@ export class Game {
     const seen = new Set();
     for (const p of m.players) {
       this.names.set(p.id, p.name || p.id);
-      if (p.id === my) { this._reconcile(p, m.ackSeq); this.mySnap = p; continue; }
+      if (p.id === my) { this._reconcile(p); this.mySnap = p; continue; }
       seen.add(p.id);
       let r = this.remotes.get(p.id);
       if (!r) {
@@ -154,21 +154,31 @@ export class Game {
     if (m.match) this._onMatch(m.match);
     this.effects.syncGrenades(m.grenades, (pos) => { this.effects.explosion(pos); sfx.explosion(pos); this._shake(pos, 0.25); });
   }
-  _reconcile (p, ackSeq) {
+  /**
+   * Rekonsiliatsiya (server avtoriteti): server tick'da OXIRGI niyat bilan bir
+   * qadam yuradi, mijoz esa o'z kadrlarida — shu sababli seq-tarix bilan qat'iy
+   * solishtirish o'rniga server pozitsiyasi + kechikish kompensatsiyasi (RTT/2 +
+   * 1 tick) bo'yicha YUMSHOQ tuzatish: kichik farqlar silliq yo'qoladi, katta
+   * farq (respawn/teleport/to'qnashuv farqi) darhol tuzatiladi.
+   */
+  _reconcile (p) {
     if (!this.authoritative) return;
-    const h = this.history.find((e) => e.seq === ackSeq);
     const mv = this.move;
-    if (!h) { if (Math.hypot(p.x - mv.pos.x, p.z - mv.pos.z) > 2) teleportMovement(mv, p.x, p.z, undefined, p.y); return; }
-    const ex = p.x - h.x, ey = p.y - h.y, ez = p.z - h.z;
-    const err = Math.hypot(ex, ey, ez);
-    if (err > 2.5) { teleportMovement(mv, p.x, p.z, undefined, p.y); this.prev = { ...mv.pos }; this.history.length = 0; return; }
-    if (err > 0.01) {
-      const k = err > 0.6 ? 1 : 0.35;
-      mv.pos.x += ex * k; mv.pos.y += ey * k; mv.pos.z += ez * k;
-      for (const e of this.history) if (e.seq > ackSeq) { e.x += ex * k; e.y += ey * k; e.z += ez * k; }
+    const lead = Math.min(0.25, (this.net.rtt || 0) / 2000 + STEP);
+    const tx = p.x + mv.vel.x * lead, tz = p.z + mv.vel.z * lead;
+    const ex = tx - mv.pos.x, ez = tz - mv.pos.z, ey = p.y - mv.pos.y;
+    const err = Math.hypot(ex, ez);
+    this.lastErr = Math.hypot(p.x - mv.pos.x, p.z - mv.pos.z);
+    if (err > 2.5 || Math.abs(ey) > 2) {
+      teleportMovement(mv, p.x, p.z, undefined, p.y); this.prev = { ...mv.pos }; this._faceSpawn(true); return;
     }
-    this.history = this.history.filter((e) => e.seq >= ackSeq);
-    this.lastErr = err;
+    if (err > 0.05) {
+      // tuzatish ham kolliziyadan o'tadi (devor ichiga surilmaydi)
+      const k = err > 0.8 ? 0.6 : 0.25;
+      const r = moveAABB(mv.pos, { x: ex * k, z: ez * k }, PLAYER.RADIUS, mv.crouching ? CROUCH.HEIGHT : PLAYER.HEIGHT, mv.boxes);
+      mv.pos.x = r.x; mv.pos.z = r.z;
+    }
+    if (!mv.airborne && !p.airborne && Math.abs(ey) > 0.05) mv.pos.y += ey * 0.5;
   }
   _onMatch (mt) {
     const pv = this.prevMatch;
@@ -233,10 +243,15 @@ export class Game {
     this.hud.dead(true, who ? `${who} tomonidan · keyingi raundda qaytasiz` : 'Keyingi raundda qaytasiz');
     if (this.mode === 'training') this.hud.dead(true, 'Qayta tug‘ilish…');
   }
+  /** Spawn'da kamera jamoa spawn yo'nalishiga (markazga) qaraydi */
+  _faceSpawn (force = false) {
+    const sp = SPAWNS[this.team === 'B' ? 'B' : 'A'];
+    if (force || Math.hypot(this.move.pos.x - sp.x, this.move.pos.z - sp.z) < 4) { this.ots.yaw = sp.yaw; this.ots.pitch = -0.08; }
+  }
   _respawned (pos) {
     this.me.anim.trigger('respawn'); sfx.respawn();
     this.hud.dead(false);
-    if (pos) { teleportMovement(this.move, pos.x, pos.z, undefined, pos.y); this.prev = { ...this.move.pos }; this.history.length = 0; }
+    if (pos) { teleportMovement(this.move, pos.x, pos.z, undefined, pos.y); this.prev = { ...this.move.pos }; this._faceSpawn(true); }
   }
   _wireChat () {
     const inp = this.hud.el.hChatIn;
@@ -359,8 +374,6 @@ export class Game {
       move: { forward: axis.forward, right: axis.right, sprint, jump, crouch }
     };
     this.net.send(msg);
-    this.history.push({ seq: this.seq, x: this.move.pos.x, y: this.move.pos.y, z: this.move.pos.z });
-    if (this.history.length > 90) this.history.shift();
     if ((fire || firePressed) && this.alive) this._predictFire(firePressed, aim);
     P.firePressed = false; P.reload = false; P.switchTo = null; P.jump = false;
   }
